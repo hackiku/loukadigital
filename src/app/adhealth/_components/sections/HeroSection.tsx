@@ -1,8 +1,85 @@
 // src/app/adhealth/_components/sections/HeroSection.tsx
 
-import { AuditDrawer } from '../cta/AuditDrawer';
+import { AuditDrawerTrigger } from '../cta/AuditDrawerTrigger';
 
-export function HeroSection() {
+// Liquid text component - aquarium style
+function LiquidText({ children }: { children: string }) {
+	return (
+		<span className="relative inline-block px-6 py-3 rounded-xl overflow-hidden">
+			{/* Background container - the aquarium glass */}
+			<span
+				className="absolute inset-0 rounded-xl"
+				style={{
+					background: 'linear-gradient(180deg, rgba(239, 68, 68, 0.1) 0%, rgba(249, 115, 22, 0.15) 100%)',
+					backdropFilter: 'blur(8px)',
+				}}
+			/>
+
+			{/* Liquid fill - static wavy shape */}
+			<svg
+				className="absolute inset-0 w-full h-full"
+				viewBox="0 0 200 100"
+				preserveAspectRatio="none"
+				style={{ opacity: 0.4 }}
+			>
+				<defs>
+					<linearGradient id="liquidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+						<stop offset="0%" stopColor="rgb(239, 68, 68)" stopOpacity="0.6" />
+						<stop offset="100%" stopColor="rgb(249, 115, 22)" stopOpacity="0.8" />
+					</linearGradient>
+				</defs>
+				{/* Water surface with natural wave */}
+				<path
+					d="M 0,35 
+             C 20,32 40,38 60,35
+             S 100,32 120,35
+             S 160,38 180,35
+             L 200,35
+             L 200,100
+             L 0,100
+             Z"
+					fill="url(#liquidGrad)"
+				/>
+				{/* Light refraction effect */}
+				<ellipse
+					cx="60"
+					cy="50"
+					rx="25"
+					ry="15"
+					fill="white"
+					opacity="0.1"
+				/>
+				<ellipse
+					cx="140"
+					cy="60"
+					rx="30"
+					ry="18"
+					fill="white"
+					opacity="0.08"
+				/>
+			</svg>
+
+			{/* Text with gradient */}
+			<span
+				className="relative z-10 font-extrabold"
+				style={{
+					background: 'linear-gradient(180deg, rgb(248, 113, 113) 0%, rgb(251, 146, 60) 100%)',
+					WebkitBackgroundClip: 'text',
+					WebkitTextFillColor: 'transparent',
+					backgroundClip: 'text',
+				}}
+			>
+				{children}
+			</span>
+		</span>
+	);
+}
+
+interface HeroSectionProps {
+	onOpenDrawer: () => void;
+}
+
+export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 	return (
 		<section className="pt-32 pb-12">
 			<div className="flex flex-col items-center gap-4 mx-auto max-w-4xl text-center">
@@ -14,33 +91,15 @@ export function HeroSection() {
 					<span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
 						Find your monthly{' '}
 					</span>
-					<span className="relative inline-block">
-						<span className="relative inline-block px-4 py-2 rounded-xl overflow-hidden">
-							{/* Liquid fill effect */}
-							<span className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-xl">
-								<span
-									className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-red-500/40 to-orange-500/40 rounded-xl animate-liquid-fill"
-									style={{ height: '66%' }}
-								/>
-								{/* Animated wave overlay */}
-								<span
-									className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-red-400/30 to-transparent animate-liquid-wave"
-									style={{ height: '66%' }}
-								/>
-							</span>
-							<span className="relative z-10 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent font-extrabold">
-								ad spend leak
-							</span>
-						</span>
-					</span>
+					<LiquidText>ad spend leak</LiquidText>
 				</h1>
 
-				<p className="text-lg md:text-2xl text-gray-300 mb-6 max-w-2xl">
+				<p className="text-lg md:text-2xl text-muted-foreground mb-6 max-w-2xl">
 					Free expert analysis of your ad accounts
 				</p>
 
 				<div className="w-full max-w-md">
-					<AuditDrawer />
+					<AuditDrawerTrigger variant="full" onOpen={onOpenDrawer} />
 				</div>
 			</div>
 		</section>

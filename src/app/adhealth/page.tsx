@@ -1,8 +1,12 @@
 // src/app/adhealth/page.tsx
 
+'use client';
+import { useState } from 'react';
 import { Navbar } from './_components/navigation/Navbar';
 import { CurrentVisitors } from './_components/proof/CurrentVisitors';
 import { HeroSection } from './_components/sections/HeroSection';
+import { AuditDrawerContainer } from './_components/cta/AuditDrawerContainer';
+
 // import { OutcomesSection } from './_components/sections/OutcomesSection';
 // import { FormSection } from './_components/sections/FormSection';
 // import { BenefitsSection } from './_components/sections/BenefitsSection';
@@ -10,21 +14,29 @@ import { HeroSection } from './_components/sections/HeroSection';
 // import { TestimonialsSection } from './_components/proof/TestimonialsSection';
 
 export default function AdHealthPage() {
+	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
 	return (
 		<div className="min-h-screen bg-background text-foreground">
 			{/* Navigation */}
-			<Navbar />
+			<Navbar onOpenDrawer={() => setIsDrawerOpen(true)} />
 
 			{/* Current Visitors - Bottom Right */}
 			<div className="fixed bottom-6 right-6 z-40">
 				<CurrentVisitors />
 			</div>
 
+			{/* Global Audit Drawer - ONE instance */}
+			<AuditDrawerContainer
+				isOpen={isDrawerOpen}
+				onClose={() => setIsDrawerOpen(false)}
+			/>
+
 			{/* Main Content */}
 			<main className="px-4 sm:px-12 md:px-16 lg:px-24">
 
 				{/* Hero */}
-				<HeroSection />
+				<HeroSection onOpenDrawer={() => setIsDrawerOpen(true)} />
 
 				{/* Section 1: The Problem (Zigzag Left) */}
 				<section className="py-24 max-w-6xl mx-auto">
@@ -115,8 +127,3 @@ export default function AdHealthPage() {
 		</div>
 	);
 }
-
-export const metadata = {
-	title: 'Free Ad Health Audit - Find Your Ad Spend Leak | Louka Digital',
-	description: 'Get a free expert analysis of your Meta ad account. 90 seconds to request, delivered in 48 hours.',
-};

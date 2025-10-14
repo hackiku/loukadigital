@@ -1,48 +1,33 @@
-// src/app/adhealth/_components/cta/AuditDrawer.tsx
+// src/app/adhealth/_components/cta/AuditDrawerContainer.tsx
 
 'use client';
-import { useState } from 'react';
 import { X } from 'lucide-react';
 import { AuditForm } from './AuditForm';
-import { AuditButton } from './AuditButton';
 
-interface AuditDrawerProps {
-	variant?: 'full' | 'minimal';
+interface AuditDrawerContainerProps {
+	isOpen: boolean;
+	onClose: () => void;
 }
 
-export function AuditDrawer({ variant = 'full' }: AuditDrawerProps) {
-	const [isOpen, setIsOpen] = useState(false);
-	const [isPeeking, setIsPeeking] = useState(false);
-
+export function AuditDrawerContainer({ isOpen, onClose }: AuditDrawerContainerProps) {
 	return (
 		<>
-			{/* Trigger with hover peek */}
-			<div
-				onMouseEnter={() => variant === 'full' && setIsPeeking(true)}
-				onMouseLeave={() => setIsPeeking(false)}
-			>
-				<AuditButton
-					variant={variant}
-					onClick={() => setIsOpen(true)}
-				/>
-			</div>
-
 			{/* Backdrop */}
 			{isOpen && (
 				<div
-					className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 transition-opacity duration-300"
-					onClick={() => setIsOpen(false)}
+					className="fixed inset-0 bg-background/80 backdrop-blur-sm z-[100]"
+					onClick={onClose}
 				/>
 			)}
 
 			{/* Drawer */}
 			<div
 				className={`
-          fixed bottom-0 left-0 right-0 z-50
+          fixed bottom-0 left-0 right-0 z-[101]
           bg-card border-t-2 border-purple-500/50
           rounded-t-3xl shadow-2xl
           transition-transform duration-500 ease-out
-          ${isOpen ? 'translate-y-0' : isPeeking && variant === 'full' ? 'translate-y-[calc(100%-80px)]' : 'translate-y-full'}
+          ${isOpen ? 'translate-y-0' : 'translate-y-full'}
         `}
 			>
 				{/* Handle */}
@@ -53,7 +38,7 @@ export function AuditDrawer({ variant = 'full' }: AuditDrawerProps) {
 				{/* Close Button */}
 				{isOpen && (
 					<button
-						onClick={() => setIsOpen(false)}
+						onClick={onClose}
 						className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors z-10"
 					>
 						<X className="w-6 h-6" />
