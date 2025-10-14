@@ -1,32 +1,57 @@
 // src/app/adhealth/page.tsx
-
+import { CheckCircle } from 'lucide-react';
+// ui
 import { ScarcityBanner } from './_components/ui/ScarcityBanner';
+import { AdHealthNavbar } from './_components/ui/AdHealthNavbar';
+import { MobileStickyCTA } from './_components/ui/MobileStickyCTA';
+import { AdHealthFooter } from './_components/ui/AdHealthFooter';
+// sections
 import { HeroSection } from './_components/sections/HeroSection';
 import { OutcomesSection } from './_components/sections/OutcomesSection';
 import { FormSection } from './_components/sections/FormSection';
 import { BenefitsSection } from './_components/sections/BenefitsSection';
 import { QualificationSection } from './_components/sections/QualificationSection';
 import { TestimonialsSection } from './_components/proof/TestimonialsSection';
-import { MobileStickyCTA } from './_components/ui/MobileStickyCTA';
+import { AuditDrawer } from './_components/cta/AuditDrawer';
+
 
 export default function AdHealthPage() {
 	return (
 		<div className="min-h-screen bg-black text-white">
 			<ScarcityBanner />
 
-			<a
-				href="/"
-				className="fixed top-16 left-4 z-40 block group"
-				aria-label="Louka Digital"
-			>
-				<div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center font-bold text-black text-xs md:text-sm hover:scale-110 transition-transform shadow-lg">
-					LOUKA
-				</div>
-			</a>
+			<AdHealthNavbar />
 
-			<main className="pt-24 pb-20 md:pb-8">
+			<main className="px-4 sm:px-12 md:px-16 lg:px-24">
+			
 				<HeroSection />
-				<OutcomesSection />
+				<section className="pt-42">
+					<div className="flex flex-col items-center gap-4 mx-auto max-w-4xl text-center">
+						<span className="rounded-full bg-card/20 px-4 py-1 max-w-40">Ad Health</span>
+						<h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+							Find your monthly <span className="block bg-accent-foreground/20 rounded-xl">ad spend leak</span>
+						</h1>
+						<p className="text-lg md:text-2xl text-gray-300 mb-6">
+							Free expert analysis of your ad accounts
+						</p>
+
+						<AuditDrawer />
+					</div>
+				</section>
+
+				<section className="pt-42">
+					
+					<div className="flex flex-col items-center gap-4 mx-auto max-w-4xl text-center">
+						<h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
+							Where's the money {' '}
+							<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+								actually going?
+							</span>
+						</h2>
+					</div>
+				</section>
+			
+				{/* <OutcomesSection /> */}
 				<FormSection />
 				<BenefitsSection />
 				<QualificationSection />
@@ -35,26 +60,8 @@ export default function AdHealthPage() {
 
 			<MobileStickyCTA />
 
-			<footer className="bg-purple-300 text-black py-8">
-				<div className="container mx-auto px-4">
-					<div className="text-center mb-6">
-						<p className="font-bold text-sm md:text-base">
-							2025 © | Copyright by Louka Digital Ltd | All Rights Reserved |
-							<a className="text-black hover:underline ml-1 mr-1" href="/privacy">Privacy Policy</a> |
-							<a className="text-black hover:underline ml-1" href="/terms">Terms</a>
-						</p>
-					</div>
-					<div className="max-w-4xl mx-auto">
-						<div className="text-xs text-gray-700 leading-relaxed text-center">
-							<p>
-								The ad account audit and recommendations provided are based on the information you submit.
-								Results and savings potential are estimates and not guarantees. Actual performance improvements
-								will vary based on implementation, market conditions, and other factors beyond our control.
-							</p>
-						</div>
-					</div>
-				</div>
-			</footer>
+			<AdHealthFooter />
+			
 		</div>
 	);
 }

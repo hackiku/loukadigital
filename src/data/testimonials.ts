@@ -32,7 +32,7 @@ export const testimonials: Testimonial[] = [
 			metric: "$4,000/month waste found",
 			timeframe: "45 minutes"
 		},
-		logo: "/logos/triumph-games.png"
+		logo: "/assets/logos/triumph-games.png"
 	},
 	{
 		id: 'melbourne-capital',
@@ -44,7 +44,7 @@ export const testimonials: Testimonial[] = [
 			linkedIn: "https://linkedin.com/in/robatherton"
 		},
 		industry: "Financial Services",
-		logo: "/logos/melbourne-capital.png"
+		logo: "/assets/logos/melbourne-capital.png"
 	},
 	{
 		id: 'provider-partners',
@@ -59,7 +59,7 @@ export const testimonials: Testimonial[] = [
 			metric: "$17,000/month additional revenue",
 			timeframe: "30 days to implement"
 		},
-		logo: "/logos/provider-partners.png"
+		logo: "/assets/logos/provider-partners.png"
 	}
 ];
 

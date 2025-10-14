@@ -33,7 +33,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
 					<div className="w-16 h-16 relative">
 						<Image
 							src={testimonial.logo}
-							alt={testimonial.company}
+							alt={testimonial.author.company}
 							fill
 							className="object-contain"
 						/>

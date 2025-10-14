@@ -1,5 +1,4 @@
-// FILE: src/app/adhealth/_components/sections/OutcomesSection.tsx
-// =============================================================================
+// src/app/adhealth/_components/sections/OutcomesSection.tsx
 
 import { Target, TrendingUp, DollarSign } from 'lucide-react';
 
