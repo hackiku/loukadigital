@@ -13,7 +13,8 @@ export function LogoModule() {
 			{/* Logo Button */}
 			<button
 				onClick={() => setIsExpanded(!isExpanded)}
-				className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden hover:scale-110 transition-transform shadow-lg hover:shadow-xl"
+				className="cursor-pointer relative w-18 h-18 md:w-24 md:h-24 rounded-full overflow-hidden
+				hover:scale-110 transition-transform shadow-lg hover:shadow-xl"
 			>
 				<Image
 					src="/assets/logos/louka-logo.jpg"
@@ -53,7 +54,7 @@ export function LogoModule() {
 					<div className="flex items-center gap-4 mb-4">
 						<div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
 							<Image
-								src="/assets/logos/louka-logo.jpeg"
+								src="/assets/logos/louka-logo.jpg"
 								alt="Louka Digital"
 								fill
 								className="object-cover"

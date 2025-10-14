@@ -6,6 +6,7 @@ import { Navbar } from './_components/navigation/Navbar';
 import { CurrentVisitors } from './_components/proof/CurrentVisitors';
 import { HeroSection } from './_components/sections/HeroSection';
 import { AuditDrawerContainer } from './_components/cta/AuditDrawerContainer';
+import { AuditDrawerTrigger } from './_components/cta/AuditDrawerTrigger';
 
 // import { OutcomesSection } from './_components/sections/OutcomesSection';
 // import { FormSection } from './_components/sections/FormSection';
@@ -27,6 +28,10 @@ export default function AdHealthPage() {
 			</div>
 
 			{/* Global Audit Drawer - ONE instance */}
+			{/* <AuditDrawerTrigger
+				isOpen={isDrawerOpen}
+				onClose={() => setIsDrawerOpen(false)}
+			/> */}
 			<AuditDrawerContainer
 				isOpen={isDrawerOpen}
 				onClose={() => setIsDrawerOpen(false)}

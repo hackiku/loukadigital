@@ -1,6 +1,7 @@
 // src/app/adhealth/_components/sections/HeroSection.tsx
 
 import { AuditDrawerTrigger } from '../cta/AuditDrawerTrigger';
+import { BubbleTestimonial } from '../proof/BubbleTestimonial';
 
 // Liquid text component - aquarium style
 function LiquidText({ children }: { children: string }) {
@@ -81,26 +82,33 @@ interface HeroSectionProps {
 
 export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 	return (
-		<section className="pt-32 pb-12">
+		<section className="relative pt-42 md:pt-46 pb-12">
+
+			<div className="absolute border rounded-full h-32 w-32 bottom-10 left-8">
+				{/* <BubbleTestimonial /> */}
+				<span>img</span>
+			
+			</div>
+
 			<div className="flex flex-col items-center gap-4 mx-auto max-w-4xl text-center">
-				<span className="rounded-full bg-purple-500/10 border border-purple-500/20 px-4 py-1 text-sm text-purple-300">
-					Ad Health
-				</span>
 
 				<h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4">
 					<span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-						Find your monthly{' '}
+						Figure out monthly {' '}
 					</span>
 					<LiquidText>ad spend leak</LiquidText>
+					{/* <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+						monthly
+					</span> */}
 				</h1>
 
-				<p className="text-lg md:text-2xl text-muted-foreground mb-6 max-w-2xl">
-					Free expert analysis of your ad accounts
-				</p>
 
-				<div className="w-full max-w-md">
+				<div className="w-full max-w-[18em]">
 					<AuditDrawerTrigger variant="full" onOpen={onOpenDrawer} />
 				</div>
+				<p className="text-lg md:text-xl text-muted-foreground/70 mb-6 max-w-2xl">
+					Free expert analysis of your ad accounts
+				</p>
 			</div>
 		</section>
 	);
