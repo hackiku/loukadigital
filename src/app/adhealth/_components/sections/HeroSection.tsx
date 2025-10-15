@@ -9,6 +9,7 @@ import { ForFreeArrow } from '../cta/ForFreeArrow';
 import { AuditDrawerTrigger } from '../cta/AuditDrawerTrigger';
 import { AuditDrawerContainer } from '../cta/AuditDrawerContainer';
 import { LogoShoutouts } from '../proof/LogoShoutouts';
+import { FluidCanvas } from '../../leak/FluidCanvas';
 // import { ForFreeArrow } from './ForFreeArrow';
 
 interface HeroSectionProps {
@@ -28,14 +29,18 @@ export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 				{/* Main Headline */}
 				<h1 className="text-4xl md:text-6xl lg:text-6xl font-extrabold text-center">
 					<span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-						Find & Plug Your Monthly
+						Find & Plug Your
 					</span>
 					<br />
-					<LiquidLeakText>Meta Ad Spend Leak</LiquidLeakText>
+					{/* <FluidCanvas>Ad Spend Leak</FluidCanvas> */}
+					<LiquidLeakText>
+						Meta Ad Spend Leak
+					</LiquidLeakText>
+				
 					<br />
-					{/* <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-						monthly
-					</span> */}
+					<span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+						in 24hrs
+					</span>
 				</h1>
 				
 				<div className="absolute right-[30%] bottom-[55%] rotate-90">

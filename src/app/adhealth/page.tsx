@@ -13,12 +13,20 @@ import { ChecklistOverview } from './audit/ChecklistOverview';
 import { ScoreCalculator } from './audit/ScoreCalculator';
 import { WasteEstimator } from './audit/WasteEstimator';
 import { ResultsProof } from './audit/ResultsProof';
+import { FluidCanvas } from './leak/FluidCanvas';
 
 export default function AdHealthPage() {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
 	return (
 		<div className="min-h-screen bg-background text-foreground">
+			
+			<section className="py-24">
+				<div className="max-w-4xl mx-auto h-[600px] bg-black/20 rounded-xl overflow-hidden border">
+					<FluidCanvas />
+				</div>
+			</section>
+
 			{/* Navigation */}
 			<Navbar onOpenDrawer={() => setIsDrawerOpen(true)} />
 
