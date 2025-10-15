@@ -116,7 +116,7 @@ export default function AdHealthPage() {
 							<div className="flex justify-center mt-12">
 								<div className="max-w-sm w-full">
 									<AuditDrawerTrigger
-										badge="spots"
+										badge="minimal"
 										spotsLeft={7}
 										onOpen={() => setIsDrawerOpen(true)}
 									/>
