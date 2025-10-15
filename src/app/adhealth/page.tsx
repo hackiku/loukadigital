@@ -93,33 +93,37 @@ export default function AdHealthPage() {
 
 				{/* FIRST 3 SINS - Left side while mockup is sticky right */}
 				<section className="py-12 max-w-4xl mr-auto space-y-8">
-					<SinSectionItem check={checks[0]} />
-					<SinSectionItem check={checks[1]} />
-					<SinSectionItem check={checks[2]} />
+					{checks[0] && <SinSectionItem check={checks[0]} />}
+					{checks[1] && <SinSectionItem check={checks[1]} />}
+					{checks[2] && <SinSectionItem check={checks[2]} />}
 				</section>
 
 				{/* AD FORMATS CAROUSEL + CTA */}
 				<section id="creative-fatigue-section" className="py-24 max-w-6xl mx-auto">
-					<div className="text-center mb-12">
-						<h2 className="text-3xl md:text-4xl font-bold mb-4">
-							{checks[4].name}
-						</h2>
-						<p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-							{checks[4].tagline}
-						</p>
-					</div>
+					{checks[4] && (
+						<>
+							<div className="text-center mb-12">
+								<h2 className="text-3xl md:text-4xl font-bold mb-4">
+									{checks[4].name}
+								</h2>
+								<p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+									{checks[4].tagline}
+								</p>
+							</div>
 
-					<AdFormatsCarousel />
+							<AdFormatsCarousel />
 
-					<div className="flex justify-center mt-12">
-						<div className="max-w-sm w-full">
-							<AuditDrawerTrigger
-								badge="spots"
-								spotsLeft={7}
-								onOpen={() => setIsDrawerOpen(true)}
-							/>
-						</div>
-					</div>
+							<div className="flex justify-center mt-12">
+								<div className="max-w-sm w-full">
+									<AuditDrawerTrigger
+										badge="spots"
+										spotsLeft={7}
+										onOpen={() => setIsDrawerOpen(true)}
+									/>
+								</div>
+							</div>
+						</>
+					)}
 				</section>
 
 				<section className="relative h-[80vh] rounded-3xl overflow-hidden flex items-center justify-center my-24">

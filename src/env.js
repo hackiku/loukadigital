@@ -8,7 +8,7 @@ export const env = createEnv({
 	 */
 	server: {
 		NODE_ENV: z.enum(["development", "test", "production"]),
-		CONVERTKIT_API_KEY: z.string().min(1),
+		CONVERTKIT_API_KEY: z.string().min(1).optional(),
 	},
 
 	/**
@@ -27,6 +27,7 @@ export const env = createEnv({
 	runtimeEnv: {
 		NODE_ENV: process.env.NODE_ENV,
 		CONVERTKIT_API_KEY: process.env.CONVERTKIT_API_KEY,
+		// CONVERTKIT_API_KEY: process.env.CONVERTKIT_API_KEY,
 		// NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 	},
 	/**

@@ -7,7 +7,8 @@
  * need to use are documented accordingly near the end.
  */
 import { initTRPC } from "@trpc/server";
-import superjson from "superjson";
+// import superjson from "superjson";
+import SuperJSON from "superjson";
 import { ZodError } from "zod";
 
 /**
@@ -36,7 +37,8 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
  * errors on the backend.
  */
 const t = initTRPC.context<typeof createTRPCContext>().create({
-	transformer: superjson,
+	transformer: SuperJSON,
+	// transformer: superjson,
 	errorFormatter({ shape, error }) {
 		return {
 			...shape,

@@ -21,9 +21,7 @@ Track 1: Professional Services (Lawyers, Clinics, Finance Firms)
 Pain Points:
 Relying on referrals or walk-ins → unpredictable revenue.
 
-
 Competitors running aggressive Meta/TikTok ads while you’re invisible.
-
 
 Missed follow-ups because you don’t have automation systems.
 

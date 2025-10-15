@@ -3,13 +3,11 @@
 import { Calendar } from 'lucide-react';
 import { LiquidLeakText } from '../../leak/LiquidLeakText';
 // import { LiquidLeakText } from '../_componentsLiquidLeakText';
-import { BubbleTestimonial } from '../proof/BubbleTestimonial';
 import { AvailabilityBar } from '../navigation/AvailabilityBar';
 import { ForFreeArrow } from '../cta/ForFreeArrow';
 import { AuditDrawerTrigger } from '../cta/AuditDrawerTrigger';
 import { AuditDrawerContainer } from '../cta/AuditDrawerContainer';
 import { LogoShoutouts } from '../proof/LogoShoutouts';
-import { FluidCanvas } from '../../leak/FluidCanvas';
 // import { ForFreeArrow } from './ForFreeArrow';
 
 interface HeroSectionProps {
