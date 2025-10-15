@@ -74,9 +74,9 @@ export function LogoShoutouts() {
 			</div>
 
 			{/* Industry Tag */}
-			<div className="text-xs md:text-sm text-muted-foreground">
+			{/* <div className="text-xs md:text-sm text-muted-foreground">
 				{activeTestimonial?.industry}
-			</div>
+			</div> */}
 		</div>
 	);
 }

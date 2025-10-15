@@ -76,23 +76,23 @@ export default function AdHealthPage() {
 				</section>
 
 				{/* WHERE IS THE INSTA MONEY GOING? */}
-				<section id="where-money-section" className="py-24 max-w-6xl mx-auto">
+				<section id="where-money-section" className="pt-64 pb-32  max-w-6xl mx-auto">
 					<h2 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 leading-tight">
-						Where on Earth does the{' '}
+						Where on Earth does my{' '}
 						<br />
 						<span className="mt-2 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
 							Insta Ad money
 						</span>{' '}go?
 					</h2>
-					<p className="text-2xl md:text-3xl text-muted-foreground max-w-3xl">
-						Most accounts leak 30-40% on overlap, fatigue & dead placements.
-						<br />
-						<strong className="text-foreground text-3xl md:text-4xl">£7,400/month</strong> gone without a trace.
+					<p className="text-2xl md:text-3xl text-muted-foreground max-w-2xl">
+						Most accounts leak 30-40% on overlap. That's 
+						<strong className="text-foreground text-3xl md:text-4xl"> £7,400/month</strong> gone without a trace
 					</p>
+					
 				</section>
 
 				{/* FIRST 3 SINS - Left side while mockup is sticky right */}
-				<section className="py-12 max-w-4xl mr-auto space-y-8">
+				<section className="pb-32 max-w-4xl mr-auto space-y-8">
 					{checks[0] && <SinSectionItem check={checks[0]} />}
 					{checks[1] && <SinSectionItem check={checks[1]} />}
 					{checks[2] && <SinSectionItem check={checks[2]} />}
