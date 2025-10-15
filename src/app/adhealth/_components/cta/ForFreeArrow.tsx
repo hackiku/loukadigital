@@ -4,18 +4,47 @@ export function ForFreeArrow() {
 	return (
 		<div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full hidden lg:block pointer-events-none">
 			<div className="relative" style={{ width: '180px', height: '180px' }}>
-				{/* FOR FREE text */}
+				{/* Price text with strikethrough */}
 				<div
-					className="absolute top-1 right-12 text-2xl font-bold"
+					className="absolute top-1 right-12"
 					style={{
 						fontFamily: 'Comic Sans MS, cursive',
-						// color: '#a855f7',
-						color: '#ffffff',
 						transform: 'rotate(-70deg)',
-						textShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'
 					}}
 				>
-					FOR FREE
+					<div className="relative inline-block">
+						<span
+							className="text-xl font-bold text-foreground/80"
+							style={{
+								textShadow: '0 2px 8px rgba(168, 85, 247, 0.2)'
+							}}
+						>
+							£697
+						</span>
+						{/* Diagonal strikethrough */}
+						<div
+							className="absolute -inset-2 flex items-center justify-center"
+							style={{
+								transform: 'rotate(-15deg)',
+							}}
+						>
+							<div
+								className="w-full bg-red-500/80"
+								style={{
+									height: '4px',
+									boxShadow: '0 0 4px rgba(239, 68, 68, 0.6)'
+								}}
+							/>
+						</div>
+					</div>
+					<div
+						className="text-2xl font-bold text-white mt-1"
+						style={{
+							textShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'
+						}}
+					>
+						FREE
+					</div>
 				</div>
 
 				{/* Curved Arrow SVG */}
@@ -35,47 +64,43 @@ export function ForFreeArrow() {
 								<feMergeNode in="SourceGraphic" />
 							</feMerge>
 						</filter>
+						<linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+							<stop offset="0%" stopColor="#a855f7">
+								<animate attributeName="stop-color"
+									values="#a855f7;#ec4899;#3b82f6;#a855f7"
+									dur="4s"
+									repeatCount="indefinite" />
+							</stop>
+							<stop offset="100%" stopColor="#ec4899">
+								<animate attributeName="stop-color"
+									values="#ec4899;#3b82f6;#a855f7;#ec4899"
+									dur="4s"
+									repeatCount="indefinite" />
+							</stop>
+						</linearGradient>
 					</defs>
 
 					{/* Curved path */}
 					<path
-						d="M 30 20 Q 80 40, 100 90 T 120 160"
-						// stroke="#a855f7"
-						stroke="#ffffff"
+						d="M 80 80 Q 80 40, 100 90 T 120 160"
+						stroke="url(#arrowGradient)"
 						strokeWidth="4"
 						fill="none"
 						strokeLinecap="round"
 						filter="url(#glow)"
 						opacity="0.9"
-					>
-						<animate
-							attributeName="stroke-dasharray"
-							values="0,200;200,0"
-							dur="2s"
-							repeatCount="indefinite"
-						/>
-					</path>
+					/>
 
 					{/* Arrow head */}
 					<path
 						d="M 120 160 L 110 150 M 120 160 L 130 155"
-						// stroke="#a855f7"
-						stroke="#fff"
+						stroke="url(#arrowGradient)"
 						strokeWidth="4"
 						strokeLinecap="round"
 						filter="url(#glow)"
 						opacity="0.9"
 					/>
 
-					{/* Handdrawn effect - secondary line */}
-					<path
-						d="M 32 22 Q 82 42, 102 92 T 122 162"
-						stroke="#afff"
-						strokeWidth="2"
-						fill="none"
-						strokeLinecap="round"
-						opacity="0.4"
-					/>
 				</svg>
 			</div>
 		</div>

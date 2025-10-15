@@ -10,7 +10,7 @@ export function LiquidLeakText({ children }: { children: string }) {
 		>
 			{/* Subtle container background - the "empty" part of tank */}
 			<span
-				className="absolute inset-0 bg-neutral-500/8"
+				className="absolute inset-0 bg-neutral-500/15"
 				style={{ borderRadius }}
 			/>
 

@@ -209,7 +209,7 @@ export const checks: CheckItem[] = [
 		id: 'dead-placements',
 		number: 4,
 		name: 'Dead Placements',
-		tagline: 'Budget on placements that don't convert',
+		tagline: 'Budget on placements that don\'t convert',
 		issue: 'Spending thousands on Audience Network, wrong-format Reels, etc.',
 		check: {
 			instructions: 'Break down by placement to find dead weight',
@@ -356,7 +356,7 @@ export const checks: CheckItem[] = [
 		check: {
 			instructions: 'Calculate account-level frequency',
 			steps: [
-				'Look at each campaign's frequency',
+				'Look at each campaign\'s frequency',
 				'If 3 campaigns at 2.0 each = ~4-6 account frequency',
 				'Check: Is account frequency over 3.0?',
 			],
