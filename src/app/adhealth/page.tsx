@@ -3,16 +3,16 @@
 'use client';
 import { useState } from 'react';
 import { Navbar } from './_components/navigation/Navbar';
-import { CurrentVisitors } from './_components/proof/CurrentVisitors';
-import { HeroSection } from './_components/sections/HeroSection';
+// ui
 import { AuditDrawerContainer } from './_components/cta/AuditDrawerContainer';
-import { AuditDrawerTrigger } from './_components/cta/AuditDrawerTrigger';
-import { AdHealthFooter } from './_components/navigation/Footer';
-
-// import { FormSection } from './_components/sections/FormSection';
-// import { BenefitsSection } from './_components/sections/BenefitsSection';
-// import { QualificationSection } from './_components/sections/QualificationSection';
-// import { TestimonialsSection } from './_components/proof/TestimonialsSection';
+import { CurrentVisitors } from './_components/proof/CurrentVisitors';
+import { LiquidLeakText } from './leak/LiquidLeakText';
+// story
+import { HeroSection } from './_components/sections/HeroSection';
+import { ChecklistOverview } from './audit/ChecklistOverview';
+import { ScoreCalculator } from './audit/ScoreCalculator';
+import { WasteEstimator } from './audit/WasteEstimator';
+import { ResultsProof } from './audit/ResultsProof';
 
 export default function AdHealthPage() {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -21,16 +21,13 @@ export default function AdHealthPage() {
 		<div className="min-h-screen bg-background text-foreground">
 			{/* Navigation */}
 			<Navbar onOpenDrawer={() => setIsDrawerOpen(true)} />
+
 			{/* Current Visitors - Bottom Right */}
 			<div className="fixed bottom-6 right-6 z-40">
 				<CurrentVisitors />
 			</div>
 
-			{/* Global Audit Drawer - ONE instance */}
-			{/* <AuditDrawerTrigger
-				isOpen={isDrawerOpen}
-				onClose={() => setIsDrawerOpen(false)}
-			/> */}
+			{/* Global Audit Drawer */}
 			<AuditDrawerContainer
 				isOpen={isDrawerOpen}
 				onClose={() => setIsDrawerOpen(false)}
@@ -39,86 +36,115 @@ export default function AdHealthPage() {
 			{/* Main Content */}
 			<main className="px-4 sm:px-12 md:px-16 lg:px-24">
 
-				<section className="relative py-32 md:pt-40 min-h-[80vh] flex items-center border">
-					<HeroSection onOpenDrawer={() => setIsDrawerOpen(true)} />
+				{/* HERO SECTION */}
+				<section className="relative _py-32 _md:py-40 border h-[90vh] flex items-center">
+					<HeroSection
+						onOpenDrawer={() => setIsDrawerOpen(true)}
+					/>
+					
 				</section>
-				{/* Hero */}
 
-				{/* Section 1: The Problem (Zigzag Left) */}
-				<section className="pt-44 __py-24 max-w-6xl mx-auto text-center">
-					<h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-						Where on Earth is the {' '}
-						<span className="block bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+				{/* WHERE IS THE MONEY GOING? */}
+				<section className="py-24 max-w-6xl mx-auto text-center">
+					<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+						Where on Earth is the{' '}
+						<span className="block mt-2 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
 							money going?
 						</span>
 					</h2>
+					<p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+						Most ad accounts waste 30-40% of budget on overlap, fatigue, and wrong placements.
+						<br />
+						<strong className="text-foreground">You're probably losing £7,400/month without knowing it.</strong>
+					</p>
 				</section>
 
-
-
-				<section className="pt-44 __py-24 max-w-6xl mx-auto">
-					<div className="grid md:grid-cols-2 gap-12 items-center">
-						<div className="order-2 md:order-1">
-							{/* <div className="w-full h-64 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl flex items-center justify-center border border-border/50">
-								<span className="text-muted-foreground">Visual placeholder</span>
-							</div> */}
-						</div>
-						<div className="order-1 md:order-2">
-							<h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-								Where on Earth is the {' '}
-								<span className="sablock bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-									money going?
-								</span>
-							</h2>
-
-						</div>
-					</div>
+				{/* THE 7 CHECKS */}
+				<section className="py-24 max-w-6xl mx-auto">
+					<ChecklistOverview />
 				</section>
-				
 
-				{/* Section 3: Social Proof (Zigzag Left) */}
-				<section className="py-36 max-w-6xl mx-auto">
-					<div className="grid md:grid-cols-2 gap-12 items-center">
-						<div className="order-2 md:order-1">
-							<div className="w-full h-64 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center border border-border/50">
-								<span className="text-muted-foreground">Visual placeholder</span>
-							</div>
-						</div>
-						<div className="order-1 md:order-2">
-							<h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-								Real brands,{' '}
-								<span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-									real results
-								</span>
-							</h2>
-							<p className="text-lg text-muted-foreground">
-								We've helped 157+ brands find an average of $7,400/month in wasted ad spend.
-								Gaming studios, healthcare companies, SaaS brands - all seeing immediate ROI.
-							</p>
-						</div>
+				{/* WASTE ESTIMATOR */}
+				<section className="py-24 max-w-4xl mx-auto">
+					<WasteEstimator />
+				</section>
+
+				{/* SCORE CALCULATOR */}
+				<section className="py-24 max-w-4xl mx-auto">
+					<ScoreCalculator />
+				</section>
+
+				{/* RESULTS & PROOF */}
+				<section className="py-24 max-w-6xl mx-auto">
+					<ResultsProof />
+				</section>
+
+				{/* SOCIAL PROOF SECTION */}
+				<section className="py-24 max-w-6xl mx-auto">
+					<div className="text-center mb-12">
+						<h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+							Real brands,{' '}
+							<span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+								real results
+							</span>
+						</h2>
+						<p className="text-lg text-muted-foreground">
+							We've helped 200+ brands find an average of £7,400/month in wasted ad spend.
+							<br />
+							Gaming studios, healthcare companies, SaaS brands - all seeing immediate ROI.
+						</p>
 					</div>
 				</section>
 
-				{/* Commented out sections - bring back as needed */}
-				{/* <OutcomesSection /> */}
-				{/* <FormSection /> */}
-				{/* <BenefitsSection /> */}
-				{/* <QualificationSection /> */}
-				{/* <TestimonialsSection /> */}
+				{/* FINAL CTA */}
+				<section className="py-24 max-w-4xl mx-auto text-center">
+					<div className="p-8 md:p-12 rounded-2xl bg-gradient-to-br from-purple-500/10 to-blue-500/10 border-2 border-purple-500/30">
+						<h2 className="text-3xl md:text-5xl font-bold mb-4">
+							Ready to Find Your{' '}
+							<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+								£7K+ Monthly Leak?
+							</span>
+						</h2>
+						<p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+							Get a free expert audit delivered in 48 hours. No fluff, just actionable fixes.
+						</p>
+						<button
+							onClick={() => setIsDrawerOpen(true)}
+							className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-xl transition-all hover:scale-105 shadow-lg text-lg"
+						>
+							Book Your Free Audit →
+						</button>
+						<p className="text-sm text-muted-foreground mt-4">
+							<span className="inline-flex items-center gap-2">
+								<span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+								157 audits completed this month
+							</span>
+						</p>
+					</div>
+				</section>
 
 			</main>
 
-			
-			{/* Footer */}
-			{/* <AdHealthFooter /> */}
-			<footer
-				className="rounded-lg bg-gradient-to-br from-[#FEC5E2] to-[#81B3CA]
-									 m-5 p-5 mt-24">
-				<h2 className="text-[5em]">LOUKA.</h2>
-				<div className="container mx-auto px-4 text-center">
-					<p className="text-sm text-muted-foreground">
-						2025 © Louka Digital Ltd | All Rights Reserved
-					</p>
+			{/* FOOTER */}
+			<footer className="rounded-lg bg-gradient-to-br from-[#FEC5E2] to-[#81B3CA] m-5 p-8 md:p-12 mt-24">
+				<div className="max-w-6xl mx-auto">
+					<h2 className="text-5xl md:text-7xl font-extrabold mb-4">LOUKA.</h2>
+					<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+						<p className="text-sm text-gray-700">
+							2025 © Louka Digital Ltd | All Rights Reserved
+						</p>
+						<div className="flex gap-6 text-sm text-gray-700">
+							<a href="/privacy" className="hover:text-gray-900 transition-colors">
+								Privacy
+							</a>
+							<a href="/terms" className="hover:text-gray-900 transition-colors">
+								Terms
+							</a>
+							<a href="/contact" className="hover:text-gray-900 transition-colors">
+								Contact
+							</a>
+						</div>
+					</div>
 				</div>
 			</footer>
 		</div>

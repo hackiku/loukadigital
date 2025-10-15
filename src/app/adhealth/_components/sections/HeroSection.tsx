@@ -19,14 +19,12 @@ export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 	return (
 		<div className="relative w-full h-full">
 			
-			{/* Bubble Testimonial - Bottom Left */}
-			
-				<div className="absolute bottom-0 left-2 z-10 hidden md:block border">
-					<LogoShoutouts />
-				</div>
+			<div className="absolute bottom-0 left-0 z-10 hidden md:block max-w-sm">
+				<LogoShoutouts />
+			</div>
 
 			{/* Main Content */}
-			<div className="relative flex flex-col items-center gap-8 mx-auto w-full px-4">
+			<div className="relative mt-42 flex flex-col items-center gap-8 mx-auto w-full">
 				{/* Main Headline */}
 				<h1 className="text-4xl md:text-6xl lg:text-6xl font-extrabold text-center">
 					<span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">

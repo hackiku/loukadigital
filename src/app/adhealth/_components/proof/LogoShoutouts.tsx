@@ -66,9 +66,9 @@ export function LogoShoutouts() {
 						</div>
 
 						{/* Active indicator */}
-						{index === activeIndex && (
+						{/* {index === activeIndex && (
 							<div className="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full" />
-						)}
+						)} */}
 					</button>
 				))}
 			</div>
