@@ -7,6 +7,7 @@ import { CurrentVisitors } from './_components/proof/CurrentVisitors';
 import { HeroSection } from './_components/sections/HeroSection';
 import { AuditDrawerContainer } from './_components/cta/AuditDrawerContainer';
 import { AuditDrawerTrigger } from './_components/cta/AuditDrawerTrigger';
+import { AdHealthFooter } from './_components/navigation/Footer';
 
 // import { FormSection } from './_components/sections/FormSection';
 // import { BenefitsSection } from './_components/sections/BenefitsSection';
@@ -38,8 +39,10 @@ export default function AdHealthPage() {
 			{/* Main Content */}
 			<main className="px-4 sm:px-12 md:px-16 lg:px-24">
 
+				<section className="relative py-32 md:pt-40 min-h-[80vh] flex items-center border">
+					<HeroSection onOpenDrawer={() => setIsDrawerOpen(true)} />
+				</section>
 				{/* Hero */}
-				<HeroSection onOpenDrawer={() => setIsDrawerOpen(true)} />
 
 				{/* Section 1: The Problem (Zigzag Left) */}
 				<section className="pt-44 __py-24 max-w-6xl mx-auto text-center">
@@ -105,8 +108,13 @@ export default function AdHealthPage() {
 
 			</main>
 
+			
 			{/* Footer */}
-			<footer className="bg-card/50 border-t border-border py-8 mt-24">
+			{/* <AdHealthFooter /> */}
+			<footer
+				className="rounded-lg bg-gradient-to-br from-[#FEC5E2] to-[#81B3CA]
+									 m-5 p-5 mt-24">
+				<h2 className="text-[5em]">LOUKA.</h2>
 				<div className="container mx-auto px-4 text-center">
 					<p className="text-sm text-muted-foreground">
 						2025 © Louka Digital Ltd | All Rights Reserved

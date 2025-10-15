@@ -54,8 +54,15 @@ export function Navbar({ onOpenDrawer }: NavbarProps) {
 
 					{/* Right side - floating components */}
 					<div className="flex items-center gap-3">
-						{/* <AvailabilityBar /> */}
-						<AuditDrawerTrigger variant="minimal" onOpen={onOpenDrawer} />
+						<AvailabilityBar />
+						{/* <AuditDrawerTrigger variant="minimal" onOpen={onOpenDrawer} /> */}
+						<AuditDrawerTrigger 
+							variant="minimal"
+							badge="spots"
+							spotsLeft={7}
+							onOpen={onOpenDrawer}
+						/>
+
 					</div>
 				</div>
 			</nav>

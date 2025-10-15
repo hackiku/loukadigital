@@ -9,7 +9,8 @@ export function ForFreeArrow() {
 					className="absolute top-1 right-12 text-2xl font-bold"
 					style={{
 						fontFamily: 'Comic Sans MS, cursive',
-						color: '#a855f7',
+						// color: '#a855f7',
+						color: '#ffffff',
 						transform: 'rotate(-70deg)',
 						textShadow: '0 2px 8px rgba(168, 85, 247, 0.3)'
 					}}
@@ -39,7 +40,8 @@ export function ForFreeArrow() {
 					{/* Curved path */}
 					<path
 						d="M 30 20 Q 80 40, 100 90 T 120 160"
-						stroke="#a855f7"
+						// stroke="#a855f7"
+						stroke="#ffffff"
 						strokeWidth="4"
 						fill="none"
 						strokeLinecap="round"
@@ -57,7 +59,8 @@ export function ForFreeArrow() {
 					{/* Arrow head */}
 					<path
 						d="M 120 160 L 110 150 M 120 160 L 130 155"
-						stroke="#a855f7"
+						// stroke="#a855f7"
+						stroke="#fff"
 						strokeWidth="4"
 						strokeLinecap="round"
 						filter="url(#glow)"
@@ -67,7 +70,7 @@ export function ForFreeArrow() {
 					{/* Handdrawn effect - secondary line */}
 					<path
 						d="M 32 22 Q 82 42, 102 92 T 122 162"
-						stroke="#a855f7"
+						stroke="#afff"
 						strokeWidth="2"
 						fill="none"
 						strokeLinecap="round"

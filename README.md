@@ -2,6 +2,11 @@
 # brief
 https://docs.google.com/document/d/1RwnaW-5Nbe6Dhl_bRE6sZoYa-C3f-fyGAECo-wF1ys8/edit?tab=t.0
 
+
+# lead magnet
+https://docs.google.com/document/d/1JSAm068ayxajKtmM_WEKsuVbbzdh10yMU1kuRnUmRXk/edit?tab=t.0#heading=h.435zo795fxix
+
+
 Louka Digital – Core Offer & Sprint System
 ⚡ The Core Offer: “Full-Funnel Growth System”
 For DTC, Service-Based, Gaming, Wellness, and Emerging Tech Brands doing $30k–$500k/month

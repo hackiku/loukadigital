@@ -3,20 +3,17 @@ Louka Digital: Predictable Growth Engine™
 Section 1: The Opening Hook (Vision)
 Headline:
  "We turn ad spend into predictable revenue by combining performance marketing, creative testing, and conversion optimization — at a speed and cost your competitors can’t match."
-Why Now
+
+# Why Now
 Ad costs in the US/EU are rising 20% year over year — making it harder to profit.
-
-
 Most businesses either burn money on ads or grow too slowly because they can’t scale effectively.
-
-
 This creates a massive opportunity for those who have the right systems and speed.
 
 
-Problem:
+## Problem:
  Your competitors are already building those systems — while you’re stuck relying on referrals, manual sales, or a single marketing channel.
 
-Section 2: The Pain (High Stakes)
+# Section 2: The Pain (High Stakes)
 We split this into two separate tracks:
  Professional Services and DTC.
 
