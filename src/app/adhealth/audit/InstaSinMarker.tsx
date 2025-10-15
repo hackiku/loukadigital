@@ -1,7 +1,7 @@
 // src/app/adhealth/audit/InstaSinMarker.tsx
 
 'use client';
-import type { CheckItem } from '@/data/checklist';
+import type { CheckItem } from '~/data/checklist';
 
 interface InstaSinMarkerProps {
 	check: CheckItem;
