@@ -1,7 +1,7 @@
 // src/app/adhealth/_components/proof/CurrentVisitors.tsx
 
 'use client';
-import { Users } from 'lucide-react';
+import { Eye, Users } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export function CurrentVisitors() {
@@ -22,13 +22,17 @@ export function CurrentVisitors() {
 
 	return (
 		<div className="inline-flex items-center gap-2 px-3 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-sm">
-			<span className="relative flex h-2 w-2">
+			{/* <span className="relative flex h-2 w-2">
 				<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
 				<span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
-			</span>
-			<Users className="w-4 h-4 text-purple-300" />
-			<span className="text-purple-300">
-				<span className="font-semibold text-white">{count}</span> UK visitors viewing
+			</span> */}
+			<span className="text-xl" >🇬🇧</span> 
+			{/* <Eye className="w-4 h-4 text-purple-300" /> */}
+			{/* <Users className="w-4 h-4 text-purple-300" /> */}
+			<span className="text-purple-300 text-xl">
+				{/* <span className="font-semibold text-white">{count}</span> from 🇬🇧 */}
+				{count}
+				<span className="text-sm font-semibold text-foreground/70 ml-2">viewing</span> 
 			</span>
 		</div>
 	);

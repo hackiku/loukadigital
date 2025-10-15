@@ -28,7 +28,7 @@ export function AuditDrawerTrigger({ variant = 'full', onOpen }: AuditDrawerTrig
 			onClick={onOpen}
 			className="relative w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(168,85,247,0.6)] active:scale-95 active:translate-y-0"
 		>
-			<div className="flex items-center justify-between gap-4">
+			<div className="flex items-center justify-between gap-1">
 				<div className="flex items-center gap-3">
 					<Calendar className="w-5 h-5 opacity-70" />
 					<span>Book Ad Audit</span>

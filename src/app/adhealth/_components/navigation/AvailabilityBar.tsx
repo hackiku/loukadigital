@@ -1,44 +1,41 @@
 // src/app/adhealth/_components/navigation/AvailabilityBar.tsx
 
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export function AvailabilityBar() {
-	const [spotsLeft, setSpotsLeft] = useState(17);
+	const [spotsLeft] = useState(7);
 	const totalSpots = 20;
 	const percentFilled = ((totalSpots - spotsLeft) / totalSpots) * 100;
 
 	return (
-		<div className="flex items-center gap-3 px-4 py-2 bg-card/30 backdrop-blur-sm rounded-xl border border-border/50">
+		<div className="flex items-center justify-center gap-3">
 			{/* Progress Bar */}
-			<div className="relative w-24 h-2 bg-muted/30 rounded-full overflow-hidden">
+			<div className="relative w-24 h-6 bg-gray-800/50 rounded-full overflow-hidden border-2 border-gray-700/50">
 				<div
-					className="absolute inset-y-0 left-0 bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-500"
+					className="absolute inset-y-0 left-0 bg-gradient-to-br from-[#D8330C] to-red-700 rounded-full transition-all duration-500"
 					style={{ width: `${percentFilled}%` }}
 				>
 					{/* Animated shine */}
-					<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]" />
+					<div
+						className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+						style={{
+							animation: 'shimmer 2s infinite',
+						}}
+					/>
 				</div>
 			</div>
 
 			{/* Spots Text */}
 			<div className="flex items-center gap-1.5 text-xs">
-				<span className="relative flex h-2 w-2">
+				<span className="relative flex h-3 w-3">
 					<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-					<span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+					<span className="relative inline-flex rounded-full h-full w-full bg-[#D8330C]"></span>
 				</span>
-				<span className="text-muted-foreground">
-					<span className="font-bold text-foreground">{spotsLeft}</span>/{totalSpots} spots
+				<span className="text-lg text-gray-400">
+					<span className="font-bold text-white">{spotsLeft}</span>/{totalSpots}
 				</span>
 			</div>
 		</div>
 	);
 }
-
-// Add to animations.css:
-/*
-@keyframes shimmer {
-	0% { transform: translateX(-100%); }
-	100% { transform: translateX(100%); }
-}
-*/
