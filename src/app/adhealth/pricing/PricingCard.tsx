@@ -1,4 +1,4 @@
-// src/app/adhealth/pricing/DeliveryTime.tsx
+// src/app/adhealth/pricing/PricingCard.tsx
 
 'use client';
 import { useEffect, useState, useRef } from 'react';

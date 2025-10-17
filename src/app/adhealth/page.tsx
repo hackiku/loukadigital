@@ -60,17 +60,17 @@ export default function AdHealthPage() {
 				onClose={() => setIsDrawerOpen(false)}
 			/>
 
-			{/* Main Content */}
+			{/* MAIN */}
 			<main className="px-4 sm:px-12 md:px-16 lg:px-24">
 
-				{/* HERO SECTION */}
+				{/* hero */}
 				<section className="relative h-[95vh] flex items-center">
 					<HeroSection
 						onOpenDrawer={() => setIsDrawerOpen(true)}
 					/>
 				</section>
 
-				{/* SINS OVERVIEW - Euler Diagram */}
+				{/* sins - Euler */}
 				<section id="sins-overview-section"
 					className="py-44 max-w-7xl mx-auto"
 				>
@@ -88,12 +88,31 @@ export default function AdHealthPage() {
 					<SinsOverviewSection />
 				</section>
 
-				{/* FIRST 3 SINS - Left side while mockup is sticky right */}
+				{/* 3 sins */}
 				<section className="pb-32 max-w-4xl mr-auto space-y-28">
 					{checks[0] && <SinSectionItem check={checks[0]} />}
 					{checks[1] && <SinSectionItem check={checks[1]} />}
 					{checks[2] && <SinSectionItem check={checks[2]} />}
 				</section>
+
+
+				{/* pricing */}
+				<section
+					id="pricing"
+					className="py-32 max-w-7xl mx-auto"
+				>
+					<div className="mb-16 text-center">
+						<span className="rounded-full bg-card border p-3 font-semibold text-sm text-muted-foreground">PRICING</span>
+						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold my-6 leading-tight">
+							80/20 your ad budget {' '}
+							<br />
+							with an <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+								expert audit
+							</span>{' '}
+						</h2>
+					</div>
+				</section>
+
 
 				{/* Dev Components */}
 				<SlopFest />
