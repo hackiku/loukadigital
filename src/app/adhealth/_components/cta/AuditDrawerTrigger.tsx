@@ -112,7 +112,7 @@ export function AuditDrawerTrigger({
 				<div className="flex items-center justify-between gap-3 whitespace-nowrap">
 					<div className="flex items-center gap-3">
 						<Calendar className="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" />
-						<span>Book Ad Audit</span>
+						<span>Book AdLeak Audit</span>
 					</div>
 					<Badge />
 				</div>

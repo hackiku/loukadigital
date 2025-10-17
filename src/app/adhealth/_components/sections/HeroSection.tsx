@@ -25,20 +25,24 @@ export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 			{/* Main Content */}
 			<div className="relative mt-42 flex flex-col items-center gap-8 mx-auto w-full">
 				{/* Main Headline */}
-				<h1 className="text-4xl md:text-6xl lg:text-6xl font-extrabold text-center">
-					<span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-						Find & Plug Your
+				<h1 className="flex flex-col gap-1 text-4xl md:text-6xl lg:text-7xl font-extrabold text-center">
+					<span className="text-7xl bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+						Figure Out & Fix
+					</span>
+					<br />
+					<span className="-mb-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+						Your Monthly Meta
 					</span>
 					<br />
 					{/* <FluidCanvas>Ad Spend Leak</FluidCanvas> */}
 					<LiquidLeakText>
-						Meta Ad Spend Leak
+						Ad Spend Leak
 					</LiquidLeakText>
 				
-					<br />
+					{/* <br />
 					<span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
 						in 24hrs
-					</span>
+					</span> */}
 				</h1>
 				
 				<div className="absolute right-[30%] bottom-[55%] rotate-90">

@@ -18,6 +18,7 @@ import { SinSectionItem } from './audit/SinSectionItem';
 import { AdFormatsCarousel } from './audit/AdFormatsCarousel';
 // db
 import { checks } from '~/data/checklist';
+import SlopFest from '../_components/dev/SlopFest';
 
 export default function AdHealthPage() {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -54,8 +55,8 @@ export default function AdHealthPage() {
 				<CurrentVisitors />
 			</div>
 
-			{/* Sticky Instagram Mockup - Hidden on mobile */}
-			<div className="hidden lg:block fixed bottom-0 right-[5%] z-30">
+			{/* Sticky Insta Mockup - Hidden on mobile */}
+			<div className="hidden __lg:block fixed bottom-0 right-[5%] z-30">
 				<InstaMockup shouldHide={hideMockup} />
 			</div>
 
@@ -69,7 +70,7 @@ export default function AdHealthPage() {
 			<main className="px-4 sm:px-12 md:px-16 lg:px-24">
 
 				{/* HERO SECTION */}
-				<section className="relative _py-32 _md:py-40 h-[90vh] flex items-center">
+				<section className="relative _py-32 _md:py-40 h-[95vh] flex items-center">
 					<HeroSection
 						onOpenDrawer={() => setIsDrawerOpen(true)}
 					/>
@@ -92,7 +93,7 @@ export default function AdHealthPage() {
 				</section>
 
 				{/* FIRST 3 SINS - Left side while mockup is sticky right */}
-				<section className="pb-32 max-w-4xl mr-auto space-y-8">
+				<section className="pb-32 max-w-4xl mr-auto space-y-28">
 					{checks[0] && <SinSectionItem check={checks[0]} />}
 					{checks[1] && <SinSectionItem check={checks[1]} />}
 					{checks[2] && <SinSectionItem check={checks[2]} />}
@@ -116,7 +117,7 @@ export default function AdHealthPage() {
 							<div className="flex justify-center mt-12">
 								<div className="max-w-sm w-full">
 									<AuditDrawerTrigger
-										badge="minimal"
+										badge="spots"
 										spotsLeft={7}
 										onOpen={() => setIsDrawerOpen(true)}
 									/>
@@ -126,61 +127,18 @@ export default function AdHealthPage() {
 					)}
 				</section>
 
-				<section className="relative h-[80vh] rounded-3xl overflow-hidden flex items-center justify-center my-24">
-					{/* 45deg Striped Background */}
-					<div
-						className="absolute inset-0 bg-card/20"
-						style={{
-							backgroundImage: `repeating-linear-gradient(
-				45deg,
-				transparent,
-				transparent 20px,
-				rgba(255, 255, 255, 0.03) 20px,
-				rgba(255, 255, 255, 0.03) 40px
-			)`
-						}}
-					/>
-					<h2 className="relative z-10 text-[5rem] font-thin tracking-wider text-muted-foreground/20"
-						style={{ fontWeight: 100 }}>
-						SLOPFEST</h2>
-				</section>
+				<SlopFest />
 
-				{/* THE 7 CHECKS */}
-				<section className="py-24 max-w-6xl mx-auto">
-					<ChecklistOverview />
-				</section>
-
-				{/* WASTE ESTIMATOR */}
-				<section className="py-24 max-w-4xl mx-auto">
-					<WasteEstimator />
-				</section>
-
-				{/* SCORE CALCULATOR */}
-				<section className="py-24 max-w-4xl mx-auto">
 					<ScoreCalculator />
-				</section>
-
-				{/* RESULTS & PROOF */}
-				<section className="py-24 max-w-6xl mx-auto">
+				{/* hidden */}
+				<section className="hidden py-24 max-w-6xl mx-auto">
+					<ChecklistOverview />
+					<WasteEstimator />
+					<ScoreCalculator />
 					<ResultsProof />
 				</section>
 
-				{/* SOCIAL PROOF SECTION */}
-				<section className="py-24 max-w-6xl mx-auto">
-					<div className="text-center mb-12">
-						<h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-							Real brands,{' '}
-							<span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-								real results
-							</span>
-						</h2>
-						<p className="text-lg text-muted-foreground">
-							We've helped 200+ brands find an average of £7,400/month in wasted ad spend.
-							<br />
-							Gaming studios, healthcare companies, SaaS brands - all seeing immediate ROI.
-						</p>
-					</div>
-				</section>
+		
 
 				{/* FINAL CTA */}
 				<section className="py-24 max-w-4xl mx-auto text-center">
