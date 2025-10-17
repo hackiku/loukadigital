@@ -1,153 +1,214 @@
 // src/app/adhealth/leak/LiquidLeakText.tsx
 
-export function LiquidLeakText({ children }: { children: string }) {
+interface LiquidLeakTextProps {
+	children: string;
+	className?: string;
+}
+
+export function LiquidLeakText({ children, className = '' }: LiquidLeakTextProps) {
 	const borderRadius = '1rem';
+	const uniqueId = `liquid-${Math.random().toString(36).substr(2, 9)}`;
 
 	return (
 		<span
-			className="relative inline-block px-8 py-4 border border-orange-500/20 overflow-hidden"
+			className={`relative inline-block px-8 py-4 overflow-hidden ${className}`}
 			style={{ borderRadius }}
 		>
-			{/* Subtle container background - the "empty" part of tank */}
+			{/* Container with subtle glass effect */}
 			<span
-				className="absolute inset-0 bg-neutral-500/15"
+				className="absolute inset-0 bg-neutral-500/10 backdrop-blur-sm"
 				style={{ borderRadius }}
 			/>
 
-			{/* Water layer - fills from bottom, wavy top edge */}
+			{/* Liquid layer - smooth gradient fill from bottom */}
 			<span
 				className="absolute inset-0 overflow-hidden"
 				style={{ borderRadius }}
 			>
-				{/* Animated water fill - solid color at bottom */}
+				{/* Main liquid body - uniform with subtle gradient */}
 				<span
 					className="absolute inset-x-0 bottom-0"
 					style={{
-						height: '60%',
-						background: 'linear-gradient(180deg, rgba(239, 68, 68, 0.85) 0%, rgba(249, 115, 22, 1) 100%)',
-						backdropFilter: 'blur(12px)',
+						height: '65%',
+						background: 'linear-gradient(180deg, rgba(239, 68, 68, 0.75) 0%, rgba(249, 115, 22, 0.85) 50%, rgba(249, 115, 22, 0.95) 100%)',
+						backdropFilter: 'blur(8px)',
 						borderRadius: `0 0 ${borderRadius} ${borderRadius}`,
 					}}
 				>
-					{/* Wavy water surface - SVG for smooth curves */}
+					{/* Wavy surface - single unified wave */}
 					<svg
 						className="absolute top-0 left-0 w-full"
-						style={{ height: '60px', transform: 'translateY(-30px)' }}
-						viewBox="0 0 1200 60"
+						style={{ height: '50px', transform: 'translateY(-25px)' }}
+						viewBox="0 0 1200 50"
 						preserveAspectRatio="none"
 						xmlns="http://www.w3.org/2000/svg"
 					>
 						<defs>
-							<linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-								<stop offset="0%" stopColor="rgba(239, 68, 68, 0.9)" />
-								<stop offset="100%" stopColor="rgba(249, 115, 22, 1)" />
+							<linearGradient id={`waveGradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
+								<stop offset="0%" stopColor="rgba(239, 68, 68, 0.6)" />
+								<stop offset="100%" stopColor="rgba(249, 115, 22, 0.9)" />
 							</linearGradient>
 						</defs>
 
-						{/* Animated wave path */}
+						{/* Single smooth wave */}
 						<path
-							fill="url(#waterGradient)"
-							d="M0,30 Q150,10 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z"
+							fill={`url(#waveGradient-${uniqueId})`}
+							d="M0,25 Q300,10 600,25 T1200,25 L1200,50 L0,50 Z"
 						>
-							{/* Wave 1 animation */}
 							<animate
 								attributeName="d"
 								dur="4s"
 								repeatCount="indefinite"
 								values="
-									M0,30 Q150,10 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z;
-									M0,30 Q150,50 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z;
-									M0,30 Q150,10 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z
-								"
-							/>
-						</path>
-
-						{/* Secondary wave for depth */}
-						<path
-							fill="rgba(249, 115, 22, 0.4)"
-							d="M0,35 Q200,20 400,35 T800,35 T1200,35 L1200,60 L0,60 Z"
-						>
-							<animate
-								attributeName="d"
-								dur="3s"
-								repeatCount="indefinite"
-								values="
-									M0,35 Q200,20 400,35 T800,35 T1200,35 L1200,60 L0,60 Z;
-									M0,35 Q200,45 400,35 T800,35 T1200,35 L1200,60 L0,60 Z;
-									M0,35 Q200,20 400,35 T800,35 T1200,35 L1200,60 L0,60 Z
+									M0,25 Q300,10 600,25 T1200,25 L1200,50 L0,50 Z;
+									M0,25 Q300,40 600,25 T1200,25 L1200,50 L0,50 Z;
+									M0,25 Q300,10 600,25 T1200,25 L1200,50 L0,50 Z
 								"
 							/>
 						</path>
 					</svg>
 
-					{/* Floating particles/bubbles for extra life */}
+					{/* Floating bubbles - cartoony lab style */}
+					<span
+						className="absolute w-3 h-3 bg-white/40 rounded-full"
+						style={{
+							left: '15%',
+							bottom: '20%',
+							animation: 'bubble1 5s ease-in-out infinite',
+							boxShadow: 'inset 0 -1px 2px rgba(255,255,255,0.6)',
+						}}
+					/>
+					<span
+						className="absolute w-2 h-2 bg-white/35 rounded-full"
+						style={{
+							left: '45%',
+							bottom: '35%',
+							animation: 'bubble2 6s ease-in-out infinite 1s',
+							boxShadow: 'inset 0 -1px 2px rgba(255,255,255,0.6)',
+						}}
+					/>
+					<span
+						className="absolute w-2.5 h-2.5 bg-white/30 rounded-full"
+						style={{
+							left: '70%',
+							bottom: '15%',
+							animation: 'bubble3 5.5s ease-in-out infinite 2s',
+							boxShadow: 'inset 0 -1px 2px rgba(255,255,255,0.6)',
+						}}
+					/>
+					<span
+						className="absolute w-1.5 h-1.5 bg-white/25 rounded-full"
+						style={{
+							left: '85%',
+							bottom: '40%',
+							animation: 'bubble1 4.5s ease-in-out infinite 0.5s',
+							boxShadow: 'inset 0 -1px 1px rgba(255,255,255,0.6)',
+						}}
+					/>
 					<span
 						className="absolute w-2 h-2 bg-white/30 rounded-full"
 						style={{
-							left: '20%',
-							bottom: '30%',
-							animation: 'float 6s ease-in-out infinite',
-						}}
-					/>
-					<span
-						className="absolute w-1.5 h-1.5 bg-white/20 rounded-full"
-						style={{
-							left: '60%',
-							bottom: '50%',
-							animation: 'float 5s ease-in-out infinite 1s',
-						}}
-					/>
-					<span
-						className="absolute w-1 h-1 bg-white/25 rounded-full"
-						style={{
-							left: '80%',
-							bottom: '20%',
-							animation: 'float 7s ease-in-out infinite 2s',
+							left: '30%',
+							bottom: '8%',
+							animation: 'bubble2 5.2s ease-in-out infinite 1.5s',
+							boxShadow: 'inset 0 -1px 2px rgba(255,255,255,0.6)',
 						}}
 					/>
 				</span>
 			</span>
 
-			{/* Text with gradient - sits on top */}
+			{/* Text with mask effect - glassy above, colored below */}
 			<span
-				className="relative z-10 font-extrabold"
+				className="relative z-10 font-extrabold text-foreground"
 				style={{
-					background: 'linear-gradient(180deg, rgb(248, 113, 113) 0%, rgb(251, 146, 60) 100%)',
-					WebkitBackgroundClip: 'text',
-					WebkitTextFillColor: 'transparent',
-					backgroundClip: 'text',
+					mixBlendMode: 'normal',
+					WebkitMaskImage: 'linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.7) 35%, rgba(255,255,255,0) 65%)',
+					maskImage: 'linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.7) 35%, rgba(255,255,255,0) 65%)',
 				}}
 			>
 				{children}
 			</span>
 
-			{/* Subtle shimmer effect on water surface */}
+			{/* Colored text layer - visible only in liquid area */}
+			<span
+				className="absolute inset-0 z-10 font-extrabold flex items-center justify-center px-8 py-4"
+				style={{
+					background: 'linear-gradient(180deg, rgb(248, 113, 113) 0%, rgb(251, 146, 60) 100%)',
+					WebkitBackgroundClip: 'text',
+					WebkitTextFillColor: 'transparent',
+					backgroundClip: 'text',
+					WebkitMaskImage: 'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 65%, rgba(255,255,255,0) 100%)',
+					maskImage: 'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 65%, rgba(255,255,255,0) 100%)',
+				}}
+			>
+				{children}
+			</span>
+
+			{/* Subtle shimmer on surface */}
 			<span
 				className="absolute inset-x-0 pointer-events-none"
 				style={{
 					bottom: '30%',
-					height: '40px',
-					background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent)',
-					animation: 'shimmer 3s ease-in-out infinite',
+					height: '30px',
+					background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent)',
+					animation: 'shimmer 3.5s ease-in-out infinite',
 				}}
 			/>
 
 			<style jsx>{`
-				@keyframes float {
+				@keyframes bubble1 {
 					0%, 100% {
-						transform: translateY(0px) translateX(0px);
-						opacity: 0.3;
-					}
-					25% {
-						transform: translateY(-15px) translateX(5px);
-						opacity: 0.5;
-					}
-					50% {
-						transform: translateY(-25px) translateX(-5px);
+						transform: translateY(0px) translateX(0px) scale(1);
 						opacity: 0.4;
 					}
+					25% {
+						transform: translateY(-20px) translateX(5px) scale(1.1);
+						opacity: 0.6;
+					}
+					50% {
+						transform: translateY(-35px) translateX(-3px) scale(0.95);
+						opacity: 0.5;
+					}
 					75% {
-						transform: translateY(-15px) translateX(5px);
+						transform: translateY(-20px) translateX(4px) scale(1.05);
+						opacity: 0.6;
+					}
+				}
+
+				@keyframes bubble2 {
+					0%, 100% {
+						transform: translateY(0px) translateX(0px) scale(1);
+						opacity: 0.35;
+					}
+					30% {
+						transform: translateY(-25px) translateX(-6px) scale(1.15);
+						opacity: 0.55;
+					}
+					60% {
+						transform: translateY(-40px) translateX(4px) scale(0.9);
+						opacity: 0.45;
+					}
+					85% {
+						transform: translateY(-22px) translateX(-3px) scale(1.08);
+						opacity: 0.55;
+					}
+				}
+
+				@keyframes bubble3 {
+					0%, 100% {
+						transform: translateY(0px) translateX(0px) scale(1);
+						opacity: 0.3;
+					}
+					20% {
+						transform: translateY(-15px) translateX(6px) scale(1.12);
+						opacity: 0.5;
+					}
+					55% {
+						transform: translateY(-32px) translateX(-5px) scale(0.92);
+						opacity: 0.4;
+					}
+					80% {
+						transform: translateY(-18px) translateX(3px) scale(1.06);
 						opacity: 0.5;
 					}
 				}
@@ -159,7 +220,7 @@ export function LiquidLeakText({ children }: { children: string }) {
 					}
 					50% {
 						transform: translateX(100%);
-						opacity: 0.3;
+						opacity: 0.2;
 					}
 				}
 			`}</style>

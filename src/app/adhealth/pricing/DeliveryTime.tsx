@@ -22,23 +22,23 @@ export function DeliveryTime({
 
 	// Fetch and recolor SVGs
 	useEffect(() => {
-		// Load circle SVG with green gradient
+		// load circle SVG
 		fetch('/assets/hand-drawn-circle.svg')
 			.then(res => res.text())
 			.then(svg => {
-				// Replace fill color with green
+				// fill color green
 				const recolored = svg.replace(/fill="[^"]*"/g, 'fill="#10b981"');
 				setCircleSvg(`data:image/svg+xml;base64,${btoa(recolored)}`);
 			});
 
-		// Load arrow SVG with purple gradient
+		// load arrow SVG
 		fetch('/assets/hand-drawn-arrow.svg')
 			.then(res => res.text())
 			.then(svg => {
-				// Replace fill/stroke with purple gradient
+				// fill color green
 				const recolored = svg
-					.replace(/fill="[^"]*"/g, 'fill="#a855f7"')
-					.replace(/stroke="[^"]*"/g, 'stroke="#a855f7"');
+					.replace(/fill="[^"]*"/g, 'fill="#10b981"')
+					// .replace(/stroke="[^"]*"/g, 'stroke="#a855f7"');
 				setArrowSvg(`data:image/svg+xml;base64,${btoa(recolored)}`);
 			});
 	}, []);
@@ -105,7 +105,7 @@ export function DeliveryTime({
 					{/* Icon + Time */}
 					<div className="flex items-center gap-2">
 
-						<Clock className="w-* h-8 text-emerald-400" strokeWidth={2.5} />
+						<Clock className="w-auto h-7 text-emerald-400" strokeWidth={2.5} />
 						{/* <Hourglass className="w-* h-8 text-emerald-400" strokeWidth={2.5} /> */}
 						<span className="text-emerald-400 text-4xl font-semibold tracking-tight">
 							{deliveryTime}
@@ -113,8 +113,9 @@ export function DeliveryTime({
 					</div>
 
 					{/* Deliverance text */}
-					{/* <span className="text-base font-medium text-emerald-400 tracking-wide">
+					{/* <span className="text-base italic font-medium text-emerald-400 tracking-wide ml-auto">
 						deliverance
+						fast deliver- <br></br>ance
 					</span> */}
 				</div>
 			</div>

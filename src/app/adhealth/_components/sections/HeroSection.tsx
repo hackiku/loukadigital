@@ -1,14 +1,16 @@
 // src/app/adhealth/_components/sections/HeroSection.tsx
 
 import { Calendar } from 'lucide-react';
-import { LiquidLeakText } from '../../leak/LiquidLeakText';
-import { AvailabilityBar } from '../navigation/AvailabilityBar';
-import { ForFreeArrow } from '../cta/ForFreeArrow';
+
+// cta
 import { AuditDrawerTrigger } from '../cta/AuditDrawerTrigger';
-import { AuditDrawerContainer } from '../cta/AuditDrawerContainer';
+import { AvailabilityBar } from '../navigation/AvailabilityBar';
+import { DeliveryTime } from '../../pricing/DeliveryTime';
+
+// ui
+import { LiquidLeakText } from '../../leak/LiquidLeakText';
 import { LogoShoutouts } from '../proof/LogoShoutouts';
 import { PlatformIcons } from '../ui/PlatformIcons';
-import { DeliveryTime } from '../../pricing/DeliveryTime';
 
 interface HeroSectionProps {
 	onOpenDrawer: () => void;
