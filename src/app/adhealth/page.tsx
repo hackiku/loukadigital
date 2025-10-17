@@ -10,12 +10,9 @@ import { CurrentVisitors } from './_components/proof/CurrentVisitors';
 import { InstaMockup } from './audit/InstaMockup';
 // content
 import { HeroSection } from './_components/sections/HeroSection';
-import { ChecklistOverview } from './audit/ChecklistOverview';
-import { ScoreCalculator } from './audit/ScoreCalculator';
-import { WasteEstimator } from './audit/WasteEstimator';
-import { ResultsProof } from './audit/ResultsProof';
+import { SinsOverviewSection } from './audit/SinsOverviewSection';
 import { SinSectionItem } from './audit/SinSectionItem';
-import { AdFormatsCarousel } from './audit/AdFormatsCarousel';
+import { ScoreCalculator } from './audit/ScoreCalculator';
 // db
 import { checks } from '~/data/checklist';
 import SlopFest from '../_components/dev/SlopFest';
@@ -24,15 +21,12 @@ export default function AdHealthPage() {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 	const [hideMockup, setHideMockup] = useState(false);
 
-	// Get first 7 checks for the sins
-	const sins = checks.slice(0, 7);
-
-	// Detect when to hide mockup (when creative fatigue section is in view)
+	// Detect when to hide mockup (when sins overview is in view)
 	useEffect(() => {
 		const handleScroll = () => {
-			const creativeFatigueSection = document.getElementById('creative-fatigue-section');
-			if (creativeFatigueSection) {
-				const rect = creativeFatigueSection.getBoundingClientRect();
+			const sinsSection = document.getElementById('sins-overview-section');
+			if (sinsSection) {
+				const rect = sinsSection.getBoundingClientRect();
 				const windowHeight = window.innerHeight;
 				// Hide when section enters viewport
 				setHideMockup(rect.top < windowHeight && rect.bottom > 0);
@@ -70,26 +64,28 @@ export default function AdHealthPage() {
 			<main className="px-4 sm:px-12 md:px-16 lg:px-24">
 
 				{/* HERO SECTION */}
-				<section className="relative _py-32 _md:py-40 h-[95vh] flex items-center">
+				<section className="relative h-[95vh] flex items-center">
 					<HeroSection
 						onOpenDrawer={() => setIsDrawerOpen(true)}
 					/>
 				</section>
 
-				{/* WHERE IS THE INSTA MONEY GOING? */}
-				<section id="where-money-section" className="pt-64 pb-32 _max-w-6xl mx-auto">
-					<h2 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 leading-tight">
-						Where on Earth does my{' '}
-						<br />
-						<span className="mt-2 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-							Insta Ad money
-						</span>{' '}go?
-					</h2>
-					<p className="text-2xl md:text-3xl text-muted-foreground max-w-2xl">
-						Most accounts leak 30-40% on overlap. That's 
-						<strong className="text-foreground text-3xl md:text-4xl"> £7,400/month</strong> gone without a trace
-					</p>
-					
+				{/* SINS OVERVIEW - Euler Diagram */}
+				<section id="sins-overview-section"
+					className="py-44 max-w-7xl mx-auto"
+				>
+					<div className="mb-16">
+						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight">
+							Where on Earth does my{' '}
+							<br />
+							<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+								Insta Ad money
+							</span>{' '}
+							go?
+						</h2>
+					</div>
+
+					<SinsOverviewSection />
 				</section>
 
 				{/* FIRST 3 SINS - Left side while mockup is sticky right */}
@@ -99,46 +95,10 @@ export default function AdHealthPage() {
 					{checks[2] && <SinSectionItem check={checks[2]} />}
 				</section>
 
-				{/* AD FORMATS CAROUSEL + CTA */}
-				<section id="creative-fatigue-section" className="py-24 max-w-6xl mx-auto">
-					{checks[4] && (
-						<>
-							<div className="text-center mb-12">
-								<h2 className="text-3xl md:text-4xl font-bold mb-4">
-									{checks[4].name}
-								</h2>
-								<p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-									{checks[4].tagline}
-								</p>
-							</div>
-
-							<AdFormatsCarousel />
-
-							<div className="flex justify-center mt-12">
-								<div className="max-w-sm w-full">
-									<AuditDrawerTrigger
-										badge="spots"
-										spotsLeft={7}
-										onOpen={() => setIsDrawerOpen(true)}
-									/>
-								</div>
-							</div>
-						</>
-					)}
-				</section>
-
+				{/* Dev Components */}
 				<SlopFest />
 
-					<ScoreCalculator />
-				{/* hidden */}
-				<section className="hidden py-24 max-w-6xl mx-auto">
-					<ChecklistOverview />
-					<WasteEstimator />
-					<ScoreCalculator />
-					<ResultsProof />
-				</section>
-
-		
+				<ScoreCalculator />
 
 				{/* FINAL CTA */}
 				<section className="py-24 max-w-4xl mx-auto text-center">
