@@ -84,7 +84,7 @@ export function SinsEulerDiagram() {
 				</div>
 
 				{/* Center Content - Total Waste */}
-				<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10">
+				{/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10">
 					<div className="bg-background/90 backdrop-blur-md rounded-2xl p-8 border-2 border-foreground/10 shadow-2xl">
 						<div className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 mb-2">
 							£{totalWaste.min.toLocaleString()}
@@ -100,7 +100,7 @@ export function SinsEulerDiagram() {
 							<span className="text-foreground font-semibold">Find out here ↓</span>
 						</p>
 					</div>
-				</div>
+				</div> */}
 			</div>
 
 			{/* Calculator Placeholder - Bottom Left */}

@@ -14,8 +14,8 @@ export interface SinCluster {
 export const sinClusters: SinCluster[] = [
 	{
 		id: 'overlap',
-		name: 'The Overlap Disaster',
-		narrative: "You're literally competing with yourself for the same audience",
+		name: 'Overlap',
+		narrative: "Competing with yourself for the same audience",
 		color: 'from-red-500 to-orange-500',
 		sins: ['excluded-converters', 'campaign-overlap', 'account-frequency'],
 		totalWaste: { min: 6000, max: 6000 },
@@ -24,8 +24,8 @@ export const sinClusters: SinCluster[] = [
 	},
 	{
 		id: 'blindspot',
-		name: 'The Invisible Waste',
-		narrative: "Your tracking is broken. You can't fix what you can't see.",
+		name: 'Tracking',
+		narrative: "Can't fix what you can't see.",
 		color: 'from-purple-500 to-pink-500',
 		sins: ['tracking-accuracy', 'ios-tracking'],
 		totalWaste: { min: 6500, max: 6500 },
@@ -34,7 +34,7 @@ export const sinClusters: SinCluster[] = [
 	},
 	{
 		id: 'decay',
-		name: 'The Silent Killers',
+		name: 'Decay',
 		narrative: 'Your ads are slowly dying while you watch',
 		color: 'from-orange-500 to-yellow-500',
 		sins: ['dead-placements', 'creative-fatigue'],

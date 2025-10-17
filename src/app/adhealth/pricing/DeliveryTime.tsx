@@ -2,7 +2,7 @@
 
 'use client';
 import { useEffect, useState, useRef } from 'react';
-import { Clock } from 'lucide-react';
+import { Clock, Zap, ZapOff } from 'lucide-react';
 
 interface DeliveryTimeProps {
 	deliveryTime?: string;
@@ -69,7 +69,7 @@ export function DeliveryTime({
 
 			// Arrow SVG points up by default, adjust so it points toward button
 			// Since arrow's origin should be top-left, we rotate from there
-			setArrowRotation(angleDeg + 90);
+			setArrowRotation(angleDeg + 45);
 		};
 
 		const timer = setTimeout(calculateArrowRotation, 300);
@@ -101,17 +101,17 @@ export function DeliveryTime({
 				</div>
 
 				{/* Content - centered inside circle */}
-				<div className="relative z-10 flex flex-col items-center gap-1">
+				<div className="relative z-10 flex flex-col items-center gap-1 p-4">
 					{/* Icon + Time */}
 					<div className="flex items-center gap-2">
-						<Clock className="w-5 h-5 text-emerald-400" strokeWidth={2.5} />
-						<span className="text-7xl font-semibold text-foreground tracking-tight">
+						<Zap className="w-* h-8 text-emerald-400" strokeWidth={2.5} />
+						<span className="text-emerald-400 text-4xl font-semibold tracking-tight">
 							{deliveryTime}
 						</span>
 					</div>
 
 					{/* Deliverance text */}
-					<span className="text-base font-medium text-muted-foreground tracking-wide">
+					<span className="text-base font-medium text-emerald-400 tracking-wide">
 						Deliverance
 					</span>
 				</div>
@@ -121,8 +121,8 @@ export function DeliveryTime({
 			<div
 				className="absolute pointer-events-none"
 				style={{
-					top: '100%',
-					right: '0%',
+					top: '50%',
+					left: '-25%',
 					transformOrigin: 'top left',
 					transform: `rotate(${arrowRotation}deg)`,
 					transition: 'transform 0.3s ease-out',
