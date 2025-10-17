@@ -8,6 +8,8 @@ import { ForFreeArrow } from '../cta/ForFreeArrow';
 import { AuditDrawerTrigger } from '../cta/AuditDrawerTrigger';
 import { AuditDrawerContainer } from '../cta/AuditDrawerContainer';
 import { LogoShoutouts } from '../proof/LogoShoutouts';
+import { PlatformIcons } from '../ui/PlatformIcons';
+import { DeliveryTime } from '../../pricing/DeliveryTime';
 // import { ForFreeArrow } from './ForFreeArrow';
 
 interface HeroSectionProps {
@@ -22,6 +24,7 @@ export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 				<LogoShoutouts />
 			</div>
 
+			<PlatformIcons />
 			{/* Main Content */}
 			<div className="relative mt-42 flex flex-col items-center gap-8 mx-auto w-full">
 				{/* Main Headline */}
@@ -38,27 +41,23 @@ export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 					<LiquidLeakText>
 						Ad Spend Leak
 					</LiquidLeakText>
-				
-					{/* <br />
-					<span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-						in 24hrs
-					</span> */}
 				</h1>
 				
-				<div className="absolute right-[30%] bottom-[55%] rotate-90">
-					<ForFreeArrow />	
+				<div className="absolute right-[10%] bottom-[0%] rotate-12">
+					<DeliveryTime />
+					{/* <ForFreeArrow />	 */}
 				</div>
 
 				{/* CTA Button Container with Arrow */}
 				<div className="flex flex-col gap-6 md:flex-row items-center justify-center relative w-full max-w-[16em] md:max-w-[28em]">
 					{/* FOR FREE Arrow */}
 					<div className="max-w-sm">
-						<AuditDrawerTrigger badge="spots" spotsLeft={7} onOpen={onOpenDrawer} />	
+						<AuditDrawerTrigger badge="price" onOpen={onOpenDrawer} />
 					</div>
 					{/* Main CTA Button */}
+					{/* <AuditDrawerTrigger badge="spots" spotsLeft={7} onOpen={onOpenDrawer} />	 */}
 					{/* <AuditDrawerTrigger variant="full" onOpen={onOpenDrawer} /> */}
 					{/* <AuditDrawerTrigger badge="free" onOpen={onOpenDrawer} /> */}
-					{/* <AuditDrawerTrigger badge="price" onOpen={onOpenDrawer} /> */}
 					{/* <AuditDrawerTrigger badge="none" onOpen={onOpenDrawer} /> */}
 
 					{/* <AvailabilityBar /> */}
