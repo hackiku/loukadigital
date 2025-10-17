@@ -1,4 +1,4 @@
-// src/app/adhealth/audit/InstaSinMarker.tsx
+// src/app/adhealth/samples/InstaSinMarker.tsx
 
 'use client';
 import type { CheckItem } from '~/data/checklist';

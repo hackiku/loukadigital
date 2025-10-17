@@ -2,7 +2,7 @@
 
 'use client';
 import { useState, useEffect } from 'react';
-import { AvailabilityBar } from './AvailabilityBar';
+import { AvailabilityBar } from '../../pricing/AvailabilityBar';
 import { AuditDrawerTrigger } from '../cta/AuditDrawerTrigger';
 import { LogoModule } from './LogoModule';
 
@@ -10,7 +10,7 @@ interface NavbarProps {
 	onOpenDrawer: () => void;
 }
 
-export function Navbar({ onOpenDrawer }: NavbarProps) {
+export default function Navbar({ onOpenDrawer }: NavbarProps) {
 	const [isVisible, setIsVisible] = useState(true);
 	const [lastScrollY, setLastScrollY] = useState(0);
 

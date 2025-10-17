@@ -1,4 +1,4 @@
-// src/app/adhealth/_components/sections/HeroSection.tsx
+// src/app/adhealth/_components/content/HeroSection.tsx
 
 import { Calendar } from 'lucide-react';
 
@@ -50,7 +50,7 @@ export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 				</div>
 
 				{/* Delivery Time Badge - positioned below button on mobile, floating on desktop */}
-				<div className="relative md:absolute md:right-[5%] md:-bottom-[35%] mt-4 md:mt-0">
+				<div className="relative md:absolute md:right-[5%] md:-bottom-[20%] mt-4 md:mt-0">
 					<DeliveryTime targetButtonId="hero-cta-button" />
 				</div>
 

@@ -2,21 +2,22 @@
 
 "use client";
 import { useState, useEffect } from 'react';
-// ui
-import { Navbar } from './_components/navigation/Navbar';
+// layout
+import Navbar from './_components/navigation/Navbar';
+import Footer from './_components/navigation/Footer';
 import { AuditDrawerContainer } from './_components/cta/AuditDrawerContainer';
-import { AuditDrawerTrigger } from './_components/cta/AuditDrawerTrigger';
 import { CurrentVisitors } from './_components/proof/CurrentVisitors';
-import { InstaMockup } from './audit/InstaMockup';
 // content
-import { HeroSection } from './_components/sections/HeroSection';
-import { SinsOverviewSection } from './audit/SinsOverviewSection';
-import { SinSectionItem } from './audit/SinSectionItem';
-import { ScoreCalculator } from './audit/ScoreCalculator';
+import { HeroSection } from './_components/content/HeroSection';
+import { InstaMockup } from './samples/InstaMockup';
+import SlopFest from '../_components/dev/SlopFest';
+// audit
+import { SinsOverviewSection } from './audit/sins/SinsOverviewSection';
+import { SinSectionItem } from './audit/sins/SinSectionItem';
+import { ScoreCalculator } from './audit/calculator/ScoreCalculator';
 // db
 import { checks } from '~/data/checklist';
-import SlopFest from '../_components/dev/SlopFest';
-import Footer from './_components/navigation/Footer';
+import { AdAudit } from './audit/AdAudit';
 
 export default function AdHealthPage() {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -42,24 +43,25 @@ export default function AdHealthPage() {
 	return (
 		<div className="min-h-screen bg-background text-foreground">
 
-			{/* Navigation */}
+			{/* nav */}
 			<Navbar onOpenDrawer={() => setIsDrawerOpen(true)} />
 
-			{/* Current Visitors - Bottom Right */}
-			<div className="fixed bottom-6 right-6 z-40">
-				<CurrentVisitors />
-			</div>
-
-			{/* Sticky Insta Mockup - Hidden on mobile */}
-			<div className="hidden __lg:block fixed bottom-0 right-[5%] z-30">
-				<InstaMockup shouldHide={hideMockup} />
-			</div>
-
-			{/* Global Audit Drawer */}
+			{/* cta */}
 			<AuditDrawerContainer
 				isOpen={isDrawerOpen}
 				onClose={() => setIsDrawerOpen(false)}
 			/>
+
+			{/* viewers */}
+			<div className="fixed bottom-6 right-6 z-40">
+				<CurrentVisitors />
+			</div>
+
+			{/* insta ad - hidden mobile */}
+			<div className="hidden __lg:block fixed bottom-0 right-[5%] z-30">
+				<InstaMockup shouldHide={hideMockup} />
+			</div>
+
 
 			{/* MAIN */}
 			<main className="px-4 sm:px-12 md:px-16 lg:px-24">
@@ -71,6 +73,7 @@ export default function AdHealthPage() {
 					/>
 				</section>
 
+				<AdAudit />
 				{/* sins - Euler */}
 				<section id="sins-overview-section"
 					className="py-44 max-w-7xl mx-auto"
@@ -120,37 +123,9 @@ export default function AdHealthPage() {
 
 				<ScoreCalculator />
 
-				{/* FINAL CTA */}
-				<section className="py-24 max-w-4xl mx-auto text-center">
-					<div className="p-8 md:p-12 rounded-2xl bg-gradient-to-br from-purple-500/10 to-blue-500/10 border-2 border-purple-500/30">
-						<h2 className="text-3xl md:text-5xl font-bold mb-4">
-							Ready to Find Your{' '}
-							<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-								£7K+ Monthly Leak?
-							</span>
-						</h2>
-						<p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-							Get a free expert audit delivered in 48 hours. No fluff, just actionable fixes.
-						</p>
-						<button
-							onClick={() => setIsDrawerOpen(true)}
-							className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-xl transition-all hover:scale-105 shadow-lg text-lg"
-						>
-							Book Your Free Audit →
-						</button>
-						<p className="text-sm text-muted-foreground mt-4">
-							<span className="inline-flex items-center gap-2">
-								<span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-								157 audits completed this month
-							</span>
-						</p>
-					</div>
-				</section>
-
 			</main>
 
 			{/* FOOTER */}
-
 			<Footer />
 		</div>
 	);

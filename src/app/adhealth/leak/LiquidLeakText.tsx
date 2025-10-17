@@ -1,4 +1,6 @@
 // src/app/adhealth/leak/LiquidLeakText.tsx
+'use client';
+import { useState, useEffect } from 'react';
 
 interface LiquidLeakTextProps {
 	children: string;
@@ -6,12 +8,32 @@ interface LiquidLeakTextProps {
 }
 
 export function LiquidLeakText({ children, className = '' }: LiquidLeakTextProps) {
+	const [mounted, setMounted] = useState(false);
+	const [uniqueId] = useState(() => `liquid-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`);
+
 	const borderRadius = '1rem';
-	const uniqueId = `liquid-${Math.random().toString(36).substr(2, 9)}`;
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	// Render static version on server to prevent hydration mismatch
+	if (!mounted) {
+		return (
+			<span
+				className={`border border-muted-foreground/30 relative inline-block px-8 py-4 overflow-hidden ${className}`}
+				style={{ borderRadius }}
+			>
+				<span className="relative z-10 font-extrabold text-foreground/50">
+					{children}
+				</span>
+			</span>
+		);
+	}
 
 	return (
 		<span
-			className={`relative inline-block px-8 py-4 overflow-hidden ${className}`}
+			className={`border border-muted-foreground/30 relative inline-block px-8 py-4 overflow-hidden ${className}`}
 			style={{ borderRadius }}
 		>
 			{/* Container with subtle glass effect */}
@@ -35,10 +57,10 @@ export function LiquidLeakText({ children, className = '' }: LiquidLeakTextProps
 						borderRadius: `0 0 ${borderRadius} ${borderRadius}`,
 					}}
 				>
-					{/* Wavy surface - single unified wave */}
+					{/* First wave */}
 					<svg
 						className="absolute top-0 left-0 w-full"
-						style={{ height: '50px', transform: 'translateY(-25px)' }}
+						style={{ height: '45px', transform: 'translateY(-25px)' }}
 						viewBox="0 0 1200 50"
 						preserveAspectRatio="none"
 						xmlns="http://www.w3.org/2000/svg"
@@ -46,23 +68,55 @@ export function LiquidLeakText({ children, className = '' }: LiquidLeakTextProps
 						<defs>
 							<linearGradient id={`waveGradient-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
 								<stop offset="0%" stopColor="rgba(239, 68, 68, 0.6)" />
-								<stop offset="100%" stopColor="rgba(249, 115, 22, 0.9)" />
+								<stop offset="100%" stopColor="rgba(249, 115, 22, 0.1)" />
 							</linearGradient>
 						</defs>
 
-						{/* Single smooth wave */}
 						<path
 							fill={`url(#waveGradient-${uniqueId})`}
 							d="M0,25 Q300,10 600,25 T1200,25 L1200,50 L0,50 Z"
 						>
 							<animate
 								attributeName="d"
-								dur="4s"
+								dur="2s"
 								repeatCount="indefinite"
 								values="
 									M0,25 Q300,10 600,25 T1200,25 L1200,50 L0,50 Z;
 									M0,25 Q300,40 600,25 T1200,25 L1200,50 L0,50 Z;
 									M0,25 Q300,10 600,25 T1200,25 L1200,50 L0,50 Z
+								"
+							/>
+						</path>
+					</svg>
+
+					{/* Second wave - delayed and offset */}
+					<svg
+						className="absolute top-0 left-0 w-full"
+						style={{ height: '45px', transform: 'translateY(-22px)', opacity: 0.6 }}
+						viewBox="0 0 1200 50"
+						preserveAspectRatio="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<defs>
+							<linearGradient id={`waveGradient2-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
+								<stop offset="0%" stopColor="rgba(239, 68, 68, 0.5)" />
+								<stop offset="100%" stopColor="rgba(249, 115, 22, 0.05)" />
+							</linearGradient>
+						</defs>
+
+						<path
+							fill={`url(#waveGradient2-${uniqueId})`}
+							d="M0,28 Q300,43 600,28 T1200,28 L1200,50 L0,50 Z"
+						>
+							<animate
+								attributeName="d"
+								dur="2.3s"
+								repeatCount="indefinite"
+								begin="0.7s"
+								values="
+									M0,28 Q300,43 600,28 T1200,28 L1200,50 L0,50 Z;
+									M0,28 Q300,13 600,28 T1200,28 L1200,50 L0,50 Z;
+									M0,28 Q300,43 600,28 T1200,28 L1200,50 L0,50 Z
 								"
 							/>
 						</path>
@@ -117,29 +171,9 @@ export function LiquidLeakText({ children, className = '' }: LiquidLeakTextProps
 				</span>
 			</span>
 
-			{/* Text with mask effect - glassy above, colored below */}
+			{/* Text - semi-transparent only, no gradient overlay */}
 			<span
-				className="relative z-10 font-extrabold text-foreground"
-				style={{
-					mixBlendMode: 'normal',
-					WebkitMaskImage: 'linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.7) 35%, rgba(255,255,255,0) 65%)',
-					maskImage: 'linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.7) 35%, rgba(255,255,255,0) 65%)',
-				}}
-			>
-				{children}
-			</span>
-
-			{/* Colored text layer - visible only in liquid area */}
-			<span
-				className="absolute inset-0 z-10 font-extrabold flex items-center justify-center px-8 py-4"
-				style={{
-					background: 'linear-gradient(180deg, rgb(248, 113, 113) 0%, rgb(251, 146, 60) 100%)',
-					WebkitBackgroundClip: 'text',
-					WebkitTextFillColor: 'transparent',
-					backgroundClip: 'text',
-					WebkitMaskImage: 'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 65%, rgba(255,255,255,0) 100%)',
-					maskImage: 'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 65%, rgba(255,255,255,0) 100%)',
-				}}
+				className="relative z-10 font-extrabold text-foreground/50"
 			>
 				{children}
 			</span>
@@ -149,7 +183,7 @@ export function LiquidLeakText({ children, className = '' }: LiquidLeakTextProps
 				className="absolute inset-x-0 pointer-events-none"
 				style={{
 					bottom: '30%',
-					height: '30px',
+					height: '35px',
 					background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent)',
 					animation: 'shimmer 3.5s ease-in-out infinite',
 				}}

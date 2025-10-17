@@ -1,4 +1,4 @@
-// src/app/adhealth/audit/InstaMockup.tsx
+// src/app/adhealth/samples/InstaMockup.tsx
 
 'use client';
 import { useEffect, useState } from 'react';
