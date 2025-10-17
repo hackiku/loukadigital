@@ -77,7 +77,7 @@ export default function AdHealthPage() {
 				</section>
 
 				{/* WHERE IS THE INSTA MONEY GOING? */}
-				<section id="where-money-section" className="pt-64 pb-32  max-w-6xl mx-auto">
+				<section id="where-money-section" className="pt-64 pb-32 _max-w-6xl mx-auto">
 					<h2 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 leading-tight">
 						Where on Earth does my{' '}
 						<br />
