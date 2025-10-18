@@ -14,7 +14,7 @@ import SlopFest from '../_components/dev/SlopFest';
 // audit
 import { SinsOverviewSection } from './audit/sins/SinsOverviewSection';
 import { SinSectionItem } from './audit/sins/SinSectionItem';
-import { ScoreCalculator } from './audit/calculator/ScoreCalculator';
+import { ScoreCalculator } from './audit/calculator/legacy_ScoreCalculator';
 // db
 import { checks } from '~/data/checklist';
 import { AdAudit } from './audit/AdAudit';
@@ -58,9 +58,9 @@ export default function AdHealthPage() {
 			</div>
 
 			{/* insta ad - hidden mobile */}
-			<div className="hidden __lg:block fixed bottom-0 right-[5%] z-30">
+			{/* <div className="hidden lg:block fixed bottom-0 right-[5%] z-30">
 				<InstaMockup shouldHide={hideMockup} />
-			</div>
+			</div> */}
 
 
 			{/* MAIN */}

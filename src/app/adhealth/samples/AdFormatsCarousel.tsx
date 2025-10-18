@@ -1,4 +1,4 @@
-// src/app/adhealth/audit/samples/AdFormatsCarousel.tsx
+// src/app/adhealth/samples/AdFormatsCarousel.tsx
 
 'use client';
 
