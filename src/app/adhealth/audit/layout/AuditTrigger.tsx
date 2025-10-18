@@ -21,7 +21,7 @@ export function AuditTrigger({
 	return (
 		<button
 			onClick={onClick}
-			className="flex items-center gap-3 group"
+			className="flex items-center gap-1 group"
 		>
 			{/* Number Circle - commented out */}
 			{/* <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
@@ -44,9 +44,9 @@ export function AuditTrigger({
 					<div className="border border-border/50 px-3 py-1 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 ">
 						<div className="flex items-center gap-1.5 text-green-400">
 							<span className="-mb-0.5 text-lg font-semibold ">£{savings > 0 ? savings.toLocaleString() : '0'}</span>
-							<span className="text-left text-xs">
+							<span className="text-left text-[0.6em] leading-2.5">
 								save
-								{/* <br/> spend */}
+								<br/> /mo
 							</span>
 						</div>
 					</div>
