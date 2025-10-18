@@ -1,27 +1,44 @@
-// src/app/adhealth/audit/SinClusters.tsx
-
-// modified version of SinsEulerDiagram.tsx with horizontal bands that engulf the sidebar when open
-// so that it shows to what cluster each sin belongs to 
-// clusters have NO EMOJI. only 
-// 1) Title, justify-between badge with waste in gbp
-// 2) description
-
-// this will be open on the first loading of the AdAudit, basically we first encounter the 
-// AdAudit with the sidebar open and this clusters component visible
-// after scroll this one disappears and the sidebar closes
-// later on opening sidebar does not show sin clusters
-
-
-
+// src/app/adhealth/audit/layout/SinClusters.tsx
 "use client";
-import { sinClusters, getTotalWasteRange } from '~/data/sin-clusters';
+import { clusters, sins } from "~/data/audit";
 
-export function SinClusters() {
-	// const totalWaste = getTotalWasteRange();
+interface SinClustersProps {
+	monthlyBudget: number;
+}
 
+export function SinClusters({ monthlyBudget }: SinClustersProps) {
 	return (
-		<div className="flex items-center justify-center">
+		<div className="space-y-3">
+			{clusters.map(cluster => {
+				const clusterSins = sins.filter(s => s.clusterId === cluster.id);
 
+				return (
+					<div
+						key={cluster.id}
+						className={`p-4 rounded-xl bg-gradient-to-r ${cluster.color} bg-opacity-10 border-2 border-opacity-30`}
+						style={{ borderColor: `var(--${cluster.color})` }}
+					>
+						<div className="flex items-start justify-between mb-2">
+							<h4 className="text-lg font-bold">{cluster.name}</h4>
+							<div className="px-3 py-1 bg-red-500/20 border border-red-500/30 rounded-full">
+								<span className="text-sm font-black text-red-400">
+									£{cluster.wasteMin.toLocaleString()}/mo
+								</span>
+							</div>
+						</div>
+						<p className="text-sm text-muted-foreground mb-3">{cluster.description}</p>
+
+						{/* Show sins in cluster */}
+						<div className="flex flex-wrap gap-2">
+							{clusterSins.map(sin => (
+								<span key={sin.id} className="text-xs px-2 py-1 bg-background/50 rounded-full">
+									#{sin.number} {sin.name}
+								</span>
+							))}
+						</div>
+					</div>
+				);
+			})}
 		</div>
 	);
 }

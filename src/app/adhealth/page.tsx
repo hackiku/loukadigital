@@ -63,6 +63,7 @@ export default function AdHealthPage() {
 			</div> */}
 
 
+
 			{/* MAIN */}
 			<main className="px-4 sm:px-12 md:px-16 lg:px-24">
 
@@ -73,7 +74,6 @@ export default function AdHealthPage() {
 					/>
 				</section>
 
-				<AdAudit />
 				{/* sins - Euler */}
 				<section id="sins-overview-section"
 					className="py-44 max-w-7xl mx-auto"
@@ -89,8 +89,10 @@ export default function AdHealthPage() {
 						</h2>
 					</div>
 
-					<SinsOverviewSection />
+					{/* <SinsOverviewSection /> */}
 				</section>
+			
+				<AdAudit />
 
 				{/* 3 sins */}
 				<section className="pb-32 max-w-4xl mr-auto space-y-28">
