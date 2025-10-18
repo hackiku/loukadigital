@@ -21,21 +21,9 @@ export function SinsOverviewSection() {
 
 
 			{/* Subtext */}
-			<p className="text-xl leading-10 md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-				Most accounts leak 
-				<span className="m-1 px-3 py-1 bg-red-500/20 border-2 border-red-500/40 rounded-full
-							text-2xl md:text-2xl font-bold text-red-400">
-					30-40%
-				</span>
-				which corresponds preposterously to 
-				<span className="m-1 px-3 py-1 bg-red-500/20 border-2 border-red-500/40 rounded-full
-							text-2xl md:text-2xl font-bold text-red-400">
-					£7,400/month
-				</span> lost in thin air
-			</p>
 
 
-			{/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10"> */}
+
 			<div className="bg-background/90 backdrop-blur-md rounded-2xl p-8 border-2 border-foreground/10 shadow-2xl">
 				{/* <div className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 mb-2">
 						£{totalWaste.min.toLocaleString()}
@@ -50,7 +38,6 @@ export function SinsOverviewSection() {
 					Which ones may you have?{' '}
 				</p> */}
 			</div>
-			{/* </div> */}
 
 
 

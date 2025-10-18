@@ -12,7 +12,6 @@ import { HeroSection } from './_components/content/HeroSection';
 import { InstaMockup } from './samples/InstaMockup';
 import SlopFest from '../_components/dev/SlopFest';
 // audit
-import { SinsOverviewSection } from './audit/sins/SinsOverviewSection';
 import { SinSectionItem } from './audit/sins/SinSectionItem';
 import { ScoreCalculator } from './audit/calculator/legacy_ScoreCalculator';
 // db
@@ -89,10 +88,36 @@ export default function AdHealthPage() {
 						</h2>
 					</div>
 
-					{/* <SinsOverviewSection /> */}
+					<p className="flex-nowrap text-xl leading-12 md:text-3xl text-muted-foreground max-w-lg mx-auto">
+						Preposterously, most ad accounts leak
+						<span className="m-1 px-3 py-1 bg-red-500/20 border-2 border-red-500/40 rounded-full
+							text-2xl md:text-2xl font-bold text-red-400">
+							30-40%
+						</span>
+						which means
+						<span className="m-1 px-3 py-1 bg-red-500/20 border-2 border-red-500/40 rounded-full
+							text-2xl md:text-2xl font-bold text-red-400">
+							£7,400/month
+						</span> lost in thin air
+					</p>
+
+					<div className="bg-background/90 backdrop-blur-md rounded-2xl p-8 border-2 border-foreground/10 shadow-2xl">
+						<div className="text-xl md:text-2xl font-bold text-foreground mb-4">
+							find out with the
+						</div>
+						<div className="text-4xl font-black text-foreground mb-3">
+							7 Sins of Meta Ads
+						</div>
+						<p className="text-base text-muted-foreground">
+							Which ones may you have?{' '}
+						</p>
+					</div>
+
 				</section>
-			
-				<AdAudit />
+
+				<section className="min-h-[200vh] pb-32 max-w-4xl mr-auto space-y-28">
+					<AdAudit />
+				</section>
 
 				{/* 3 sins */}
 				<section className="pb-32 max-w-4xl mr-auto space-y-28">
