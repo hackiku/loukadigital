@@ -1,43 +1,26 @@
 // src/app/adhealth/audit/AdAudit.tsx
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { AuditTrigger } from './layout/AuditTrigger';
 import { AddButton } from './layout/AddButton';
-import { SinClusters } from './layout/SinClusters';
 import { SinSnippet } from './sins/SinSnippet';
+import { Banner } from './assets/Banner';
+import { PhoneMockup } from './assets/PhoneMockup';
+import { StatCard } from './assets/StatCard';
 import { FullCalculator } from './calculator/FullCalculator';
-import { calculateWaste } from './math';
-import { sins, clusters } from '~/data/audit';
-
-type Scene = 'clusters' | 'scrollytell' | 'calculator' | 'mobile';
+import { EmailForm } from '../_components/cta/EmailForm';
+import { calculateWaste, calculateScore, getScoreLabel } from './math';
+import { sins } from '~/data/audit';
 
 export function AdAudit() {
 	const [monthlyBudget, setMonthlyBudget] = useState(10000);
 	const [selectedSins, setSelectedSins] = useState<string[]>([]);
 	const [isExpanded, setIsExpanded] = useState(false);
-	const [currentScene, setCurrentScene] = useState<Scene>('clusters');
-	const [isSticky, setIsSticky] = useState(false);
-	const containerRef = useRef<HTMLDivElement>(null);
 
 	const savings = calculateWaste(monthlyBudget, selectedSins);
-
-	// Sticky behavior - only when section is in view
-	useEffect(() => {
-		const handleScroll = () => {
-			if (!containerRef.current) return;
-
-			const rect = containerRef.current.getBoundingClientRect();
-			const navbarHeight = 80; // Adjust based on your navbar
-
-			// Sticky when top of container reaches navbar
-			const shouldStick = rect.top <= navbarHeight && rect.bottom > window.innerHeight;
-			setIsSticky(shouldStick);
-		};
-
-		window.addEventListener('scroll', handleScroll, { passive: true });
-		handleScroll();
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, []);
+	const score = calculateScore(selectedSins);
+	const scoreData = getScoreLabel(score);
+	const isGoodFit = scoreData.fit === 'good' || scoreData.fit === 'perfect' || scoreData.fit === 'critical';
 
 	const toggleSin = (sinId: string) => {
 		setSelectedSins(prev =>
@@ -47,119 +30,230 @@ export function AdAudit() {
 		);
 	};
 
-	const currentSinId = 'excluded-converters';
+	const currentSinId = sins[0]?.id || '';
 	const currentSin = sins.find(s => s.id === currentSinId) || sins[0];
-	const isCurrentSinAdded = selectedSins.includes(currentSinId);
+	const isCurrentSinAdded = currentSin ? selectedSins.includes(currentSin.id) : false;
 
 	return (
-		<section
-			ref={containerRef}
-			className="relative min-h-[200vh] py-20"
-		>
-			{/* Sticky Container */}
-			<div className={`${isSticky ? 'fixed top-20 left-0 right-0' : 'relative'} z-40`}>
-				<div className="px-4 sm:px-12 md:px-16 lg:px-24">
+		<div className="relative">
+			{/* SCROLLYTELL - Not expanded */}
+			{!isExpanded && (
+				<div className="_space-y-[10vh]">
 
-					{/* Scene 1: Clusters View */}
-					{currentScene === 'clusters' && (
-						<SinClusters
-							selectedSins={selectedSins}
-							onToggle={toggleSin}
-							monthlyBudget={monthlyBudget}
-						/>
-					)}
+					{/* SIN 1: Hero Left + Banner Right */}
+					<section className="relative h-[30vh]">
+						<div className="absolute top-1/3 left-[5%] w-[90%] md:w-[45%] lg:w-[35%]">
+							<SinSnippet
+								sin={sins[0]}
+								isSelected={selectedSins.includes(sins[0].id)}
+								onToggle={() => toggleSin(sins[0].id)}
+								monthlyBudget={monthlyBudget}
+								variant="full"
+							/>
+						</div>
+						<div className="hidden md:block absolute top-1/4 right-[5%] w-[50%] h-[60%]">
+							<Banner src={sins[0].assets[0].src || ''} />
+						</div>
+					</section>
 
-					{/* Scene 2: Scrollytell - Individual sins with assets */}
-					{currentScene === 'scrollytell' && (
-						<div className="grid grid-cols-12 gap-6 min-h-[80vh]">
-							{/* Example layout - you'll customize per sin */}
-							<div className="col-span-5">
-								<SinSnippet
-									sin={sins[0]}
-									isSelected={selectedSins.includes(sins[0].id)}
-									onToggle={() => toggleSin(sins[0].id)}
-									monthlyBudget={monthlyBudget}
-									showDescription
-									showMoney
-								/>
-							</div>
-							<div className="col-span-7">
-								<div className="w-full h-96 bg-muted/30 rounded-2xl border border-border/50 flex items-center justify-center">
-									<span className="text-muted-foreground">Asset / Mockup / Banner</span>
-								</div>
+					{/* SIN 2: Centered with Floating Stats */}
+					<section className="relative h-screen flex items-center justify-center">
+						<div className="w-[90%] md:w-[500px] z-10">
+							<SinSnippet
+								sin={sins[1]}
+								isSelected={selectedSins.includes(sins[1].id)}
+								onToggle={() => toggleSin(sins[1].id)}
+								monthlyBudget={monthlyBudget}
+								variant="full"
+							/>
+						</div>
+						<div className="hidden lg:block absolute top-20 right-20 w-48">
+							<StatCard content={sins[1].assets[0].content || ''} />
+						</div>
+						<div className="hidden lg:block absolute bottom-20 right-20 w-48">
+							<StatCard content={sins[1].assets[1].content || ''} />
+						</div>
+					</section>
+
+					{/* SIN 3: Bottom Left + Mockup Top Right */}
+					<section className="relative h-screen">
+						<div className="absolute bottom-20 left-[5%] w-[90%] md:w-[40%]">
+							<SinSnippet
+								sin={sins[2]}
+								isSelected={selectedSins.includes(sins[2].id)}
+								onToggle={() => toggleSin(sins[2].id)}
+								monthlyBudget={monthlyBudget}
+								variant="full"
+							/>
+						</div>
+						<div className="hidden md:block absolute top-20 right-[10%] w-[300px] h-[600px]">
+							<PhoneMockup src={sins[2].assets[0].src || ''} />
+						</div>
+						<div className="hidden lg:block absolute top-1/3 right-[5%] w-56">
+							<StatCard content={sins[2].assets[0].content || ''} />
+						</div>
+					</section>
+
+					{/* SIN 4: Full Width Image with Overlay */}
+					<section className="relative h-screen flex items-center justify-center">
+						<div className="absolute inset-0 opacity-30">
+							<Banner src={sins[3].assets[0].src || ''} />
+						</div>
+						<div className="relative z-10 w-[90%] md:w-[600px]">
+							<SinSnippet
+								sin={sins[3]}
+								isSelected={selectedSins.includes(sins[3].id)}
+								onToggle={() => toggleSin(sins[3].id)}
+								monthlyBudget={monthlyBudget}
+								variant="full"
+							/>
+						</div>
+					</section>
+
+					{/* SIN 5: Split Screen with Stats */}
+					<section className="relative">
+						<div className="grid md:grid-cols-2 gap-8 h-full p-[5%] items-center">
+							<SinSnippet
+								sin={sins[4]}
+								isSelected={selectedSins.includes(sins[4].id)}
+								onToggle={() => toggleSin(sins[4].id)}
+								monthlyBudget={monthlyBudget}
+								variant="full"
+							/>
+							<div className="hidden md:grid grid-rows-2 gap-6">
+								<StatCard content={sins[4].assets[0].content || ''} />
+								<StatCard content={sins[4].assets[1].content || ''} />
 							</div>
 						</div>
-					)}
+					</section>
 
-					{/* Scene 3: Calculator Mode (when trigger opened) */}
-					{currentScene === 'calculator' && isExpanded && (
-						<div className="grid grid-cols-12 gap-6">
-							{/* Left: Sidebar with clustered sins */}
-							<div className="col-span-4">
-								<SinClusters
-									selectedSins={selectedSins}
-									onToggle={toggleSin}
-									monthlyBudget={monthlyBudget}
-									compact
-								/>
-							</div>
-
-							{/* Right: Full Calculator */}
-							<div className="col-span-8">
-								<FullCalculator
-									selectedSins={selectedSins}
-									monthlyBudget={monthlyBudget}
-									savings={savings}
-								/>
-							</div>
+					{/* SIN 6: Diagonal Layout */}
+					<section className="relative h-screen">
+						<div className="absolute top-[15%] left-[5%] w-[90%] md:w-[40%]">
+							<SinSnippet
+								sin={sins[5]}
+								isSelected={selectedSins.includes(sins[5].id)}
+								onToggle={() => toggleSin(sins[5].id)}
+								monthlyBudget={monthlyBudget}
+								variant="full"
+							/>
 						</div>
-					)}
-
-					{/* Scene 4: Mobile Grid (hidden on desktop) */}
-					<div className="md:hidden">
-						<div className="grid grid-cols-4 gap-2 mb-6">
-							{sins.map((sin, idx) => (
-								<button
-									key={sin.id}
-									onClick={() => toggleSin(sin.id)}
-									className={`aspect-square rounded-xl border-2 flex items-center justify-center font-bold text-lg transition-all ${selectedSins.includes(sin.id)
-											? 'bg-red-500/20 border-red-500 text-red-400'
-											: 'bg-muted/30 border-border/50 text-muted-foreground'
-										}`}
-								>
-									{idx + 1}
-								</button>
-							))}
+						<div className="hidden md:block absolute bottom-[15%] right-[5%] w-[300px] h-[600px]">
+							<PhoneMockup src={sins[5].assets[0].src || ''} />
 						</div>
+						<div className="hidden lg:block absolute top-[40%] left-[50%] w-64">
+							<StatCard content={sins[5].assets[1].content || ''} />
+						</div>
+					</section>
+
+					{/* SIN 7: Bottom Heavy */}
+					<section className="relative h-screen">
+						<div className="absolute top-20 left-1/2 -translate-x-1/2 w-[90%] md:w-[500px]">
+							<SinSnippet
+								sin={sins[6]}
+								isSelected={selectedSins.includes(sins[6].id)}
+								onToggle={() => toggleSin(sins[6].id)}
+								monthlyBudget={monthlyBudget}
+								variant="full"
+							/>
+						</div>
+						<div className="hidden md:block absolute bottom-[5%] left-[5%] right-[5%] h-[40%]">
+							<Banner src={sins[6].assets[0].src || ''} />
+						</div>
+					</section>
+
+				</div>
+			)}
+
+			{/* EXPANDED STATE - Desktop */}
+			{isExpanded && (
+				<div className="hidden md:grid grid-cols-12 gap-6 min-h-[80vh]">
+					{/* Left: Compact Sidebar */}
+					<div className="col-span-3 space-y-2">
+						{sins.map((sin) => (
+							<SinSnippet
+								key={sin.id}
+								sin={sin}
+								isSelected={selectedSins.includes(sin.id)}
+								onToggle={() => toggleSin(sin.id)}
+								monthlyBudget={monthlyBudget}
+								variant="checkbox"
+							/>
+						))}
+					</div>
+
+					{/* Right: Full Calculator */}
+					<div className="col-span-9">
 						<FullCalculator
 							selectedSins={selectedSins}
 							monthlyBudget={monthlyBudget}
 							savings={savings}
-							mobile
-						/>
-					</div>
-
-					{/* Bottom Trigger - Always visible */}
-					<div className="flex items-end gap-3 mt-8">
-						<AuditTrigger
-							currentSinNumber={currentSin.number}
-							monthlyBudget={monthlyBudget}
-							savings={savings}
-							selectedCount={selectedSins.length}
-							totalCount={sins.length}
-							onBudgetChange={setMonthlyBudget}
-							onClick={() => setIsExpanded(!isExpanded)}
-							isExpanded={isExpanded}
-						/>
-
-						<AddButton
-							sinId={currentSinId}
-							isAdded={isCurrentSinAdded}
-							onAdd={toggleSin}
 						/>
 					</div>
 				</div>
+			)}
+
+			{/* EXPANDED STATE - Mobile */}
+			{isExpanded && (
+				<div className="md:hidden space-y-6">
+					<div className="grid grid-cols-4 gap-2">
+						{sins.map((sin) => (
+							<SinSnippet
+								key={sin.id}
+								sin={sin}
+								isSelected={selectedSins.includes(sin.id)}
+								onToggle={() => toggleSin(sin.id)}
+								monthlyBudget={monthlyBudget}
+								variant="square"
+							/>
+						))}
+					</div>
+					<FullCalculator
+						selectedSins={selectedSins}
+						monthlyBudget={monthlyBudget}
+						savings={savings}
+						mobile
+					/>
+				</div>
+			)}
+
+			{/* BOTTOM TRIGGER ROW */}
+			<div className="mt-8 flex items-end gap-3 flex-wrap">
+				{/* Trigger */}
+				<AuditTrigger
+					currentSinNumber={currentSin?.number || 1}
+					monthlyBudget={monthlyBudget}
+					savings={savings}
+					selectedCount={selectedSins.length}
+					totalCount={sins.length}
+					onBudgetChange={setMonthlyBudget}
+					onClick={() => setIsExpanded(!isExpanded)}
+					isExpanded={isExpanded}
+				/>
+
+				{/* Add Button */}
+				{!isExpanded && currentSin && (
+					<AddButton
+						sinId={currentSin.id}
+						isAdded={isCurrentSinAdded}
+						onAdd={toggleSin}
+					/>
+				)}
+
+				{/* Email Form - Desktop (right of trigger when expanded) */}
+				{isExpanded && (
+					<div className="hidden md:block flex-1 max-w-2xl">
+						<EmailForm isGoodFit={isGoodFit} />
+					</div>
+				)}
 			</div>
-		</section>
+
+			{/* Email Form - Mobile (above trigger) */}
+			{isExpanded && (
+				<div className="md:hidden mb-4">
+					<EmailForm isGoodFit={isGoodFit} mobile />
+				</div>
+			)}
+		</div>
 	);
 }

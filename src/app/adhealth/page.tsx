@@ -40,7 +40,7 @@ export default function AdHealthPage() {
 	}, []);
 
 	return (
-		<div className="min-h-screen bg-background text-foreground">
+		<div className="min-h-screen bg-background text-foreground overflow-x-hidden">
 
 			{/* nav */}
 			<Navbar onOpenDrawer={() => setIsDrawerOpen(true)} />
@@ -115,15 +115,8 @@ export default function AdHealthPage() {
 
 				</section>
 
-				<section className="min-h-[200vh] pb-32 max-w-4xl mr-auto space-y-28">
+				<section className="min-h-[200vh] pb-32">
 					<AdAudit />
-				</section>
-
-				{/* 3 sins */}
-				<section className="pb-32 max-w-4xl mr-auto space-y-28">
-					{checks[0] && <SinSectionItem check={checks[0]} />}
-					{checks[1] && <SinSectionItem check={checks[1]} />}
-					{checks[2] && <SinSectionItem check={checks[2]} />}
 				</section>
 
 

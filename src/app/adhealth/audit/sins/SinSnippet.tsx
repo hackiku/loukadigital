@@ -1,6 +1,6 @@
 // src/app/adhealth/audit/sins/SinSnippet.tsx
 'use client';
-import { Check, AlertCircle } from 'lucide-react';
+import { Check } from 'lucide-react';
 
 interface SinSnippetProps {
 	sin: {
@@ -13,9 +13,7 @@ interface SinSnippetProps {
 	isSelected: boolean;
 	onToggle: () => void;
 	monthlyBudget: number;
-	showDescription?: boolean;
-	showMoney?: boolean;
-	compact?: boolean;
+	variant: 'square' | 'checkbox' | 'full';
 }
 
 export function SinSnippet({
@@ -23,71 +21,113 @@ export function SinSnippet({
 	isSelected,
 	onToggle,
 	monthlyBudget,
-	showDescription = false,
-	showMoney = true,
-	compact = false
+	variant
 }: SinSnippetProps) {
 	const waste = Math.round((monthlyBudget * sin.wastePercent) / 100);
 
-	return (
-		<button
-			onClick={onToggle}
-			className={`group w-full text-left transition-all ${compact ? 'p-2' : 'p-4'
-				} rounded-xl border-2 ${isSelected
-					? 'bg-red-500/10 border-red-500'
-					: 'bg-card border-border/50 hover:border-purple-500/50 hover:bg-card/80'
-				}`}
-		>
-			<div className="flex items-start justify-between gap-3">
-				{/* Left: Checkbox + Content */}
-				<div className="flex items-start gap-3 flex-1 min-w-0">
-					{/* Checkbox */}
-					<div className={`flex-shrink-0 rounded-full border-2 flex items-center justify-center transition-all ${compact ? 'w-5 h-5' : 'w-6 h-6'
-						} ${isSelected
-							? 'border-red-400 bg-red-500/30 scale-100'
-							: 'border-muted-foreground/30 group-hover:border-purple-500/50'
-						}`}>
-						{isSelected && <Check className={compact ? 'w-3 h-3' : 'w-4 h-4'} />}
-					</div>
-
-					{/* Content */}
-					<div className="flex-1 min-w-0">
-						<div className="flex items-center gap-2 mb-1">
-							<span className={`${compact ? 'text-xs' : 'text-sm'} font-bold ${isSelected ? 'text-red-400' : 'text-foreground'
-								}`}>
-								{sin.name}
-							</span>
-							{!compact && (
-								<span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-400 font-semibold">
-									#{sin.number}
-								</span>
-							)}
-						</div>
-
-						{showDescription && !compact && (
-							<p className="text-sm text-muted-foreground leading-relaxed">
-								{sin.tagline}
-							</p>
-						)}
-					</div>
+	// Square variant - for mobile grid
+	if (variant === 'square') {
+		return (
+			<button
+				onClick={onToggle}
+				className={`w-full aspect-square rounded-xl border-2 flex flex-col items-center justify-center gap-2 transition-all ${isSelected
+						? 'bg-red-500/20 border-red-500 text-red-400'
+						: 'bg-card border-border/50 text-muted-foreground hover:border-purple-500/50'
+					}`}
+			>
+				<div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg ${isSelected ? 'bg-red-500/30' : 'bg-gradient-to-br from-purple-600 to-blue-600 text-white'
+					}`}>
+					{sin.number}
 				</div>
+				{isSelected && <Check className="w-5 h-5" />}
+			</button>
+		);
+	}
 
-				{/* Right: Money indicator */}
-				{showMoney && (
-					<div className="flex-shrink-0">
+	// Checkbox variant - compact sidebar style
+	if (variant === 'checkbox') {
+		return (
+			<button
+				onClick={onToggle}
+				className={`w-full text-left p-3 rounded-xl border-2 transition-all ${isSelected
+						? 'bg-red-500/10 border-red-500'
+						: 'bg-card border-border/50 hover:border-purple-500/50'
+					}`}
+			>
+				<div className="flex items-center justify-between gap-3">
+					<div className="flex items-center gap-2.5 flex-1 min-w-0">
+						<div className={`flex-shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center ${isSelected ? 'border-red-400 bg-red-500/30' : 'border-muted-foreground/30'
+							}`}>
+							{isSelected && <Check className="w-3 h-3 text-red-400" />}
+						</div>
+						<span className={`text-sm font-semibold truncate ${isSelected ? 'text-red-400' : 'text-foreground'
+							}`}>
+							{sin.name}
+						</span>
+					</div>
+
+					<div className="flex-shrink-0 min-w-[70px] text-right">
 						{isSelected ? (
-							<div className="px-3 py-1 rounded-full bg-green-500/20 border border-green-500/40">
-								<span className="text-sm font-bold text-green-400">
-									+£{waste.toLocaleString()}
-								</span>
-							</div>
+							<span className="text-xs font-bold text-green-400 px-2 py-0.5 rounded-full bg-green-500/20 border border-green-500/40">
+								+£{waste.toLocaleString()}
+							</span>
 						) : (
-							<span className="text-sm font-semibold text-red-400">
+							<span className="text-xs font-semibold text-red-400">
 								-£{waste.toLocaleString()}
 							</span>
 						)}
 					</div>
-				)}
+				</div>
+			</button>
+		);
+	}
+
+	// Full variant - for scrollytell grid
+	return (
+		<button
+			onClick={onToggle}
+			className={`w-full h-full text-left p-6 rounded-2xl border-2 transition-all ${isSelected
+					? 'bg-red-500/10 border-red-500 shadow-xl shadow-red-500/10'
+					: 'bg-card/90 backdrop-blur-sm border-border/50 hover:border-purple-500/50 hover:shadow-xl'
+				}`}
+		>
+			<div className="flex flex-col h-full">
+				{/* Top: Number + Checkbox */}
+				<div className="flex items-center justify-between mb-4">
+					<div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl ${isSelected
+							? 'bg-red-500/30 text-red-400 border-2 border-red-500'
+							: 'bg-gradient-to-br from-purple-600 to-blue-600 text-white'
+						}`}>
+						{sin.number}
+					</div>
+
+					<div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${isSelected ? 'border-red-400 bg-red-500/30' : 'border-muted-foreground/30'
+						}`}>
+						{isSelected && <Check className="w-5 h-5 text-red-400" />}
+					</div>
+				</div>
+
+				{/* Content */}
+				<div className="flex-1 mb-4">
+					<h3 className={`text-2xl font-bold mb-2 ${isSelected ? 'text-red-400' : 'text-foreground'
+						}`}>
+						{sin.name}
+					</h3>
+					<p className="text-sm text-muted-foreground leading-relaxed">
+						{sin.tagline}
+					</p>
+				</div>
+
+				{/* Money */}
+				<div className={`inline-flex items-baseline gap-2 px-4 py-2 rounded-full font-bold ${isSelected
+						? 'bg-green-500/20 border-2 border-green-500/40'
+						: 'bg-red-500/10 border-2 border-red-500/30'
+					}`}>
+					<span className={`text-2xl ${isSelected ? 'text-green-400' : 'text-red-400'}`}>
+						{isSelected ? '+' : '-'}£{waste.toLocaleString()}
+					</span>
+					<span className="text-xs text-muted-foreground">/mo</span>
+				</div>
 			</div>
 		</button>
 	);
