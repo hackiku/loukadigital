@@ -2,14 +2,21 @@
 
 import { HydrateClient } from "~/trpc/server";
 import { Target, Zap, Sparkles, TrendingUp } from 'lucide-react';
+// layout
 import { Nav } from '~/components/navigation/Nav';
 import { Footer } from '~/components/navigation/Footer';
+// cta/proof
 import { GrowthPlanButton } from '~/components/cta/GrowthPlanButton';
 import { LogoShoutouts } from '~/components/proof/LogoShoutouts';
 import { TestimonialCard } from '~/components/proof/TestimonialCard';
-import { AboutSection } from './_components/about/AboutSection';
 import { ClientShoutout } from "~/components/proof/ClientShoutout";
 import { LogoBar } from "~/components/proof/LogoBar";
+// content
+import { AboutSection } from './_components/about/AboutSection';
+import { ServiceCard } from "./_components/services/ServiceCard";
+// db
+import { services } from "~/data/services";
+import { AboutWrapper } from "./_components/about/AboutWrapper";
 
 export default function HomePage() {
 	return (
@@ -18,117 +25,55 @@ export default function HomePage() {
 
 			<main>
 				{/* Hero */}
-				<section className="relative flex flex-col items-center px-4 sm:px-12 md:px-16 lg:px-24 pt-32">
-					
-					<div className="border text-center flex flex-col gap-6 items-center max-w-7xl mx-auto w-full">
-						<h1 className="text-[7vw] font-bold leading-tight">
-							You've Built the Brand.{' '}
-							<span className="block bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-								We Drive the Revenue.
-							</span>
-						</h1>
 
-						<p className="text-xl md:text-2xl max-w-2xl text-muted-foreground leading-relaxed">
-							Full-service marketing that drives customers, leads, and revenue while you focus on what you do best.
-						</p>
+				<section className="relative min-h-screen flex items-center px-4 sm:px-12 md:px-16 lg:px-24 pt-12">
+					<div className="max-w-7xl mx-auto w-full">
+						{/* Main Content */}
+						<div className="flex flex-col items-start md:items-center gap-8 mb-12">
+							<h1 className="text-5xl sm:text-6xl md:text-[7vw] font-bold leading-tight text-left md:text-center">
+								You've Built the Brand.{' '}
+								<span className="block bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+									We Drive the Revenue.
+								</span>
+							</h1>
 
-						<GrowthPlanButton />
+							<p className="text-lg md:text-xl lg:text-2xl max-w-2xl text-muted-foreground leading-relaxed text-left md:text-center">
+								Full-service marketing that drives customers, leads, and revenue while you focus on what you do best.
+							</p>
 
+							<div className="w-full max-w-sm md:max-w-md">
+								<GrowthPlanButton />
+							</div>
+						</div>
+
+						{/* Testimonial - Bottom Right on Desktop */}
+						<div className="hidden lg:block absolute bottom-8 right-8 xl:right-24">
+							<ClientShoutout index={1} />
+						</div>
 					</div>
-					{/* Right: Testimonial Shoutouts */}
-					
-					<ClientShoutout />
-					
 				</section>
 
 				{/* Services */}
-				<section id="services" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24 bg-muted/20">
+				<section id="services" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
 					<div className="max-w-7xl mx-auto">
 						<div className="text-center mb-20">
-							<h2 className="text-3xl md:text-5xl font-bold mb-6">
-								Services That{' '}
-								<span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-									Actually Work
-								</span>
-							</h2>
-							<p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-								We handle your growth so you can focus on your business.
-							</p>
+							<h2>Services That Actually Work</h2>
 						</div>
 
-						{/* Service Cards - 2x2 Grid */}
-						<div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-							{/* Lead Generation */}
-							<div className="bg-card/50 rounded-2xl p-8 border border-border/50 hover:border-purple-500/30 transition-all group">
-								<div className="w-14 h-14 rounded-xl bg-gradient-to-r from-purple-600 to-blue-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-									<Target className="w-7 h-7 text-white" />
-								</div>
-								<h3 className="text-2xl font-bold mb-4">Lead Generation</h3>
-								<p className="text-muted-foreground mb-6 leading-relaxed">
-									High-converting funnels that fill your calendar with qualified prospects ready to buy.
-								</p>
-								<ul className="space-y-2 text-sm text-muted-foreground">
-									<li>• Lead magnet funnels</li>
-									<li>• VSL & webinar systems</li>
-									<li>• Email automation</li>
-								</ul>
-							</div>
-
-							{/* Paid Media */}
-							<div className="bg-card/50 rounded-2xl p-8 border border-border/50 hover:border-blue-500/30 transition-all group">
-								<div className="w-14 h-14 rounded-xl bg-gradient-to-r from-blue-600 to-purple-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-									<Zap className="w-7 h-7 text-white" />
-								</div>
-								<h3 className="text-2xl font-bold mb-4">Paid Media</h3>
-								<p className="text-muted-foreground mb-6 leading-relaxed">
-									Meta, Google, TikTok. We optimize your ad spend for maximum ROAS.
-								</p>
-								<ul className="space-y-2 text-sm text-muted-foreground">
-									<li>• Campaign optimization</li>
-									<li>• Audience targeting</li>
-									<li>• Performance tracking</li>
-								</ul>
-							</div>
-
-							{/* Creative */}
-							<div className="bg-card/50 rounded-2xl p-8 border border-border/50 hover:border-pink-500/30 transition-all group">
-								<div className="w-14 h-14 rounded-xl bg-gradient-to-r from-pink-600 to-purple-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-									<Sparkles className="w-7 h-7 text-white" />
-								</div>
-								<h3 className="text-2xl font-bold mb-4">Creative Production</h3>
-								<p className="text-muted-foreground mb-6 leading-relaxed">
-									Ad creatives, landing pages, and content that stops the scroll and drives action.
-								</p>
-								<ul className="space-y-2 text-sm text-muted-foreground">
-									<li>• Video & static ads</li>
-									<li>• Landing page design</li>
-									<li>• A/B testing</li>
-								</ul>
-							</div>
-
-							{/* Growth Strategy */}
-							<div className="bg-card/50 rounded-2xl p-8 border border-border/50 hover:border-green-500/30 transition-all group">
-								<div className="w-14 h-14 rounded-xl bg-gradient-to-r from-green-600 to-blue-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-									<TrendingUp className="w-7 h-7 text-white" />
-								</div>
-								<h3 className="text-2xl font-bold mb-4">Growth Strategy</h3>
-								<p className="text-muted-foreground mb-6 leading-relaxed">
-									Data-driven strategies that identify opportunities and scale your business profitably.
-								</p>
-								<ul className="space-y-2 text-sm text-muted-foreground">
-									<li>• Growth audits</li>
-									<li>• Conversion optimization</li>
-									<li>• Analytics & reporting</li>
-								</ul>
-							</div>
+						<div className="space-y-8">
+							{services.map((service, index) => (
+								<ServiceCard key={service.id} service={service} index={index} />
+							))}
 						</div>
 					</div>
 				</section>
 
+
 				<section className="py-20 px-4 sm:px-12 md:px-16 lg:px-24">
 					<div className="max-w-7xl mx-auto">
-						<div className="text-center mb-12">
-							<h2>Trusted by Industry Leaders</h2>
+						<div className="text-center mb-16">
+							<h2 className="text-3xl md:text-5xl font-bold mb-4">Trusted by Industry Leaders</h2>
+							<p className="text-xl text-muted-foreground">Real businesses. Real results.</p>
 						</div>
 						<LogoBar />
 					</div>
@@ -194,15 +139,15 @@ export default function HomePage() {
 
 				{/* About */}
 				<section id="about" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24 bg-muted/20">
-					<AboutSection />
+					<AboutWrapper />
 				</section>
 
 				{/* CTA */}
 				<section className="py-32 px-4 sm:px-12 md:px-16 lg:px-24 bg-gradient-to-r from-purple-900/20 to-blue-900/20">
 					<div className="max-w-4xl mx-auto text-center space-y-8">
-						<h2 className="text-3xl md:text-5xl font-bold">Ready to Scale?</h2>
+						<h2 className="text-3xl md:text-5xl font-bold">How much is your growth worth?</h2>
 						<p className="text-xl text-muted-foreground">
-							Get started today and discover how we can build your growth engine.
+							Find out with a free growth plan
 						</p>
 						<div className="flex justify-center">
 							<GrowthPlanButton />
