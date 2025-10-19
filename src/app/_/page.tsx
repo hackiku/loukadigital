@@ -74,7 +74,7 @@ export default function AdHealthPage() {
 				</section>
 
 				{/* sins - Euler */}
-				<section id="sins-overview-section"
+				<section id="sins"
 					className="py-44 max-w-7xl mx-auto"
 				>
 					<div className="mb-16">
@@ -89,16 +89,12 @@ export default function AdHealthPage() {
 					</div>
 
 					<p className="flex-nowrap text-xl leading-12 md:text-3xl text-muted-foreground max-w-lg mx-auto">
-						Preposterously, most ad accounts leak
+						Most ad accounts leak
 						<span className="m-1 px-3 py-1 bg-red-500/20 border-2 border-red-500/40 rounded-full
 							text-2xl md:text-2xl font-bold text-red-400">
 							30-40%
 						</span>
-						which means
-						<span className="m-1 px-3 py-1 bg-red-500/20 border-2 border-red-500/40 rounded-full
-							text-2xl md:text-2xl font-bold text-red-400">
-							£7,400/month
-						</span> lost in thin air
+						ad budget on easy to fix 
 					</p>
 
 					<div className="bg-background/90 backdrop-blur-md rounded-2xl p-8 border-2 border-foreground/10 shadow-2xl">
@@ -108,14 +104,16 @@ export default function AdHealthPage() {
 						<div className="text-4xl font-black text-foreground mb-3">
 							7 Sins of Meta Ads
 						</div>
-						<p className="text-base text-muted-foreground">
+						{/* <p className="text-base text-muted-foreground">
 							Which ones may you have?{' '}
-						</p>
+						</p> */}
 					</div>
 
 				</section>
 
-				<section className="min-h-[200vh] pb-32">
+				<section 
+					id="checklist"
+					className="min-h-screen">
 					<AdAudit />
 				</section>
 

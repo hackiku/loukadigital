@@ -1,4 +1,4 @@
-// src/app/adhealth/audit/sins/SinSnippet.tsx
+// src/app/adleak/audit/assets/SinSnippet.tsx
 'use client';
 import { Check } from 'lucide-react';
 
@@ -83,6 +83,8 @@ export function SinSnippet({
 	}
 
 	// Full variant - for scrollytell grid
+	// Full variant - for scrollytell grid
+	// Full variant - for scrollytell grid
 	return (
 		<button
 			onClick={onToggle}
@@ -91,42 +93,39 @@ export function SinSnippet({
 					: 'bg-card/90 backdrop-blur-sm border-border/50 hover:border-purple-500/50 hover:shadow-xl'
 				}`}
 		>
-			<div className="flex flex-col h-full">
-				{/* Top: Number + Checkbox */}
-				<div className="flex items-center justify-between mb-4">
-					<div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl ${isSelected
-							? 'bg-red-500/30 text-red-400 border-2 border-red-500'
-							: 'bg-gradient-to-br from-purple-600 to-blue-600 text-white'
-						}`}>
-						{sin.number}
-					</div>
-
-					<div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center ${isSelected ? 'border-red-400 bg-red-500/30' : 'border-muted-foreground/30'
-						}`}>
-						{isSelected && <Check className="w-5 h-5 text-red-400" />}
-					</div>
+			<div className="grid grid-cols-[auto_1fr] gap-4 items-start h-full">
+				{/* Left Column: Number circle - spans 2 rows */}
+				<div className={`w-16 h-16 rounded-full flex items-center justify-center font-bold text-2xl border-2 transition-all ${isSelected
+						? 'bg-red-500/30 text-red-400 border-red-500'
+						: 'bg-transparent text-foreground border-foreground/30'
+					}`}>
+					{sin.number}
 				</div>
 
-				{/* Content */}
-				<div className="flex-1 mb-4">
-					<h3 className={`text-2xl font-bold mb-2 ${isSelected ? 'text-red-400' : 'text-foreground'
-						}`}>
-						{sin.name}
-					</h3>
-					<p className="text-sm text-muted-foreground leading-relaxed">
+				{/* Right Column: Content stacked */}
+				<div className="flex flex-col gap-2">
+					{/* Row 2: Title + Money */}
+					<div className="flex items-center justify-between gap-4">
+						<h3 className={`text-2xl font-bold ${isSelected ? 'text-red-400' : 'text-foreground'
+							}`}>
+							{sin.name}
+						</h3>
+
+						{isSelected ? (
+							<span className="text-lg font-bold text-green-400 whitespace-nowrap">
+								+£{waste.toLocaleString()}
+							</span>
+						) : (
+							<span className="text-lg font-semibold text-red-400 whitespace-nowrap">
+								-£{waste.toLocaleString()}
+							</span>
+						)}
+					</div>
+
+					{/* Row 3: Description - full width */}
+					<p className="text-base text-muted-foreground leading-relaxed">
 						{sin.tagline}
 					</p>
-				</div>
-
-				{/* Money */}
-				<div className={`inline-flex items-baseline gap-2 px-4 py-2 rounded-full font-bold ${isSelected
-						? 'bg-green-500/20 border-2 border-green-500/40'
-						: 'bg-red-500/10 border-2 border-red-500/30'
-					}`}>
-					<span className={`text-2xl ${isSelected ? 'text-green-400' : 'text-red-400'}`}>
-						{isSelected ? '+' : '-'}£{waste.toLocaleString()}
-					</span>
-					<span className="text-xs text-muted-foreground">/mo</span>
 				</div>
 			</div>
 		</button>

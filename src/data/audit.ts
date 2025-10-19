@@ -30,7 +30,7 @@ export const sins: Sin[] = [
 	{
 		id: 'excluded-converters',
 		number: 1,
-		name: 'Excluded Converters',
+		name: 'Included Converters',
 		tagline: 'Cold campaigns reaching people who already bought',
 		wastePercent: 20,
 		clusterId: 'overlap',
@@ -68,7 +68,7 @@ export const sins: Sin[] = [
 	{
 		id: 'tracking-accuracy',
 		number: 4,
-		name: 'Tracking Accuracy',
+		name: 'Inaccurate Tracking',
 		tagline: 'Duplicate conversion tracking (false data)',
 		wastePercent: 30,
 		clusterId: 'blindspot',
@@ -93,8 +93,20 @@ export const sins: Sin[] = [
 	},
 	// fatigue
 	{
-		id: 'creative-fatigue',
+		id: 'dead-placements',
 		number: 6,
+		name: 'Dead Placements',
+		tagline: "Budget on placements that don't convert",
+		wastePercent: 25,
+		clusterId: 'fatigue',
+		severity: 'high',
+		assets: [
+			{ type: 'image', src: '/assets/placement-breakdown.png' }
+		]
+	},
+	{
+		id: 'creative-fatigue',
+		number: 7,
 		name: 'Creative Fatigue',
 		tagline: 'Best ads running too long, audience burned out',
 		wastePercent: 12.5,
@@ -103,18 +115,6 @@ export const sins: Sin[] = [
 		assets: [
 			{ type: 'stat', content: 'Frequency > 3.0' },
 			{ type: 'stat', content: 'Ads older than 60 days' }
-		]
-	},
-	{
-		id: 'dead-placements',
-		number: 7,
-		name: 'Dead Placements',
-		tagline: "Budget on placements that don't convert",
-		wastePercent: 25,
-		clusterId: 'fatigue',
-		severity: 'high',
-		assets: [
-			{ type: 'image', src: '/assets/placement-breakdown.png' }
 		]
 	},
 ];
