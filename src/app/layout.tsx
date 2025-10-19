@@ -1,4 +1,4 @@
-// src/app/layout.tsx (UPDATED)
+// src/app/layout.tsx
 
 import "~/styles/globals.css";
 import type { Metadata } from "next";
@@ -6,14 +6,9 @@ import { Geist } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 import { ThemeProvider } from "~/components/theme-provider";
 
-// layout
-import { Nav } from '~/components/navigation/Nav';
-import { Footer } from '~/components/navigation/Footer';
-
-
 export const metadata: Metadata = {
-	title: "Louka Digital",
-	description: "Ad health audits for growing brands",
+	title: "Louka Digital - Growth Marketing That Actually Works",
+	description: "Full-service marketing that drives customers, leads, and revenue. Meta ads, lead gen, and growth strategy for DTC and wellness brands.",
 	icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
@@ -35,11 +30,8 @@ export default function RootLayout({
 					disableTransitionOnChange
 				>
 					<TRPCReactProvider>
-						<Nav />
 						{children}
-						<Footer />
 					</TRPCReactProvider>
-
 				</ThemeProvider>
 			</body>
 		</html>
