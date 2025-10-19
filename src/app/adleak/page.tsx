@@ -1,11 +1,14 @@
 // src/app/adleak/page.tsx
 import type { Metadata } from 'next';
+import { ArrowDown, ChevronDown } from 'lucide-react';
+// content
 import { HeroSection } from './sections/HeroSection';
 import { AdAudit } from './audit/AdAudit';
 import { WhatYouGet } from './audit/WhatYouGet';
 import { ResultsCard } from './_components/proof/ResultsCard';
 import { Guarantee } from './pricing/Guarantee';
-import { ArrowDown } from 'lucide-react';
+import { SinsIntroSection } from './sections/SinsIntroSection';
+import { InstaMockup } from './samples/InstaMockup';
 
 export const metadata: Metadata = {
 	title: 'AdLeak Audit - Find Your Meta Ad Spend Leak | Louka Digital',
@@ -27,9 +30,15 @@ export default function AdLeakPage() {
 				<HeroSection />
 			</section>
 
-			{/* Sins Intro */}
+			{/* <div className="absolute right-32">
+				<InstaMockup />
+			</div> */}
+
+			{/* sins */}
+
 			<section id="sins" className="py-44 px-4 sm:px-12 md:px-16 lg:px-24">
 				<div className="max-w-7xl mx-auto">
+					{/* Headline */}
 					<div className="mb-16">
 						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight">
 							Where on Earth does my{' '}
@@ -41,48 +50,40 @@ export default function AdLeakPage() {
 						</h2>
 					</div>
 
-					<p className="border flex-nowrap text-xl rotate-12
-												leading-12 md:text-3xl text-muted-foreground max-w-lg ml-auto mb-12">
-						Most ad accounts leak <br />
-						<span className="m-1 px-3 py-1 bg-red-500/20 border-2 border-red-500/40 rounded-full text-2xl md:text-2xl font-bold text-red-400">
-							<ArrowDown /> 30-40%
-						</span>
-						<span>
-							ad budget on <strong className="text-foreground">easy to fix</strong>
-							yet <strong className="text-foreground">devilish to diagnose</strong> issues
-						</span>
-						
-					</p>
-				</div>
-			</section>
-
-			<section id="sins" className="py-44 px-4 sm:px-12 md:px-16 lg:px-24">
-				<div className="max-w-7xl mx-auto">
-					<div className="mb-16">
-						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight">
-							Where on Earth does my{' '}
-							<br />
-							<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-								Insta Ad money
+					{/* Main paragraph */}
+					<div className="max-w-2xl mb-20">
+						<p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed mb-4">
+							Most ad accounts leak{' '} <br/>
+							<span className="inline-flex items-center gap-1.5 px-3 md:px-4 py-1 md:py-1.5 bg-red-500/20 rounded-full border-2 border-red-500/40 mx-1">
+								<ArrowDown className="w-5 h-5 md:w-6 md:h-6 text-red-400" />
+								<span className="text-3xl md:text-4xl font-black text-red-400">30-40% ad budget</span>
 							</span>{' '}
-							go?
-						</h2>
+							{/* <span className="text-3xl md:text-4xl font-bold text-foreground">ad budget</span> */}
+							<br/>
+							on common issues that are{' '}
+							<strong className="text-foreground font-semibold">easy to fix</strong> yet{' '}
+							<strong className="text-foreground font-semibold">devilish to diagnose</strong>.
+							We call them:
+						</p>
+
 					</div>
 
-					<p className="flex-nowrap text-xl leading-12 md:text-3xl text-muted-foreground max-w-lg mx-auto mb-12">
-						Most ad accounts leak
-						<span className="m-1 px-3 py-1 bg-red-500/20 border-2 border-red-500/40 rounded-full text-2xl md:text-2xl font-bold text-red-400">
-							30-40%
-						</span>
-						ad budget on easy to fix issues
-					</p>
+					{/* 7 Sins Box */}
+					<div className="max-w-xl">
+						<div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-500/10 via-red-500/5 to-orange-600/10 p-6 md:p-8">
+							<div className="relative z-10 text-center">
+								<span className="text-2xl italic">find out your</span>
+								<h3 className="text-3xl md:text-4xl font-black mt-2 mb-4 leading-tight">
+									<span className="bg-gradient-to-r from-orange-400 via-red-400 to-orange-500 bg-clip-text text-transparent">
+										7 Sins of Meta Ads
+									</span>
+								</h3>
 
-					<div className="bg-background/90 backdrop-blur-md rounded-2xl p-8 border-2 border-foreground/10 shadow-2xl">
-						<div className="text-xl md:text-2xl font-bold text-foreground mb-4">
-							find out with the
-						</div>
-						<div className="text-4xl font-black text-foreground mb-3">
-							7 Sins of Meta Ads
+								{/* Animated arrow */}
+								<div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-orange-500/20 animate-bounce">
+									<ChevronDown className="w-5 h-5 text-orange-400" />
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

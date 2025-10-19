@@ -15,6 +15,16 @@
 	animation: gradient-x 3s ease infinite;
 }
 
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
 /* Liquid fill animations */
 @keyframes liquid-fill {
 	0%, 100% {

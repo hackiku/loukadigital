@@ -6,6 +6,11 @@ import { Geist } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 import { ThemeProvider } from "~/components/theme-provider";
 
+// layout
+import { Nav } from '~/components/navigation/Nav';
+import { Footer } from '~/components/navigation/Footer';
+
+
 export const metadata: Metadata = {
 	title: "Louka Digital",
 	description: "Ad health audits for growing brands",
@@ -29,7 +34,12 @@ export default function RootLayout({
 					enableSystem={false}
 					disableTransitionOnChange
 				>
-					<TRPCReactProvider>{children}</TRPCReactProvider>
+					<TRPCReactProvider>
+						<Nav />
+						{children}
+						<Footer />
+					</TRPCReactProvider>
+
 				</ThemeProvider>
 			</body>
 		</html>
