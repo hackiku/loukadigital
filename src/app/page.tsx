@@ -8,6 +8,8 @@ import { GrowthPlanButton } from '~/components/cta/GrowthPlanButton';
 import { LogoShoutouts } from '~/components/proof/LogoShoutouts';
 import { TestimonialCard } from '~/components/proof/TestimonialCard';
 import { AboutSection } from './_components/about/AboutSection';
+import { ClientShoutout } from "~/components/proof/ClientShoutout";
+import { LogoBar } from "~/components/proof/LogoBar";
 
 export default function HomePage() {
 	return (
@@ -16,52 +18,27 @@ export default function HomePage() {
 
 			<main>
 				{/* Hero */}
-				<section className="relative min-h-screen flex items-center px-4 sm:px-12 md:px-16 lg:px-24 pt-32">
-					<div className="max-w-7xl mx-auto w-full">
-						<div className="grid lg:grid-cols-2 gap-12 items-center">
-							{/* Left: Copy */}
-							<div className="space-y-8">
-								<h1 className="text-4xl md:text-6xl font-bold leading-tight">
-									You've Built the Brand.{' '}
-									<span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-										We Drive the Revenue.
-									</span>
-								</h1>
+				<section className="relative flex flex-col items-center px-4 sm:px-12 md:px-16 lg:px-24 pt-32">
+					
+					<div className="border text-center flex flex-col gap-6 items-center max-w-7xl mx-auto w-full">
+						<h1 className="text-[7vw] font-bold leading-tight">
+							You've Built the Brand.{' '}
+							<span className="block bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+								We Drive the Revenue.
+							</span>
+						</h1>
 
-								<p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-									Full-service marketing that drives customers, leads, and revenue while you focus on what you do best.
-								</p>
+						<p className="text-xl md:text-2xl max-w-2xl text-muted-foreground leading-relaxed">
+							Full-service marketing that drives customers, leads, and revenue while you focus on what you do best.
+						</p>
 
-								<GrowthPlanButton />
-							</div>
+						<GrowthPlanButton />
 
-							{/* Right: Testimonial Shoutouts */}
-							<div className="hidden lg:block">
-								<LogoShoutouts
-									testimonials={[
-										{
-											id: '1',
-											shoutout: "We've been working with Louka for over a year. They take time to understand our product and brand.",
-											logo: '/assets/logos/triumph-games.png',
-											author: { company: 'Triumph Games' },
-										},
-										{
-											id: '2',
-											shoutout: 'Their approach has been refreshing and complemented our way of working perfectly.',
-											logo: '/assets/logos/melbourne-capital-group.svg',
-											author: { company: 'Melbourne Capital Group' },
-										},
-										{
-											id: '3',
-											shoutout: 'Uncovered $17,000 in additional revenue we were leaving on the table every month.',
-											logo: '/assets/logos/provider-partners.png',
-											author: { company: 'Provider Partners' },
-										},
-									]}
-								/>
-							</div>
-						</div>
 					</div>
+					{/* Right: Testimonial Shoutouts */}
+					
+					<ClientShoutout />
+					
 				</section>
 
 				{/* Services */}
@@ -145,6 +122,15 @@ export default function HomePage() {
 								</ul>
 							</div>
 						</div>
+					</div>
+				</section>
+
+				<section className="py-20 px-4 sm:px-12 md:px-16 lg:px-24">
+					<div className="max-w-7xl mx-auto">
+						<div className="text-center mb-12">
+							<h2>Trusted by Industry Leaders</h2>
+						</div>
+						<LogoBar />
 					</div>
 				</section>
 
