@@ -6,13 +6,21 @@ import Navbar from './_components/navigation/Navbar';
 import Footer from './_components/navigation/Footer';
 import { CurrentVisitors } from './_components/proof/CurrentVisitors';
 import { AuditDrawerContainer } from './_components/cta/AuditDrawerContainer';
+import { MobileStickyCTA } from './_components/ui/MobileStickyCTA';
+import { ExitIntentModal } from './_components/cta/ExitIntentModal';
+import { AuditProvider } from './_context/AuditContext';
+import { useExitIntent } from './_hooks/useExitIntent';
 
 interface AdLeakLayoutProps {
 	children: React.ReactNode;
 }
 
-export default function AdLeakLayout({ children }: AdLeakLayoutProps) {
+function LayoutContent({ children }: AdLeakLayoutProps) {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+	const { shouldShow: showExitIntent, close: closeExitIntent } = useExitIntent({
+		delay: 5000,
+		aggressive: false
+	});
 
 	return (
 		<div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -25,18 +33,33 @@ export default function AdLeakLayout({ children }: AdLeakLayoutProps) {
 				onClose={() => setIsDrawerOpen(false)}
 			/>
 
+			{/* Exit Intent Modal */}
+			<ExitIntentModal
+				isOpen={showExitIntent}
+				onClose={closeExitIntent}
+			/>
+
+			{/* Mobile Sticky CTA */}
+			<MobileStickyCTA />
+
 			{/* Live Visitors Counter - Fixed Bottom Right */}
 			<div className="fixed bottom-6 right-6 z-40">
 				<CurrentVisitors />
 			</div>
 
 			{/* Main Content */}
-			<main>
-				{children}
-			</main>
+			<main>{children}</main>
 
 			{/* Footer */}
 			<Footer />
 		</div>
+	);
+}
+
+export default function AdLeakLayout({ children }: AdLeakLayoutProps) {
+	return (
+		<AuditProvider>
+			<LayoutContent>{children}</LayoutContent>
+		</AuditProvider>
 	);
 }

@@ -1,37 +1,42 @@
-// src/api/routers/leads.ts
-
-import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "../trpc";
-import { subscribeToForm } from "~/lib/convertkit";
+// src/server/api/routers/leads.ts
+import { z } from 'zod';
+import { createTRPCRouter, publicProcedure } from '~/server/api/trpc';
 
 export const leadsRouter = createTRPCRouter({
-	submitLead: publicProcedure
-		.input(
-			z.object({
-				form: z.enum(["adhealth", "newsletter", "contact", "ebook"]),
-				email: z.string().email(),
-				firstName: z.string().optional(),
-				fields: z.record(z.string()).optional(),
-			})
-		)
+	submitAudit: publicProcedure
+		.input(z.object({
+			email: z.string().email(),
+			monthlyBudget: z.number(),
+			selectedSins: z.array(z.string()),
+			monthlyWaste: z.number(),
+			yearlyWaste: z.number(),
+			score: z.number(),
+			fit: z.enum(['poor', 'borderline', 'good', 'perfect', 'critical']),
+		}))
 		.mutation(async ({ input }) => {
-			const formMap: Record<typeof input.form, string> = {
-				adhealth: "123456",    // replace with ConvertKit form IDs
-				newsletter: "234567",
-				contact: "345678",
-				ebook: "456789",
-			};
-
-			const formId = formMap[input.form];
-			if (!formId) throw new Error("Invalid form");
-
-			const result = await subscribeToForm({
-				formId,
-				email: input.email,
-				firstName: input.firstName,
-				fields: input.fields,
+			// Send to ConvertKit
+			const response = await fetch('https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					api_key: process.env.CONVERTKIT_API_KEY,
+					email: input.email,
+					fields: {
+						monthly_budget: input.monthlyBudget,
+						monthly_waste: input.monthlyWaste,
+						yearly_waste: input.yearlyWaste,
+						score: input.score,
+						fit: input.fit,
+						sins: input.selectedSins.join(','),
+					},
+					tags: [input.fit === 'good' || input.fit === 'perfect' ? 'high-intent' : 'low-intent'],
+				}),
 			});
 
-			return { success: true, result };
+			if (!response.ok) {
+				throw new Error('Failed to submit to ConvertKit');
+			}
+
+			return { success: true };
 		}),
 });

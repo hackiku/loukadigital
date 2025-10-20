@@ -1,15 +1,50 @@
-// src/app/adhealth/_components/cta/EmailForm.tsx
+// src/app/adleak/_components/cta/EmailForm.tsx
 'use client';
 import { useState } from 'react';
+import { useAudit } from '../../_context/AuditContext';
 
 interface EmailFormProps {
 	isGoodFit: boolean;
 	mobile?: boolean;
+	isFree?: boolean; // NEW: Show "FREE" instead of price
+	onSubmit?: (email: string) => Promise<void>; // Optional callback
 }
 
-export function EmailForm({ isGoodFit, mobile = false }: EmailFormProps) {
+export function EmailForm({
+	isGoodFit,
+	mobile = false,
+	isFree = false,
+	onSubmit
+}: EmailFormProps) {
 	const [email, setEmail] = useState('');
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [isSuccess, setIsSuccess] = useState(false);
+	const { data, updateEmail } = useAudit();
 
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		if (!email || isSubmitting) return;
+
+		setIsSubmitting(true);
+		updateEmail(email);
+
+		try {
+			if (onSubmit) {
+				await onSubmit(email);
+			} else {
+				// Default: Call your TRPC endpoint or ConvertKit directly
+				// For now, just simulate
+				await new Promise(resolve => setTimeout(resolve, 1000));
+			}
+			setIsSuccess(true);
+		} catch (error) {
+			console.error('Form submission failed:', error);
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
+
+	// Not a good fit - show alternative CTA
 	if (!isGoodFit) {
 		return (
 			<div className={`space-y-3 ${mobile ? 'w-full' : ''}`}>
@@ -19,31 +54,90 @@ export function EmailForm({ isGoodFit, mobile = false }: EmailFormProps) {
 			<a
 				href="/contact"
 				className="block w-full py-3 px-4 bg-muted/50 hover:bg-muted border border-border/50 text-foreground font-semibold rounded-xl transition-all text-center text-sm"
-        >
+      >
 				Explore Ad Services
 			</a>
       </div >
     );
 	}
 
+	// Success state
+	if (isSuccess) {
+		return (
+			<div className={`space-y-3 ${mobile ? 'w-full' : ''}`}>
+				<div className="p-4 rounded-xl bg-green-500/10 border border-green-500/30">
+					<p className="text-sm text-green-400 text-center font-semibold">
+						✓ Check your email for the 7 Sins PDF
+					</p>
+				</div>
+			</div>
+		);
+	}
+
 	return (
-		<div className={`flex gap-3 ${mobile ? 'flex-col' : 'flex-row items-end'}`}>
+		<form
+			onSubmit={handleSubmit}
+			className={`flex gap-3 ${mobile ? 'flex-col' : 'flex-row items-end'}`}
+		>
 			<input
 				type="email"
 				value={email}
 				onChange={(e) => setEmail(e.target.value)}
 				placeholder="Enter your email"
-				className={`${mobile ? 'w-full' : 'flex-1'} px-4 py-3 bg-background/50 border border-border/50 rounded-xl text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all`}
+				required
+				disabled={isSubmitting}
+				className={`
+          ${mobile ? 'w-full' : 'flex-1'} 
+          px-4 py-3 bg-background/50 border border-border/50 rounded-xl 
+          text-sm text-foreground placeholder-muted-foreground 
+          focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 
+          transition-all
+          disabled:opacity-50 disabled:cursor-not-allowed
+        `}
 			/>
 
-			<button className={`${mobile ? 'w-full' : 'flex-shrink-0'} py-3 px-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-xl transition-all hover:scale-[1.02] text-sm relative overflow-hidden group`}>
+			<button
+				type="submit"
+				disabled={isSubmitting || !email}
+				className={`
+          ${mobile ? 'w-full' : 'flex-shrink-0'} 
+          py-3 px-6 bg-gradient-to-r from-purple-600 to-blue-600 
+          hover:from-purple-500 hover:to-blue-500 
+          text-white font-bold rounded-xl 
+          transition-all hover:scale-[1.02] 
+          text-sm relative overflow-hidden group
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+        `}
+			>
 				<span className="relative z-10">
-					Get AdLeak Audit <span className="opacity-60">— £697</span>
+					{isSubmitting ? (
+						'Sending...'
+					) : (
+						<>
+							Get AdLeak Audit{' '}
+							<span className="relative inline-block">
+								{!isFree && (
+									<span className="opacity-60">— £697</span>
+								)}
+								{isFree && (
+									<>
+										<span className="opacity-40 line-through">— £697</span>
+										<span
+											className="absolute -top-2 -right-8 text-green-400 font-black text-lg rotate-12"
+											style={{ textShadow: '0 0 10px rgba(74, 222, 128, 0.5)' }}
+										>
+											FREE
+										</span>
+									</>
+								)}
+							</span>
+						</>
+					)}
 				</span>
 
 				{/* Scarcity bar */}
 				<div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-[#D8330C] to-orange-600 opacity-80" />
 			</button>
-		</div>
+		</form>
 	);
 }
