@@ -38,13 +38,12 @@ export default function AdLeakPage() {
 
 			{/* sins */}
 
-			<section id="sins" className="py-44 px-4 sm:px-12 md:px-16 lg:px-24">
+			<section id="sins" className="mt-72 md:mt-36 px-4 sm:px-12 md:px-16 lg:px-24">
 				<div className="max-w-7xl mx-auto">
 					{/* Headline */}
 					<div className="mb-16">
-						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight">
-							Where on Earth does my{' '}
-							<br />
+						<h2 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-8 leading-tight">
+							Where on Earth does my{' '} <br className="hidden sm:block" />
 							<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
 								Insta Ad money
 							</span>{' '}
@@ -53,32 +52,39 @@ export default function AdLeakPage() {
 					</div>
 
 					{/* Main paragraph */}
-					<div className="max-w-2xl mb-20">
-						<p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed mb-4">
+					<div className="max-w-lg ml-auto rotate-6 mb-12">
+						<p className="text-center text-3xl md:text-4xl  text-muted-foreground leading-relaxed mb-4">
 							Most ad accounts leak{' '} <br/>
 							<span className="inline-flex items-center gap-1.5 px-3 md:px-4 py-1 md:py-1.5 bg-red-500/20 rounded-full border-2 border-red-500/40 mx-1">
 								<ArrowDown className="w-5 h-5 md:w-6 md:h-6 text-red-400" />
-								<span className="text-3xl md:text-4xl font-black text-red-400">30-40% ad budget</span>
+								<span className="font-black text-red-400">30-40%</span>
 							</span>{' '}
-							{/* <span className="text-3xl md:text-4xl font-bold text-foreground">ad budget</span> */}
+							<span className="font-bold text-foreground">ad budget</span>
 							<br/>
-							on common issues that are{' '}
-							<strong className="text-foreground font-semibold">easy to fix</strong> yet{' '}
-							<strong className="text-foreground font-semibold">devilish to diagnose</strong>.
-							We call them:
+							{/* on issues that are{' '}
+							<strong className="underline italic text-foreground font-semibold">easy to fix</strong> 
+							<br />... yet{' '}
+							<strong className="underline italic text-foreground font-semibold">devilish to diagnose</strong> */}
+						</p>
+						<p className="text-center text-xl text-muted-foreground leading-relaxed mb-4">
+							on issues that are{' '}
+							<strong className="underline italic text-foreground font-semibold">easy to fix</strong> 
+							<br />... yet{' '}
+							<strong className="underline italic text-foreground font-semibold">devilish to diagnose</strong>
 						</p>
 
 					</div>
 
 					{/* 7 Sins Box */}
-					<div className="max-w-xl">
+					<div className="mx-auto max-w-xl mb-12">
 						<div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-500/10 via-red-500/5 to-orange-600/10 p-6 md:p-8">
 							<div className="relative z-10 text-center">
-								<span className="text-2xl italic">find out your</span>
-								<h3 className="text-3xl md:text-4xl font-black mt-2 mb-4 leading-tight">
+								<span className="text-2xl italic">self-diagnose your</span>
+								<h3 className="text-3xl md:text-5xl font-black mt-2 mb-4 leading-tight">
 									<span className="bg-gradient-to-r from-orange-400 via-red-400 to-orange-500 bg-clip-text text-transparent">
 										7 Sins of Meta Ads
 									</span>
+								{/* <span className="text-2xl italic mb-12">(for free)</span> */}
 								</h3>
 
 								{/* Animated arrow */}

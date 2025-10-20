@@ -17,11 +17,19 @@ interface SinCheckboxProps {
 export function SinCheckbox({ sin, isSelected, onToggle, monthlyBudget }: SinCheckboxProps) {
 	const waste = Math.round((monthlyBudget * sin.wastePercent) / 100);
 
+	// Format for mobile: £5.2k instead of £5,200
+	const formatMobile = (amount: number) => {
+		if (amount >= 1000) {
+			return `£${(amount / 1000).toFixed(1)}k`;
+		}
+		return `£${amount}`;
+	};
+
 	return (
 		<button
 			onClick={onToggle}
 			className={`
-        w-full flex items-center justify-between gap-3 
+        w-full flex items-center justify-between gap-2 
         px-3 py-2.5 rounded-xl border-2 transition-all
         ${isSelected
 					? 'bg-red-500/10 border-red-500'
@@ -30,7 +38,7 @@ export function SinCheckbox({ sin, isSelected, onToggle, monthlyBudget }: SinChe
       `}
 		>
 			{/* Left: Checkbox + Name */}
-			<div className="flex items-center gap-2.5 flex-1 min-w-0">
+			<div className="flex items-center gap-2 flex-1 min-w-0">
 				<div className={`
           w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0
           ${isSelected ? 'border-red-400 bg-red-500/30' : 'border-muted-foreground/30'}
@@ -43,16 +51,22 @@ export function SinCheckbox({ sin, isSelected, onToggle, monthlyBudget }: SinChe
 				</span>
 			</div>
 
-			{/* Right: Waste */}
+			{/* Right: Waste (responsive) */}
 			<div className="flex-shrink-0">
 				{isSelected ? (
 					<span className="text-xs font-bold text-green-400 px-2 py-0.5 rounded-full bg-green-500/20 border border-green-500/40">
-						+£{waste.toLocaleString()}
+						<span className="hidden sm:inline">+£{waste.toLocaleString()}</span>
+						<span className="sm:hidden">+{formatMobile(waste)}</span>
 					</span>
 				) : (
-					<span className="text-xs font-semibold text-red-400">
-						-£{waste.toLocaleString()}
-					</span>
+					<>
+						<span className="hidden sm:inline text-xs font-semibold text-red-400">
+							-£{waste.toLocaleString()}
+						</span>
+						<span className="sm:hidden text-xs font-semibold text-red-400">
+							-{formatMobile(waste)}
+						</span>
+					</>
 				)}
 			</div>
 		</button>
