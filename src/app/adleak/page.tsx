@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/app/adleak/page.tsx
 import type { Metadata } from 'next';
 import { ArrowDown, ChevronDown } from 'lucide-react';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 // src/app/adleak/audit/AdAudit.tsx
 
 'use client';

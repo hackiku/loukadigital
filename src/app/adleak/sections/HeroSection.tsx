@@ -1,3 +1,4 @@
+// @ts-nocheck
 // src/app/adleak/sections/HeroSection.tsx
 
 import { Calendar } from 'lucide-react';

@@ -17,6 +17,10 @@ import { ServiceCard } from "./_components/services/ServiceCard";
 // db
 import { services } from "~/data/services";
 import { AboutWrapper } from "./_components/about/AboutWrapper";
+import { ServicesFunnel } from "./_components/services/ServicesFunnel";
+import { SocialFloaters } from "./_components/services/SocialFloaters";
+import AdLeakPage from "./adleak/page";
+import { AdLeakLink } from "~/components/cta/AdLeakLink";
 
 export default function HomePage() {
 	return (
@@ -53,33 +57,41 @@ export default function HomePage() {
 					</div>
 				</section>
 
-				{/* Services */}
-				<section id="services" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
-					<div className="max-w-7xl mx-auto">
+				<section id="services" className="pt-32 px-4 sm:px-12 md:px-16 lg:px-24">
+					<div className="relative __max-w-7xl mx-auto">
 						<div className="text-center mb-20">
-							<h2>Services That Actually Work</h2>
+							<h2 className="rotate-3 text-4xl md:text-7xl font-bold mb-4">
+								Growth that Worksass
+								<span className="block mt-5 ml-12 scale-90 -rotate-6">All Funnel</span>
+								<span className="block mt-5 ml-12 scale-80 rotate-6">Long</span>
+							</h2>
 						</div>
-
-						<div className="space-y-8">
-							{services.map((service, index) => (
-								<ServiceCard key={service.id} service={service} index={index} />
-							))}
+						<div className="absolute -right-20 bottom-[25%]">
+							<AdLeakLink />
+						</div>
+						<ServicesFunnel />
+						<div className="mx-auto max-w-xs px-6 py-12">
+							<GrowthPlanButton />
+							{/* <p className="w-full text-center p-4">asd</p> */}
 						</div>
 					</div>
 				</section>
 
+				{/* logos */}
 
 				<section className="py-20 px-4 sm:px-12 md:px-16 lg:px-24">
-					<div className="max-w-7xl mx-auto">
+					<div className="max-w-2xl mx-auto">
 						<div className="text-center mb-16">
-							<h2 className="text-3xl md:text-5xl font-bold mb-4">Trusted by Industry Leaders</h2>
-							<p className="text-xl text-muted-foreground">Real businesses. Real results.</p>
+							<h2 className="text-2xl md:text-4xl font-bold mb-4">Trusted by leading scalelords {' '}
+								<span className="text-muted-foreground/40">from Fortune 500 to startup hotshots</span>
+							</h2>
+							<p className="text-xl text-muted-foreground"></p>
 						</div>
-						<LogoBar />
 					</div>
+					<LogoBar />
 				</section>
 
-				{/* Testimonials */}
+				{/* tesstimonials */}
 				<section className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
 					<div className="max-w-7xl mx-auto">
 						<div className="text-center mb-16">
