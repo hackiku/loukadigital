@@ -21,6 +21,7 @@ import { ServicesFunnel } from "./_components/services/ServicesFunnel";
 import { SocialFloaters } from "./_components/services/SocialFloaters";
 import AdLeakPage from "./adleak/page";
 import { AdLeakLink } from "~/components/cta/AdLeakLink";
+import { MatthewShoutout } from "~/components/proof/MatthewShoutout";
 
 export default function HomePage() {
 	return (
@@ -30,13 +31,13 @@ export default function HomePage() {
 			<main>
 				{/* Hero */}
 
-				<section className="relative min-h-screen flex items-center px-4 sm:px-12 md:px-16 lg:px-24 pt-12">
+				<section className="pt-32 relative flex items-center px-4 sm:px-12 md:px-16 lg:px-24">
 					<div className="max-w-7xl mx-auto w-full">
 						{/* Main Content */}
 						<div className="flex flex-col items-start md:items-center gap-8 mb-12">
 							<h1 className="text-5xl sm:text-6xl md:text-[7vw] font-bold leading-tight text-left md:text-center">
 								You've Built the Brand.{' '}
-								<span className="block bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+								<span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
 									We Drive the Revenue.
 								</span>
 							</h1>
@@ -51,17 +52,19 @@ export default function HomePage() {
 						</div>
 
 						{/* Testimonial - Bottom Right on Desktop */}
-						<div className="hidden lg:block absolute bottom-8 right-8 xl:right-24">
-							<ClientShoutout index={1} />
-						</div>
 					</div>
 				</section>
+				
+				<div className="absolute bottom-2 md:bottom-10 left-0 _xl:right-24">
+					<MatthewShoutout />
+					{/* <ClientShoutout index={1} /> */}
+				</div>
 
-				<section id="services" className="pt-32 px-4 sm:px-12 md:px-16 lg:px-24">
+				<section id="services" className="pt-52 px-4 sm:px-12 md:px-16 lg:px-24">
 					<div className="relative __max-w-7xl mx-auto">
 						<div className="text-center mb-20">
 							<h2 className="rotate-3 text-4xl md:text-7xl font-bold mb-4">
-								Growth that Worksass
+								Growth that Works
 								<span className="block mt-5 ml-12 scale-90 -rotate-6">All Funnel</span>
 								<span className="block mt-5 ml-12 scale-80 rotate-6">Long</span>
 							</h2>

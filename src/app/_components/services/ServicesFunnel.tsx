@@ -226,6 +226,13 @@ export function ServicesFunnel() {
 					clipPath: 'polygon(10% 0%, 90% 0%, 80% 100%, 20% 100%)',
 				}}
 			>
+			{/* <div
+				className="relative"
+				style={{
+					transform: 'perspective(300px) rotateX(-2deg)',
+					transformStyle: 'preserve-3d',
+				}}
+			> */}
 				<div className="rounded-3xl overflow-hidden border border-border/30">
 					{services.map((service, index) => (
 						<FunnelSection

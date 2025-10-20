@@ -45,6 +45,7 @@ export function AboutWrapper() {
 				<div className="space-y-8">
 					{/* Intro Text */}
 					<div>
+						<h2 className="text-3xl md:text-5xl font-bold mb-4">About Louka</h2>
 						<p className="text-xl text-muted-foreground leading-relaxed">
 							We're a team of growth experts who actually deliver. No fluff, no vanity metrics—just strategic marketing that drives revenue.
 						</p>

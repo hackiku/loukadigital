@@ -23,7 +23,7 @@ const shoutouts = [
 			name: 'Matthew Nagy',
 			title: 'COO / Founder',
 			company: 'Triumph Games',
-			avatar: '/assets/avatars/matthew-nagy.jpg',
+			avatar: '/assets/avatars/matthew-nagy.png',
 		},
 	},
 ];
