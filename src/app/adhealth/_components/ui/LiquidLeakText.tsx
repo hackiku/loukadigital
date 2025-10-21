@@ -22,7 +22,7 @@ export function LiquidLeakText({ className = "" }: LiquidLeakTextProps) {
 				className={`border border-muted-foreground/30 relative inline-flex w-fit px-8 py-4 overflow-hidden whitespace-nowrap ${className}`}
 				style={{ borderRadius }}
 			>
-				<span className="relative z-30 font-extrabold text-foreground opacity-40">Ad Spend Leak</span>
+				<span className="relative z-30 font-extrabold text-foreground opacity-80">Ad Spend Leak</span>
 			</span>
 		)
 	}
@@ -156,7 +156,7 @@ export function LiquidLeakText({ className = "" }: LiquidLeakTextProps) {
 			</span>
 
 			{/* Text - appears behind/inside liquid with reduced opacity */}
-			<span className="relative z-20 font-extrabold text-foreground opacity-40">Ad Spend Leak</span>
+			<span className="relative z-20 font-extrabold text-foreground opacity-70">Ad Spend Leak</span>
 
 			{/* Subtle shimmer on surface */}
 			<span

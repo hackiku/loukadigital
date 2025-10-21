@@ -65,7 +65,7 @@ export default function AdLeakPage() {
 				</div>
 			</section>
 
-			<section className="pt-24 -mb-24">
+			<section className="py-24 -mb-12">
 				<AdProblemsCarousel />
 			</section>
 			{/* <AdFormatsCarousel /> */}
