@@ -22,11 +22,11 @@ export function HeroSection() {
 			</div>
 
 			{/* Main Content */}
-			<div className="max-w-xl relative mt-36 flex flex-col items-center gap-4 mx-auto w-full z-10">
+			<div className="max-w-3xl relative mt-36 flex flex-col items-center gap-4 mx-auto w-full z-10">
 				{/* Main Headline */}
 				<h1 className="flex flex-col gap-1 text-4xl md:text-6xl lg:text-7xl font-extrabold text-center">
 					<span className="text-transparent text-5xl md:text-7xl bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text">
-						Diagnose & Fix Your Meta
+						Diagnose & Fix Your Monthly Meta
 					</span>
 					<LiquidLeakText />
 				</h1>
@@ -49,7 +49,7 @@ export function HeroSection() {
 			</div>
 
 			{/* Floating platform icons - behind everything, no interaction */}
-			<div className="pointer-events-none absolute -right-[2vw] -bottom-[30%] w-full h-full scale-80 md:scale-100 z-0 opacity-60">
+			<div className="hidden md:block pointer-events-none absolute -right-[2vw] -bottom-[30%] w-full h-full scale-80 md:scale-100 z-0 opacity-60">
 				<PlatformIcons />
 			</div>
 		</div>

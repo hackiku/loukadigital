@@ -52,8 +52,8 @@ export default function Navbar({ onOpenDrawer }: NavbarProps) {
 					<LogoModule />
 
 					{/* Right side - PDF button with minimal text */}
-					<div className="flex items-center gap-3">
-						<PDFButton onClick={onOpenDrawer} text="PDF" />
+					<div className="scale-80 sm:scale-100 -mr-2 sm:mr-0 flex items-center gap-3">
+						<PDFButton onClick={onOpenDrawer} text="Get PDF" />
 					</div>
 				</div>
 			</nav>

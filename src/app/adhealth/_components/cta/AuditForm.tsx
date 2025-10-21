@@ -14,11 +14,11 @@ export function AuditForm() {
 	const emailInputRef = useRef<HTMLInputElement>(null)
 	const { handleSubmit, isSubmitting, isSuccess, error } = useAuditForm()
 
-	useEffect(() => {
-		if (typeof window !== "undefined" && window.innerWidth >= 768) {
-			emailInputRef.current?.focus()
-		}
-	}, [])
+	// useEffect(() => {
+	// 	if (typeof window !== "undefined" && window.innerWidth >= 768) {
+	// 		emailInputRef.current?.focus()
+	// 	}
+	// }, [])
 
 	const onSubmit = (e: React.FormEvent) => {
 		e.preventDefault()

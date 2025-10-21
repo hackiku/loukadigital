@@ -36,7 +36,7 @@ export function HandDrawnPointer({
 	}, []);
 
 	// Desktop: arrow points right, Mobile: arrow points down
-	const arrowRotation = pointDirection === 'down' ? 90 : -15;
+	const arrowRotation = pointDirection === 'down' ? 120 : -15;
 	const arrowSize = pointDirection === 'down' ? 'h-32 w-auto' : 'h-40 md:h-48 lg:h-56 w-auto';
 
 	return (
@@ -68,9 +68,9 @@ export function HandDrawnPointer({
 
 			{/* Hand-drawn arrow - sized independently */}
 			<div
-				className="absolute pointer-events-none"
+				className="absolute pointer-events-nonborder"
 				style={{
-					top: pointDirection === 'down' ? '85%' : '45%',
+					top: pointDirection === 'down' ? '150%' : '45%',
 					left: pointDirection === 'down' ? '50%' : '100%',
 					transformOrigin: 'top left',
 					transform: `rotate(${arrowRotation}deg) ${pointDirection === 'down' ? 'translateX(-50%)' : 'translateX(-1rem)'}`,

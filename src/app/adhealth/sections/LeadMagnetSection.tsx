@@ -12,7 +12,7 @@ export function LeadMagnetSection() {
 			<div className="hidden md:grid md:grid-cols-2 -mt-12 gap-8 lg:gap-12 items-start mx-12">
 				{/* Left side - HandDrawn Pointer */}
 				<div className="mt-16 flex items-center justify-end">
-					<HandDrawnPointer text="Ultimate self-diagnostic tool" pointDirection="right" />
+					<HandDrawnPointer text="Ultimate diagnostics checklist" pointDirection="down" />
 				</div>
 
 				{/* Right side - PDF Image */}
@@ -39,8 +39,8 @@ export function LeadMagnetSection() {
 
 			<div className="md:hidden flex flex-col items-center gap-8">
 				{/* HandDrawn Pointer pointing down - BEFORE image */}
-				<div className="-mt-6">
-					<HandDrawnPointer text="Ultimate self-diagnostic tool" pointDirection="down" />
+				<div className="mb-8 rotate-12">
+					<HandDrawnPointer text="Ultimate diagnostics checklist" pointDirection="down" />
 				</div>
 
 				{/* PDF Image */}

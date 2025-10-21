@@ -1,14 +1,14 @@
-// src/app/adleak/_hooks/useExitIntent.ts
+// src/app/adhealth/_hooks/useExitIntent.ts
 'use client';
 import { useState, useEffect, useCallback } from 'react';
 
 interface UseExitIntentOptions {
 	delay?: number; // Min time on page before showing (ms)
-	aggressive?: boolean; // Show on any upward scroll on mobile
+	sensitivity?: number; // Mouse distance from top to trigger (px)
 }
 
 export function useExitIntent(options: UseExitIntentOptions = {}) {
-	const { delay = 5000, aggressive = false } = options;
+	const { delay = 5000, sensitivity = 50 } = options;
 	const [shouldShow, setShouldShow] = useState(false);
 	const [hasShown, setHasShown] = useState(false);
 	const [pageLoadTime] = useState(Date.now());
@@ -20,50 +20,54 @@ export function useExitIntent(options: UseExitIntentOptions = {}) {
 	useEffect(() => {
 		if (hasShown) return;
 
-		// Desktop: Mouse leaving viewport from top
+		// Desktop: Mouse leaving viewport from top (going to URL bar or another tab)
 		const handleMouseLeave = (e: MouseEvent) => {
 			const timeOnPage = Date.now() - pageLoadTime;
 
+			// Trigger when mouse exits from top of viewport
+			// e.clientY <= 0 means cursor is above viewport
+			// Also check that mouse is moving upward (toElement is null when leaving page)
 			if (
-				e.clientY <= 0 &&
+				e.clientY <= sensitivity &&
 				!hasShown &&
-				timeOnPage > delay
+				timeOnPage > delay &&
+				!e.toElement && // Mouse is leaving the document entirely
+				e.relatedTarget === null // Confirms exit, not just hovering over browser UI
 			) {
 				setShouldShow(true);
 				setHasShown(true);
 			}
 		};
 
-		// Mobile: Rapid scroll up (user reconsidering)
-		let lastScrollY = window.scrollY;
-		let lastScrollTime = Date.now();
-
+		// Mobile: Scroll to very top (reconsidering)
 		const handleScroll = () => {
 			const currentScrollY = window.scrollY;
-			const currentTime = Date.now();
-			const scrollDelta = lastScrollY - currentScrollY;
-			const timeDelta = currentTime - lastScrollTime;
-			const timeOnPage = currentTime - pageLoadTime;
+			const timeOnPage = Date.now() - pageLoadTime;
 
-			// Rapid upward scroll = user reconsidering
-			const isRapidUpScroll = scrollDelta > 100 && timeDelta < 200;
-			const hasScrolledEnough = currentScrollY > 800;
-			const hasBeenOnPageLongEnough = timeOnPage > delay;
+			// If user scrolls back to near the top after being engaged
+			const hasScrolledToTop = currentScrollY < 100;
+			const hasBeenEngaged = timeOnPage > delay;
+			const hasScrolledBefore = lastScrollDepth > 800; // Has scrolled down before
 
 			if (
 				!hasShown &&
-				hasScrolledEnough &&
-				hasBeenOnPageLongEnough &&
-				(isRapidUpScroll || (aggressive && scrollDelta > 50))
+				hasScrolledToTop &&
+				hasBeenEngaged &&
+				hasScrolledBefore
 			) {
 				setShouldShow(true);
 				setHasShown(true);
 			}
 
-			lastScrollY = currentScrollY;
-			lastScrollTime = currentTime;
+			// Track deepest scroll
+			if (currentScrollY > lastScrollDepth) {
+				lastScrollDepth = currentScrollY;
+			}
 		};
 
+		let lastScrollDepth = 0;
+
+		// Use mouseleave on document to catch exit intent
 		document.addEventListener('mouseleave', handleMouseLeave);
 		window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -71,7 +75,7 @@ export function useExitIntent(options: UseExitIntentOptions = {}) {
 			document.removeEventListener('mouseleave', handleMouseLeave);
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, [hasShown, delay, aggressive, pageLoadTime]);
+	}, [hasShown, delay, sensitivity, pageLoadTime]);
 
 	return { shouldShow, close };
 }

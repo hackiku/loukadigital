@@ -29,7 +29,7 @@ export function LiquidLeakText({ className = "" }: LiquidLeakTextProps) {
 
 	return (
 		<span
-			className={`border border-muted-foreground/30 relative inline-flex w-fit px-8 py-4 overflow-hidden whitespace-nowrap ${className}`}
+			className={`mx-auto border border-muted-foreground/30 relative inline-flex w-fit px-8 py-4 overflow-hidden whitespace-nowrap ${className}`}
 			style={{ borderRadius }}
 		>
 			{/* Container with subtle glass effect */}

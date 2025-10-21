@@ -36,7 +36,7 @@ export default function AdLeakPage() {
 			</section>
 
 			{/* problem */}
-			<section id="problem" className="pt-32 px-4 sm:px-12 md:px-16 lg:px-24">
+			<section id="problem" className="pt-42 md:pt-36 px-4 sm:px-12 md:px-16 lg:px-24">
 				<div className="md:max-w-4xl mx-auto">
 					{/* Headline */}
 					<div className="md:max-w-xl mb-16">
@@ -49,12 +49,14 @@ export default function AdLeakPage() {
 						</h2>
 
 						<p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
-							... on{" "}
+							... on a handful of structural issues that are {" "}
 							<span className="italic text-foreground underline">easy to fix</span>
-							{" "}yet{" "}
-							<span className="italic text-foreground underline">devilish to diagnose</span>
-							{" "}technical issues. After reviewing 200+ Meta ad accounts
-							over 5 years, we have a pretty good eye for the usual suspects. And now you can, too.
+							, yet{" "}
+							<span className="italic text-foreground underline">devilish to diagnose</span>.
+						</p>
+						<p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
+							After reviewing 200+ Meta ad accounts
+							over 5 years, we have a pretty keen eye for the usual suspects. And now you can, too.
 						</p>
 					</div>
 
@@ -71,7 +73,7 @@ export default function AdLeakPage() {
 			{/* How It Works */}
 			<section
 				id="how-it-works"
-				className="py-32 px-4 sm:px-12 md:px-16 lg:px-24 bg-gradient-to-b from-background to-purple-500/5"
+				className="py-24 px-4 sm:px-12 md:px-16 lg:px-24 bg-gradient-to-b from-background to-purple-500/5"
 			>
 				<div className="text-center mb-20">
 					<h2 className="text-4xl md:text-5xl font-bold mb-4">How This Works</h2>

@@ -2,16 +2,19 @@
 "use client"
 
 import type React from "react"
-
+// layout
 import Navbar from "./_components/navigation/Navbar"
 import Footer from "./_components/navigation/Footer"
-import { CurrentVisitors } from "./_components/proof/CurrentVisitors"
+// conversion
 import { PDFDrawer } from "./_components/cta/PDFDrawer"
 import { PDFContainer } from "./_components/cta/PDFContainer"
+import { ExitIntentModal } from "./_components/scarcity/ExitIntentModal"
 import { MobileStickyCTA } from "./_components/ui/MobileStickyCTA"
-import { ExitIntentModal } from "./_components/cta/ExitIntentModal"
+import { CurrentVisitors } from "./_components/proof/CurrentVisitors"
+// context
 import { AuditProvider } from "./_context/AuditContext"
 import { DrawerProvider, useDrawer } from "./_context/DrawerContext"
+// hooks
 import { useExitIntent } from "./_hooks/useExitIntent"
 
 interface AdLeakLayoutProps {
