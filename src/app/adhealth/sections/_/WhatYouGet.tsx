@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import { Check } from 'lucide-react';
 import { EmailForm } from '../_components/cta/EmailForm';
+import { AuditForm } from '../_components/cta/AuditForm';
 
 export function WhatYouGet() {
 	return (
@@ -69,11 +70,7 @@ export function WhatYouGet() {
 
 						{/* Email Form */}
 						<div className="p-6 rounded-2xl bg-card/50 border-2 border-purple-500/30">
-							<EmailForm
-								isGoodFit={true}
-								mobile={true}
-								isFree={true}
-							/>
+							<AuditForm />
 						</div>
 					</div>
 				</div>

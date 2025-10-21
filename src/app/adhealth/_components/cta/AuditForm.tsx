@@ -2,6 +2,7 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
 import type React from "react"
+import { Download } from "lucide-react"
 
 import { useAudit } from "../../_context/AuditContext"
 import { useAuditForm } from "../../_hooks/useAuditForm"
@@ -36,6 +37,8 @@ export function AuditForm() {
 	}
 
 	const budgetTicks = [1000, 5000, 10000, 15000, 25000]
+	const minBudget = 1000
+	const maxBudget = 25000
 
 	return (
 		<form onSubmit={onSubmit} className="space-y-6">
@@ -49,21 +52,21 @@ export function AuditForm() {
 				</div>
 				<Slider
 					id="budget"
-					min={1000}
-					max={25000}
+					min={minBudget}
+					max={maxBudget}
 					step={500}
 					value={[data.monthlyBudget]}
 					onValueChange={(value) => updateBudget(value[0]!)}
 				/>
-				<div className="flex justify-between">
+				<div className="flex justify-between px-0.5">
 					{budgetTicks.map((tick) => (
 						<button
 							key={tick}
 							type="button"
 							onClick={() => updateBudget(tick)}
 							className={`text-xs transition-colors ${data.monthlyBudget === tick
-								? "font-bold text-purple-400"
-								: "text-muted-foreground hover:text-foreground"
+									? "font-bold text-purple-400"
+									: "text-muted-foreground hover:text-foreground"
 								}`}
 						>
 							{tick >= 1000 ? `£${tick / 1000}k` : `£${tick}`}
@@ -84,13 +87,14 @@ export function AuditForm() {
 				className="w-full px-4 py-3 bg-background/50 border border-border/50 rounded-xl text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all disabled:opacity-50"
 			/>
 
-			{/* Submit Button */}
+			{/* Submit Button with Download Icon */}
 			<button
 				type="submit"
 				disabled={isSubmitting || !email}
-				className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-xl transition-all hover:scale-[1.02] text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+				className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-xl transition-all hover:scale-[1.02] text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
 			>
-				{isSubmitting ? "Sending..." : "Download Free PDF"}
+				<Download className="w-4 h-4 opacity-60" />
+				<span>{isSubmitting ? "Sending..." : "Download Free PDF"}</span>
 			</button>
 
 			{error && <p className="text-xs text-red-400 text-center">{error}</p>}

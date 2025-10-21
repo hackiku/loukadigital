@@ -56,12 +56,6 @@ const colorClasses = {
 export function HowItWorks() {
 	return (
 		<div className="max-w-6xl mx-auto">
-			{/* Header */}
-			<div className="text-center mb-20">
-				<h2 className="text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
-				<p className="text-xl text-muted-foreground max-w-2xl mx-auto">Three steps to stop the bleeding</p>
-			</div>
-
 			{/* Steps */}
 			<div className="space-y-16 md:space-y-24">
 				{steps.map((step, index) => {

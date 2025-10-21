@@ -34,7 +34,7 @@ export function LogoShoutouts() {
 
 				{/* Shoutout Text - starts at center of mass of quote */}
 				<p 
-					className="pl-5 md:pl-5 relative text-lg md:text-xl font-medium italic text-foreground 
+					className="pl-5 md:pl-5 relative text-md md:text-lg font-medium italic text-foreground 
 										 leading-relaxed transition-all duration-500 "
 					style={{ zIndex: 1 }}>
 					{activeTestimonial?.shoutout}

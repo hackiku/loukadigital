@@ -8,14 +8,14 @@ const platforms = [
 	{
 		name: 'Facebook',
 		icon: '/assets/icons/facebook-icon.svg',
-		position: { top: '20%', right: '10%' },
+		position: { top: '30%', right: '8%' },
 		delay: 0,
 		color: '#1877F2'
 	},
 	{
 		name: 'Instagram',
 		icon: '/assets/icons/instagram-icon.svg',
-		position: { top: '60%', right: '5%' },
+		position: { top: '50%', right: '6%' },
 		delay: 0.2,
 		color: '#E4405F'
 	},
@@ -36,7 +36,7 @@ export function PlatformIcons() {
 	};
 
 	return (
-		<div className="absolute inset-0 pointer-events-none overflow-hidden">
+		<div className="inset-0 pointer-events-none overflow-hidden">
 			{platforms.map((platform) => (
 				<div
 					key={platform.name}

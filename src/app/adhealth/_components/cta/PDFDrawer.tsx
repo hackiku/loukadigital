@@ -3,9 +3,16 @@
 
 import type React from "react"
 
-import { Drawer, DrawerContent, DrawerClose, DrawerTitle } from "~/components/ui/drawer"
+// Import necessary components
+import {
+	Drawer, 
+	DrawerContent, 
+	DrawerClose, 
+	// Make sure to import DrawerHeader
+	DrawerTitle, 
+	DrawerHeader
+} from "~/components/ui/drawer"
 import { X } from "lucide-react"
-// import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 
 interface PDFDrawerProps {
 	open: boolean
@@ -17,12 +24,16 @@ export function PDFDrawer({ open, onOpenChange, children }: PDFDrawerProps) {
 	return (
 		<Drawer open={open} onOpenChange={onOpenChange}>
 			<DrawerContent className="max-w-2xl mx-auto">
-				{/* <VisuallyHidden> */}
-					{/* <DrawerTitle>Download PDF Checklist</DrawerTitle> */}
-				{/* </VisuallyHidden> */}
+				
+				<DrawerHeader className="sr-only">
+					<DrawerTitle>Meta Ad 7 Sins Checklist Download</DrawerTitle>
+				</DrawerHeader>
+
 				<DrawerClose className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors z-10">
 					<X className="w-6 h-6" />
 				</DrawerClose>
+				
+				{/* This is where your PDFContainer (children) goes */}
 				{children}
 			</DrawerContent>
 		</Drawer>
