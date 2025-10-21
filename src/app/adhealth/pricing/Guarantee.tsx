@@ -1,4 +1,4 @@
-// src/app/adleak/pricing/Guarantee.tsx
+// src/app/adhealth/pricing/Guarantee.tsx
 'use client';
 
 import { Shield, Clock, TrendingUp } from 'lucide-react';

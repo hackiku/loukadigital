@@ -1,4 +1,4 @@
-// src/app/adleak/_components/ui/LiquidLeakText.tsx
+// src/app/adhealth/_components/ui/LiquidLeakText.tsx
 'use client';
 import { useState, useEffect } from 'react';
 

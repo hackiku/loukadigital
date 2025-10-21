@@ -19,7 +19,7 @@ export function LogoShoutouts() {
 	}, []);
 
 	return (
-		<div className="flex flex-col items-start gap-8">
+		<div className="flex flex-col items-start gap-4">
 			{/* Shoutout Text with Quote Mark */}
 			<div className="relative min-h-[80px] md:min-h-[100px] flex items-end w-full">
 				{/* Left Quote Mark - bigger, behind text, lower opacity */}
@@ -42,7 +42,7 @@ export function LogoShoutouts() {
 			</div>
 
 			{/* Logo Row */}
-			<div className="flex items-center justify-start gap-4 md:gap-6 flex-wrap">
+			<div className="flex items-center justify-start gap-6 md:gap-6 flex-wrap">
 				{testimonials.map((testimonial, index) => {
 					const isActive = index === activeIndex;
 					const isProviderPartners = testimonial.author.company === 'Provider Partners';
@@ -67,7 +67,7 @@ export function LogoShoutouts() {
 									style={{
 										filter: isActive
 											? 'none'
-											: 'grayscale(100%) brightness(0.7) contrast(1.2) sepia(1) saturate(2) hue-rotate(280deg)'
+											: 'grayscale(100%) brightness(0.7) contrast(1.2) _sepia(1) saturate(2) _hue-rotate(280deg)'
 									}}
 								/>
 							</div>

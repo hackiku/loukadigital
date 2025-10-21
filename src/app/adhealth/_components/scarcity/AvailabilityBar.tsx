@@ -1,4 +1,4 @@
-// src/app/adleak/_components/scarcity/AvailabilityBar.tsx
+// src/app/adhealth/_components/scarcity/AvailabilityBar.tsx
 'use client';
 import { useState } from 'react';
 

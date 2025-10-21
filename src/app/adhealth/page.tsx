@@ -1,107 +1,56 @@
 // @ts-nocheck
 
 // src/app/adhealth/page.tsx
-import type { Metadata } from 'next';
-import { ArrowDown, ChevronDown } from 'lucide-react';
+import type { Metadata } from "next"
 // content
-import { HeroSection } from './sections/HeroSection';
-import { AdAudit } from './audit/AdAudit';
-// import { WhatYouGet } from './audit/WhatYouGet';
-import { WhatYouGet } from './sections/WhatYouGet';
-import { ResultsCard } from './_components/proof/ResultsCard';
-import { Guarantee } from './pricing/Guarantee';
-import { SinsIntroSection } from './sections/SinsIntroSection';
-import { InstaMockup } from './samples/InstaMockup';
-import { HowItWorks } from './sections/HowItWorks';
+import { HeroSection } from "./sections/HeroSection"
+import { WhatYouGet } from "./sections/WhatYouGet"
+import { Guarantee } from "./pricing/Guarantee"
+import { HowItWorks } from "./sections/HowItWorks"
+import { SinsBox } from "./sections/SinsBox"
+import { QualificationSection } from "./sections/QualificationSection"
 
 export const metadata: Metadata = {
-	title: 'AdLeak Audit - Find Your Meta Ad Spend Leak | Louka Digital',
-	description: 'UK businesses lose 30-40% of their Meta ad budget on fixable issues. Get a 48-hour technical audit showing exactly where your £ is going.',
+	title: "Adhealth Audit - Find Your Meta Ad Spend Leak | Louka Digital",
+	description:
+		"UK businesses lose 30-40% of their Meta ad budget on fixable issues. Get a 48-hour technical audit showing exactly where your £ is going.",
 	openGraph: {
-		title: 'Stop Your Meta Ad Spend Leak',
-		description: 'Find & fix your monthly Meta ad waste in 48 hours. £697 audit or free if we don\'t find enough waste.',
-		type: 'website',
+		title: "Stop Your Meta Ad Spend Leak",
+		description: "Find & fix your monthly Meta ad waste in 48 hours. £697 audit or free if we don't find enough waste.",
+		type: "website",
 	},
-};
+}
 
 export default function AdLeakPage() {
-
 	return (
 		<>
 			{/* Hero */}
 			<section className="relative h-[95vh] flex items-center px-4 sm:px-12 md:px-16 lg:px-24">
-
 				<HeroSection />
 			</section>
 
-			{/* <div className="absolute right-32">
-				<InstaMockup />
-			</div> */}
-
 			{/* sins */}
-
 			<section id="sins" className="mt-72 md:mt-36 px-4 sm:px-12 md:px-16 lg:px-24">
-				<div className="max-w-7xl mx-auto">
+				<div className="max-w-4xl mx-auto">
 					{/* Headline */}
-					<div className="mb-16">
+					<div className="max-w-xl mb-16">
 						<h2 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-8 leading-tight">
-							Where on Earth does my{' '} <br className="hidden sm:block" />
-							<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-								Insta Ad money
-							</span>{' '}
-							go?
+							Most Meta ad accounts leak 
+							<span className="px-3 md:px-5 py-1 md:py-1 bg-red-500/20 rounded-full border-2 border-red-500/40">
+								<span className="font-black text-red-400">40% +</span>
+							</span>{" "}
+							budget
 						</h2>
-					</div>
 
-					{/* Main paragraph */}
-					<div className="max-w-lg ml-auto rotate-6 mb-12">
-						<p className="text-center text-3xl md:text-4xl  text-muted-foreground leading-relaxed mb-4">
-							Most ad accounts leak{' '} <br/>
-							<span className="inline-flex items-center gap-1.5 px-3 md:px-4 py-1 md:py-1.5 bg-red-500/20 rounded-full border-2 border-red-500/40 mx-1">
-								<ArrowDown className="w-5 h-5 md:w-6 md:h-6 text-red-400" />
-								<span className="font-black text-red-400">30-40%</span>
-							</span>{' '}
-							<span className="font-bold text-foreground">ad budget</span>
-							<br/>
-							{/* on issues that are{' '}
-							<strong className="underline italic text-foreground font-semibold">easy to fix</strong> 
-							<br />... yet{' '}
-							<strong className="underline italic text-foreground font-semibold">devilish to diagnose</strong> */}
+						<p className="text-2xl md:text-3xl text-muted-foreground leading-relaxed mb-4">
+							... on easy-to-fix yet {" "}
+							<span className="__font-semibold italic text-foreground underline">devilish to diagnose</span>
+							{" "} technical issues
 						</p>
-						<p className="text-center text-xl text-muted-foreground leading-relaxed mb-4">
-							on issues that are{' '}
-							<strong className="underline italic text-foreground font-semibold">easy to fix</strong> 
-							<br />... yet{' '}
-							<strong className="underline italic text-foreground font-semibold">devilish to diagnose</strong>
-						</p>
-
 					</div>
 
-					{/* 7 Sins Box */}
-					<div className="mx-auto max-w-xl mb-12">
-						<div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-500/10 via-red-500/5 to-orange-600/10 p-6 md:p-8">
-							<div className="relative z-10 text-center">
-								<span className="text-2xl italic">self-diagnose your</span>
-								<h3 className="text-3xl md:text-5xl font-black mt-2 mb-4 leading-tight">
-									<span className="bg-gradient-to-r from-orange-400 via-red-400 to-orange-500 bg-clip-text text-transparent">
-										7 Sins of Meta Ads
-									</span>
-								{/* <span className="text-2xl italic mb-12">(for free)</span> */}
-								</h3>
-
-								{/* Animated arrow */}
-								<div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-orange-500/20 animate-bounce">
-									<ChevronDown className="w-5 h-5 text-orange-400" />
-								</div>
-							</div>
-						</div>
-					</div>
+					{/* <SinsBox /> */}
 				</div>
-			</section>
-
-			{/* Interactive Audit Calculator */}
-			<section id="audit" className="min-h-screen px-4 sm:px-12 md:px-16 lg:px-24">
-				<AdAudit />
 			</section>
 
 			{/* What You Get - Deliverables */}
@@ -109,21 +58,28 @@ export default function AdLeakPage() {
 				<WhatYouGet />
 			</section>
 
-			<section className="py-32 px-4 sm:px-12 md:px-16 lg:px-24 bg-gradient-to-b from-background to-purple-500/5">
+			{/* How It Works */}
+			<section
+				id="how-it-works"
+				className="py-32 px-4 sm:px-12 md:px-16 lg:px-24 bg-gradient-to-b from-background to-purple-500/5"
+			>
 				<HowItWorks />
-				{/* <HowItWorks /> */}
 			</section>
-			
+
+			{/* Qualification Section */}
+			<section id="qualification" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
+				<QualificationSection />
+			</section>
 
 			{/* Social Proof - Recent Results */}
-			<section id="results" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
+			<section id="outcomes" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
 				<div className="max-w-7xl mx-auto">
 					<div className="text-center mb-16">
 						<span className="inline-block rounded-full bg-card border px-4 py-2 font-semibold text-sm text-muted-foreground mb-4">
-							RECENT AUDITS
+							OUTCOMES
 						</span>
 						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-							Here's What We've{' '}
+							Here's What We've{" "}
 							<span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
 								Found Lately
 							</span>
@@ -131,47 +87,6 @@ export default function AdLeakPage() {
 						<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
 							Real accounts, real waste, real savings. These are actual findings from the past 30 days.
 						</p>
-					</div>
-
-					<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-						<ResultsCard
-							companyName="Provider Partners"
-							companyLogo="/assets/logos/provider-partners.png"
-							industry="Health Insurance"
-							testimonial="Uncovered £17,000 in additional revenue we were leaving on the table"
-							metric={{
-								label: "Monthly Waste Found",
-								value: "£17,000",
-								trend: "up"
-							}}
-							sinCount={5}
-						/>
-
-						<ResultsCard
-							companyName="Melbourne Capital Group"
-							companyLogo="/assets/logos/melbourne-capital-group.svg"
-							industry="Financial Services"
-							testimonial="Campaign overlap was costing us £2,400/month. Fixed in 48 hours."
-							metric={{
-								label: "Overlap Waste Eliminated",
-								value: "£2,400/mo",
-								trend: "up"
-							}}
-							sinCount={3}
-						/>
-
-						<ResultsCard
-							companyName="Triumph Games"
-							companyLogo="/assets/logos/triumph-games.png"
-							industry="Gaming Studio"
-							testimonial="iOS tracking issues meant we were missing 35% of conversions. Now fixed."
-							metric={{
-								label: "CAC Reduced",
-								value: "£85 → £34",
-								trend: "down"
-							}}
-							sinCount={4}
-						/>
 					</div>
 				</div>
 			</section>
@@ -189,9 +104,8 @@ export default function AdLeakPage() {
 							PRICING
 						</span>
 						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-							80/20 your ad budget{' '}
-							<br />
-							with an{' '}
+							80/20 your ad budget <br />
+							with an{" "}
 							<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
 								expert audit
 							</span>
@@ -206,9 +120,7 @@ export default function AdLeakPage() {
 						<div className="text-center">
 							<h3 className="text-2xl font-bold mb-2">AdLeak Audit</h3>
 							<div className="text-5xl font-black mb-4">
-								<span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-									£697
-								</span>
+								<span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">£697</span>
 							</div>
 							<p className="text-sm text-muted-foreground mb-6">
 								One-time payment • 48-hour delivery • Money-back guarantee
@@ -221,5 +133,5 @@ export default function AdLeakPage() {
 				</div>
 			</section>
 		</>
-	);
+	)
 }

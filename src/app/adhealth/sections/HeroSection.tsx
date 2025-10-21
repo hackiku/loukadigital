@@ -1,25 +1,23 @@
-// @ts-nocheck
-// src/app/adleak/sections/HeroSection.tsx
+// src/app/adhealth/sections/HeroSection.tsx
 
-import { Calendar } from 'lucide-react';
+"use client"
 
 // cta
-import { AuditDrawerTrigger } from '../_components/cta/AuditDrawerTrigger';
-import { AvailabilityBar } from '../pricing/AvailabilityBar';
-import { DeliveryTime } from '../pricing/DeliveryTime';
+import { PDFButton } from "../_components/cta/PDFButton"
+import { useDrawer } from "../_context/DrawerContext"
 
 // ui
-import { LiquidLeakText } from '../_components/ui/LiquidLeakText';
-import { LogoShoutouts } from '../_components/proof/LogoShoutouts';
-import { PlatformIcons } from '../_components/ui/PlatformIcons';
-import { GetPDFButton } from '../_components/cta/GetPDFButton';
-import { AuditForm } from '../_components/cta/AuditForm';
+import { LiquidLeakText } from "../_components/ui/LiquidLeakText"
+import { LogoShoutouts } from "../_components/proof/LogoShoutouts"
+import { PlatformIcons } from "../_components/ui/PlatformIcons"
+import { DeliveryTime } from "../pricing/DeliveryTime"
+// import { GetPDFButton } from '../_components/cta/GetPDFButton';
+// import { AuditForm } from '../_components/cta/AuditForm';
+// import { AuditDrawerTrigger } from '../_components/cta/AuditDrawerTrigger';
 
-interface HeroSectionProps {
-	onOpenDrawer: () => void;
-}
+export function HeroSection() {
+	const { openDrawer } = useDrawer()
 
-export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 	return (
 		<div className="relative w-full h-full">
 			{/* Bottom left testimonials - desktop only */}
@@ -31,32 +29,34 @@ export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 			<PlatformIcons />
 
 			{/* Main Content */}
-			<div className="relative mt-42 flex flex-col items-center gap-8 mx-auto w-full">
+			<div className="max-w-xl relative mt-36 flex flex-col items-center gap-4 mx-auto w-full">
 				{/* Main Headline */}
 				<h1 className="flex flex-col gap-1 text-4xl md:text-6xl lg:text-7xl font-extrabold text-center">
 					<span className="text-transparent text-5xl md:text-7xl bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text">
-						Figure Out & Fix
-					</span>
-					<span className="text-transparent -mb-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text ">
-						Your Monthly Meta
+						Diagnose & Fix Your Meta
 					</span>
 					<LiquidLeakText>Ad Spend Leak</LiquidLeakText>
 				</h1>
 
+				<p className="text-center text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
+					Uncover up to <strong className="text-foreground">£15k/mo in losses</strong> in ~10 min (for free)
+					{/* (Or we can do it for you) */}
+				</p>
 				{/* <AuditForm /> */}
 				{/* CTA Button Container */}
-				<div className="flex flex-col gap-6 md:flex-row items-center justify-center relative w-full max-w-[16em] md:max-w-[28em]">
-					<div className="max-w-[17em] w-full" id="hero-cta-button">
-						<AuditDrawerTrigger badge="price" onOpen={onOpenDrawer} />
-						<GetPDFButton variant="hero" />
-
+				<div className="flex flex-col gap-6 md:flex-row items-center justify-center relative w-full">
+					<div className="w-[11.4em] _w-full" id="hero-cta-button">
+						{/* <AuditForm /> */}
+						{/* <AuditDrawerTrigger badge="price" onOpen={onOpenDrawer} /> */}
+						<PDFButton onClick={openDrawer} />
+						{/* <GetPDFButton variant="hero" /> */}
 					</div>
 				</div>
 
 				{/* Delivery Time Badge - positioned below button on mobile, floating on desktop */}
-				<div className="relative md:absolute md:right-[5%] md:-bottom-[20%] mt-4 md:mt-0">
-					<DeliveryTime targetButtonId="hero-cta-button" />
-				</div>
+				{/* <div className="relative md:absolute md:right-[5%] md:-bottom-[20%] mt-4 md:mt-0">
+          <DeliveryTime targetButtonId="hero-cta-button" />
+        </div> */}
 
 				{/* Mobile testimonials */}
 				<div className="md:hidden mt-8">
@@ -64,5 +64,5 @@ export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 				</div>
 			</div>
 		</div>
-	);
+	)
 }

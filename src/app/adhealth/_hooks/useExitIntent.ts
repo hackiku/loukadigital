@@ -1,4 +1,4 @@
-// src/app/adleak/_hooks/useExitIntent.ts
+// src/app/adhealth/_hooks/useExitIntent.ts
 'use client';
 import { useState, useEffect, useCallback } from 'react';
 

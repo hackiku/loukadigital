@@ -1,4 +1,4 @@
-// src/app/adleak/audit/calculator/FullCalculator.tsx
+// src/app/adhealth/audit/calculator/FullCalculator.tsx
 
 'use client';
 import { calculateScore, getScoreLabel } from '../math';

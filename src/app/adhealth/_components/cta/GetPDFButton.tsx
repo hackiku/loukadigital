@@ -1,4 +1,4 @@
-// src/app/adleak/_components/cta/GetPDFButton.tsx
+// src/app/adhealth/_components/cta/GetPDFButton.tsx
 'use client';
 
 interface GetPDFButtonProps {

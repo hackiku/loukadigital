@@ -1,4 +1,4 @@
-// src/app/adleak/audit/WhatYouGet.tsx
+// src/app/adhealth/audit/WhatYouGet.tsx
 'use client';
 
 import { Check, FileText, Target, Wrench, TrendingUp } from 'lucide-react';

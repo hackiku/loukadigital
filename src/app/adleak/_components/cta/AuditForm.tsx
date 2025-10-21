@@ -1,24 +1,31 @@
 // src/app/adleak/_components/cta/AuditForm.tsx
 'use client';
-import { useState } from 'react';
-import { useAudit } from '../../_context/AuditContext';
-// import { api } from '~/utils/api'; 
 
-// Assuming you have ShadCN Slider component installed
+import React, { forwardRef } from 'react';
+import { useAudit } from '../../_context/AuditContext';
+import { api } from '~/trpc/react';
 import { Slider } from '~/components/ui/slider';
 
-export function AuditForm() {
-	const { data, updateBudget } = useAudit();
-	const [email, setEmail] = useState('');
+interface AuditFormProps {
+	emailInputRef?: React.Ref<HTMLInputElement>;
+}
 
-	// const submitAuditMutation = api.leads.submitAudit.useMutation();
-	const submitAuditMutation= () => null;
+export const AuditForm = forwardRef<HTMLDivElement, AuditFormProps>((props, ref) => {
+	const { data, updateBudget, updateEmail } = useAudit();
+
+	const createLead = api.leads.submitAudit.useMutation();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!email || submitAuditMutation.isLoading) return;
+		const form = e.currentTarget as HTMLFormElement;
+		const emailInput = form.elements.namedItem('email') as HTMLInputElement;
+		const email = emailInput.value;
 
-		submitAuditMutation.mutate({
+		if (!email || createLead.isPending) return;
+
+		updateEmail(email);
+
+		createLead.mutate({
 			email,
 			monthlyBudget: data.monthlyBudget,
 			selectedSins: data.selectedSins,
@@ -29,14 +36,11 @@ export function AuditForm() {
 		});
 	};
 
-	if (submitAuditMutation.isSuccess) {
+	if (createLead.isSuccess) {
 		return (
 			<div className="p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-center">
 				<p className="text-base text-green-400 font-semibold">
-					✓ Check your email for the Meta Ads Checklist PDF!
-				</p>
-				<p className="text-xs text-muted-foreground mt-2">
-					Want our team to run a full audit? Just reply to that email.
+					✓ Check your email for the Ad Health PDF!
 				</p>
 			</div>
 		);
@@ -45,8 +49,7 @@ export function AuditForm() {
 	const budgetTicks = [3000, 10000, 25000, 50000];
 
 	return (
-		<form onSubmit={handleSubmit} className="space-y-6">
-			{/* Monthly Ad Spend Slider */}
+		<form onSubmit={handleSubmit} className="space-y-6 w-full" ref={ref}>
 			<div className="space-y-3">
 				<div className="flex justify-between items-baseline">
 					<label htmlFor="budget" className="text-sm font-medium text-muted-foreground">
@@ -78,31 +81,31 @@ export function AuditForm() {
 				</div>
 			</div>
 
-			{/* Email Input */}
 			<input
+				ref={props.emailInputRef}
+				name="email"
 				type="email"
-				value={email}
-				onChange={(e) => setEmail(e.target.value)}
 				placeholder="Enter your email"
 				required
-				disabled={submitAuditMutation.isLoading}
+				disabled={createLead.isPending}
 				className="w-full px-4 py-3 bg-background/50 border border-border/50 rounded-xl text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all disabled:opacity-50"
 			/>
 
-			{/* Submit Button */}
 			<button
 				type="submit"
-				disabled={submitAuditMutation.isLoading || !email}
+				disabled={createLead.isPending}
 				className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-xl transition-all hover:scale-[1.02] text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
 			>
-				{submitAuditMutation.isLoading ? 'Sending...' : 'Download Free PDF'}
+				{createLead.isPending ? 'Sending...' : 'Download Ad Health PDF'}
 			</button>
 
-			{submitAuditMutation.isError && (
+			{createLead.isError && (
 				<p className="text-xs text-red-400 text-center">
-					{submitAuditMutation.error.message || 'An error occurred. Please try again.'}
+					{createLead.error.message || 'An error occurred. Please try again.'}
 				</p>
 			)}
 		</form>
 	);
-}
+});
+
+AuditForm.displayName = 'AuditForm';

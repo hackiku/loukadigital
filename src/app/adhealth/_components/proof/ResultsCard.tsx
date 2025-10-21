@@ -1,4 +1,4 @@
-// src/app/adleak/_components/proof/ResultsCard.tsx
+// src/app/adhealth/_components/proof/ResultsCard.tsx
 'use client';
 
 import { TrendingUp, TrendingDown } from 'lucide-react';

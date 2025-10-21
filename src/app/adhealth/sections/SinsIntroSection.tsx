@@ -1,4 +1,4 @@
-// src/app/adleak/sections/SinsIntroSection.tsx
+// src/app/adhealth/sections/SinsIntroSection.tsx
 import { ArrowDown, ChevronDown } from "lucide-react";
 
 export function SinsIntroSection() {

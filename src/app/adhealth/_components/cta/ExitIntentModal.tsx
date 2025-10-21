@@ -1,4 +1,4 @@
-// src/app/adleak/_components/cta/ExitIntentModal.tsx
+// src/app/adhealth/_components/cta/ExitIntentModal.tsx
 'use client';
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';

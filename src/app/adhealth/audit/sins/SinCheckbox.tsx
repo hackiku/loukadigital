@@ -1,4 +1,4 @@
-// src/app/adleak/audit/sins/SinCheckbox.tsx
+// src/app/adhealth/audit/sins/SinCheckbox.tsx
 'use client';
 import { Check } from 'lucide-react';
 

@@ -1,0 +1,2 @@
+find /Users/jzro/code/work/loukadigital/src/app/adhealth -type f \( -name "*.ts" -o -name "*.tsx" \) \
+  -exec sed -i '' 's#// src/app/adleak#// src/app/adhealth#g' {} +

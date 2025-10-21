@@ -1,48 +1,41 @@
-// src/app/adleak/_hooks/useAuditForm.ts
-'use client';
-import { useState } from 'react';
-import { useAudit } from '../_context/AuditContext';
+// src/app/adhealth/_hooks/useAuditForm.ts
 
-// This hook is now tailored for the AdLeak data structure
+"use client"
+import { useAudit } from "../_context/AuditContext"
+import { api } from "~/trpc/react"
+
 export function useAuditForm() {
-	const { data, updateEmail } = useAudit();
-	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [isSuccess, setIsSuccess] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+	const { data, updateEmail } = useAudit()
+
+	const submitAuditMutation = api.leads.submitAudit.useMutation({
+		onSuccess: () => {
+			console.log("[v0] Form submitted successfully")
+		},
+		onError: (error) => {
+			console.error("[v0] Form submission error:", error)
+		},
+	})
 
 	const handleSubmit = async (email: string) => {
-		if (!email || isSubmitting) return;
+		if (!email || submitAuditMutation.isPending) return
 
-		setIsSubmitting(true);
-		setError(null);
-		updateEmail(email);
+		updateEmail(email)
 
-		try {
-			// This will eventually hit your ConvertKit API route
-			// const response = await fetch('/api/subscribe', {
-			// 	method: 'POST',
-			// 	headers: { 'Content-Type': 'application/json' },
-			// 	body: JSON.stringify({
-			// 		email,
-			// 		monthlyBudget: data.monthlyBudget,
-			// 		monthlyWaste: data.monthlyWaste,
-			// 		score: data.score,
-			// 		selectedSins: data.selectedSins.join(','),
-			// 	}),
-			// });
-			// if (!response.ok) throw new Error('Submission failed. Please try again.');
+		submitAuditMutation.mutate({
+			email,
+			monthlyBudget: data.monthlyBudget,
+			selectedSins: data.selectedSins,
+			monthlyWaste: data.monthlyWaste,
+			yearlyWaste: data.yearlyWaste,
+			score: data.score,
+			fit: data.fit,
+		})
+	}
 
-			// Using a promise for testing until the API route is live
-			await new Promise(resolve => setTimeout(resolve, 1000));
-
-			setIsSuccess(true);
-		} catch (err: any) {
-			setError(err.message || 'Something went wrong.');
-			console.error('Form submission error:', err);
-		} finally {
-			setIsSubmitting(false);
-		}
-	};
-
-	return { handleSubmit, isSubmitting, isSuccess, error };
+	return {
+		handleSubmit,
+		isSubmitting: submitAuditMutation.isPending,
+		isSuccess: submitAuditMutation.isSuccess,
+		error: submitAuditMutation.error?.message ?? null,
+	}
 }

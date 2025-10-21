@@ -1,4 +1,4 @@
-// src/app/adleak/audit/SinCard.tsx
+// src/app/adhealth/audit/SinCard.tsx
 'use client';
 
 interface SinCardProps {

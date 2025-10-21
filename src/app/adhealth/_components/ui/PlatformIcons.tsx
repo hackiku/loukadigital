@@ -1,7 +1,7 @@
-// src/app/adleak/_components/ui/PlatformIcons.tsx
+// src/app/adhealth/_components/ui/PlatformIcons.tsx
 
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 
 const platforms = [
@@ -64,7 +64,7 @@ export function PlatformIcons() {
 						</div>
 					) : (
 						// Try to load actual icon
-						<div className="relative w-16 h-16 opacity-40 hover:opacity-60 transition-opacity">
+						<div className="relative w-16 h-16 opacity-60 hover:opacity-60 transition-opacity">
 							<Image
 								src={platform.icon}
 								alt={`${platform.name} icon`}

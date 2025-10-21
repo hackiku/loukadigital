@@ -1,4 +1,4 @@
-// src/app/adleak/audit/SinItem.tsx
+// src/app/adhealth/audit/SinItem.tsx
 'use client';
 import { Check } from 'lucide-react';
 

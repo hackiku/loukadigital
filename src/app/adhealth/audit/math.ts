@@ -1,4 +1,4 @@
-// src/app/adleak/audit/math.ts
+// src/app/adhealth/audit/math.ts
 import { sins } from '~/data/audit';
 
 export function calculateWaste(monthlyBudget: number, selectedSins: string[]): number {

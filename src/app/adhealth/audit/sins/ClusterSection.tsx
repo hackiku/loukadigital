@@ -1,4 +1,4 @@
-// src/app/adleak/audit/sins/ClusterSection.tsx
+// src/app/adhealth/audit/sins/ClusterSection.tsx
 'use client';
 import { sinClusters } from '~/data/sin-clusters';
 

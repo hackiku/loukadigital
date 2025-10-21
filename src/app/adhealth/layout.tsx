@@ -1,43 +1,42 @@
-// src/app/adleak/layout.tsx
-'use client';
+// src/app/adhealth/layout.tsx
+"use client"
 
-import { useState } from 'react';
-import Navbar from './_components/navigation/Navbar';
-import Footer from './_components/navigation/Footer';
-import { CurrentVisitors } from './_components/proof/CurrentVisitors';
-import { AuditDrawerContainer } from './_components/cta/AuditDrawerContainer';
-import { MobileStickyCTA } from './_components/ui/MobileStickyCTA';
-import { ExitIntentModal } from './_components/cta/ExitIntentModal';
-import { AuditProvider } from './_context/AuditContext';
-import { useExitIntent } from './_hooks/useExitIntent';
+import type React from "react"
+
+import Navbar from "./_components/navigation/Navbar"
+import Footer from "./_components/navigation/Footer"
+import { CurrentVisitors } from "./_components/proof/CurrentVisitors"
+import { PDFDrawer } from "./_components/cta/PDFDrawer"
+import { PDFContainer } from "./_components/cta/PDFContainer"
+import { MobileStickyCTA } from "./_components/ui/MobileStickyCTA"
+import { ExitIntentModal } from "./_components/cta/ExitIntentModal"
+import { AuditProvider } from "./_context/AuditContext"
+import { DrawerProvider, useDrawer } from "./_context/DrawerContext"
+import { useExitIntent } from "./_hooks/useExitIntent"
 
 interface AdLeakLayoutProps {
-	children: React.ReactNode;
+	children: React.ReactNode
 }
 
 function LayoutContent({ children }: AdLeakLayoutProps) {
-	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+	const { isOpen, openDrawer, setIsOpen } = useDrawer()
 	const { shouldShow: showExitIntent, close: closeExitIntent } = useExitIntent({
 		delay: 5000,
-		aggressive: false
-	});
+		aggressive: false,
+	})
 
 	return (
 		<div className="min-h-screen bg-background text-foreground overflow-x-hidden">
 			{/* Navigation */}
-			<Navbar onOpenDrawer={() => setIsDrawerOpen(true)} />
+			<Navbar onOpenDrawer={openDrawer} />
 
-			{/* Audit Drawer/Modal */}
-			<AuditDrawerContainer
-				isOpen={isDrawerOpen}
-				onClose={() => setIsDrawerOpen(false)}
-			/>
+			{/* PDF Drawer */}
+			<PDFDrawer open={isOpen} onOpenChange={setIsOpen}>
+				<PDFContainer />
+			</PDFDrawer>
 
 			{/* Exit Intent Modal */}
-			<ExitIntentModal
-				isOpen={showExitIntent}
-				onClose={closeExitIntent}
-			/>
+			<ExitIntentModal isOpen={showExitIntent} onClose={closeExitIntent} />
 
 			{/* Mobile Sticky CTA */}
 			<MobileStickyCTA />
@@ -53,13 +52,15 @@ function LayoutContent({ children }: AdLeakLayoutProps) {
 			{/* Footer */}
 			<Footer />
 		</div>
-	);
+	)
 }
 
 export default function AdLeakLayout({ children }: AdLeakLayoutProps) {
 	return (
 		<AuditProvider>
-			<LayoutContent>{children}</LayoutContent>
+			<DrawerProvider>
+				<LayoutContent>{children}</LayoutContent>
+			</DrawerProvider>
 		</AuditProvider>
-	);
+	)
 }
