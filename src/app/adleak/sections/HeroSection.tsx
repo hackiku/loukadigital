@@ -12,6 +12,8 @@ import { DeliveryTime } from '../pricing/DeliveryTime';
 import { LiquidLeakText } from '../_components/ui/LiquidLeakText';
 import { LogoShoutouts } from '../_components/proof/LogoShoutouts';
 import { PlatformIcons } from '../_components/ui/PlatformIcons';
+import { GetPDFButton } from '../_components/cta/GetPDFButton';
+import { AuditForm } from '../_components/cta/AuditForm';
 
 interface HeroSectionProps {
 	onOpenDrawer: () => void;
@@ -32,21 +34,22 @@ export function HeroSection({ onOpenDrawer }: HeroSectionProps) {
 			<div className="relative mt-42 flex flex-col items-center gap-8 mx-auto w-full">
 				{/* Main Headline */}
 				<h1 className="flex flex-col gap-1 text-4xl md:text-6xl lg:text-7xl font-extrabold text-center">
-					<span className="text-5xl md:text-7xl bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+					<span className="text-transparent text-5xl md:text-7xl bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text">
 						Figure Out & Fix
 					</span>
-					<br />
-					<span className="-mb-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+					<span className="text-transparent -mb-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text ">
 						Your Monthly Meta
 					</span>
-					<br />
 					<LiquidLeakText>Ad Spend Leak</LiquidLeakText>
 				</h1>
 
+				{/* <AuditForm /> */}
 				{/* CTA Button Container */}
 				<div className="flex flex-col gap-6 md:flex-row items-center justify-center relative w-full max-w-[16em] md:max-w-[28em]">
 					<div className="max-w-[17em] w-full" id="hero-cta-button">
 						<AuditDrawerTrigger badge="price" onOpen={onOpenDrawer} />
+						<GetPDFButton variant="hero" />
+
 					</div>
 				</div>
 

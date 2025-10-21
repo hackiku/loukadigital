@@ -48,14 +48,15 @@ export function StickyControls() {
 		<>
 			{/* Compact Button - Bottom Left */}
 			<button
+				data-sticky-trigger // ← ADD THIS
 				onClick={() => setIsExpanded(true)}
 				className={`
-          fixed bottom-6 left-6 z-30
-          bg-card/95 backdrop-blur-xl border-2 border-purple-500/50 
-          rounded-2xl shadow-2xl p-4 
-          hover:scale-105 transition-all
-          ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}
-        `}
+					fixed bottom-6 left-6 z-30
+					bg-card/95 backdrop-blur-xl border-2 border-purple-500/50 
+					rounded-2xl shadow-2xl p-4 
+					hover:scale-105 transition-all
+					${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}
+				`}
 			>
 				{/* Budget */}
 				<div className="flex items-baseline gap-2 mb-2 pb-2 border-b border-border/50">
@@ -153,12 +154,12 @@ export function StickyControls() {
 								{/* Headline + Subhead */}
 								<div className="mb-6">
 									<h3 className="text-3xl font-bold mb-3">
-										Get Your Free AdLeak Audit
+										Get the 7 Sins PDF (Free)
 									</h3>
 									<p className="text-muted-foreground leading-relaxed">
-										Download the 7 Sins PDF checklist instantly. Then email us a screenshot
-										of your ad account results, and we'll analyze your specific waste areas
-										in detail.
+										Download the checklist to self-diagnose your waste. If you want us to
+										run a full £697 audit for you, reply to the confirmation email with
+										your ad account screenshots.
 									</p>
 								</div>
 

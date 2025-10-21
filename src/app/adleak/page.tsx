@@ -6,11 +6,13 @@ import { ArrowDown, ChevronDown } from 'lucide-react';
 // content
 import { HeroSection } from './sections/HeroSection';
 import { AdAudit } from './audit/AdAudit';
-import { WhatYouGet } from './audit/WhatYouGet';
+// import { WhatYouGet } from './audit/WhatYouGet';
+import { WhatYouGet } from './sections/WhatYouGet';
 import { ResultsCard } from './_components/proof/ResultsCard';
 import { Guarantee } from './pricing/Guarantee';
 import { SinsIntroSection } from './sections/SinsIntroSection';
 import { InstaMockup } from './samples/InstaMockup';
+import { HowItWorks } from './sections/HowItWorks';
 
 export const metadata: Metadata = {
 	title: 'AdLeak Audit - Find Your Meta Ad Spend Leak | Louka Digital',
@@ -106,6 +108,12 @@ export default function AdLeakPage() {
 			<section id="what-you-get" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
 				<WhatYouGet />
 			</section>
+
+			<section className="py-32 px-4 sm:px-12 md:px-16 lg:px-24 bg-gradient-to-b from-background to-purple-500/5">
+				<HowItWorks />
+				{/* <HowItWorks /> */}
+			</section>
+			
 
 			{/* Social Proof - Recent Results */}
 			<section id="results" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">

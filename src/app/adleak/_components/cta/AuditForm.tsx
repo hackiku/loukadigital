@@ -1,55 +1,108 @@
-// src/app/adhealth/_components/cta/AuditForm.tsx
-
+// src/app/adleak/_components/cta/AuditForm.tsx
 'use client';
 import { useState } from 'react';
-import { useAuditForm } from './useAuditForm';
+import { useAudit } from '../../_context/AuditContext';
+// import { api } from '~/utils/api'; 
+
+// Assuming you have ShadCN Slider component installed
+import { Slider } from '~/components/ui/slider';
 
 export function AuditForm() {
-	const { handleSubmit, isLoading } = useAuditForm();
+	const { data, updateBudget } = useAudit();
 	const [email, setEmail] = useState('');
-	const [spend, setSpend] = useState('');
 
-	const onSubmit = async (e: React.FormEvent) => {
+	// const submitAuditMutation = api.leads.submitAudit.useMutation();
+	const submitAuditMutation= () => null;
+
+	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		await handleSubmit({ email, spend });
+		if (!email || submitAuditMutation.isLoading) return;
+
+		submitAuditMutation.mutate({
+			email,
+			monthlyBudget: data.monthlyBudget,
+			selectedSins: data.selectedSins,
+			monthlyWaste: data.monthlyWaste,
+			yearlyWaste: data.yearlyWaste,
+			score: data.score,
+			fit: data.fit,
+		});
 	};
 
+	if (submitAuditMutation.isSuccess) {
+		return (
+			<div className="p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-center">
+				<p className="text-base text-green-400 font-semibold">
+					✓ Check your email for the Meta Ads Checklist PDF!
+				</p>
+				<p className="text-xs text-muted-foreground mt-2">
+					Want our team to run a full audit? Just reply to that email.
+				</p>
+			</div>
+		);
+	}
+
+	const budgetTicks = [3000, 10000, 25000, 50000];
+
 	return (
-		<form onSubmit={onSubmit} className="space-y-4">
-			<div>
-				<input
-					type="email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					placeholder="Enter your email"
-					required
-					className="w-full px-4 py-3.5 bg-gray-900/50 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+		<form onSubmit={handleSubmit} className="space-y-6">
+			{/* Monthly Ad Spend Slider */}
+			<div className="space-y-3">
+				<div className="flex justify-between items-baseline">
+					<label htmlFor="budget" className="text-sm font-medium text-muted-foreground">
+						Monthly Meta Ad Spend
+					</label>
+					<span className="text-lg font-bold text-foreground">
+						£{data.monthlyBudget.toLocaleString()}
+					</span>
+				</div>
+				<Slider
+					id="budget"
+					min={3000}
+					max={50000}
+					step={1000}
+					value={[data.monthlyBudget]}
+					onValueChange={(value) => updateBudget(value[0])}
 				/>
+				<div className="flex justify-between px-1">
+					{budgetTicks.map((tick) => (
+						<button
+							key={tick}
+							type="button"
+							onClick={() => updateBudget(tick)}
+							className={`text-xs text-muted-foreground hover:text-foreground transition-colors ${data.monthlyBudget === tick ? 'font-bold text-purple-400' : ''}`}
+						>
+							{tick >= 1000 ? `£${tick / 1000}k` : `£${tick}`}
+						</button>
+					))}
+				</div>
 			</div>
 
-			<div>
-				<select
-					value={spend}
-					onChange={(e) => setSpend(e.target.value)}
-					required
-					className="w-full px-4 py-3.5 bg-gray-900/50 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all appearance-none cursor-pointer"
-				>
-					<option value="">Select Monthly Ad Spend</option>
-					<option value="3000-5000">$3,000 - $5,000</option>
-					<option value="5000-10000">$5,000 - $10,000</option>
-					<option value="10000-25000">$10,000 - $25,000</option>
-					<option value="25000+">$25,000+</option>
-				</select>
-			</div>
+			{/* Email Input */}
+			<input
+				type="email"
+				value={email}
+				onChange={(e) => setEmail(e.target.value)}
+				placeholder="Enter your email"
+				required
+				disabled={submitAuditMutation.isLoading}
+				className="w-full px-4 py-3 bg-background/50 border border-border/50 rounded-xl text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all disabled:opacity-50"
+			/>
 
+			{/* Submit Button */}
 			<button
 				type="submit"
-				disabled={isLoading}
-				className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg disabled:transform-none"
+				disabled={submitAuditMutation.isLoading || !email}
+				className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold rounded-xl transition-all hover:scale-[1.02] text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
 			>
-				{isLoading ? 'Submitting...' : 'Get My Free Audit →'}
+				{submitAuditMutation.isLoading ? 'Sending...' : 'Download Free PDF'}
 			</button>
+
+			{submitAuditMutation.isError && (
+				<p className="text-xs text-red-400 text-center">
+					{submitAuditMutation.error.message || 'An error occurred. Please try again.'}
+				</p>
+			)}
 		</form>
 	);
 }
-

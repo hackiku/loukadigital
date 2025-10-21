@@ -74,12 +74,13 @@ export function EmailForm({
 	// Success state
 	if (isSuccess) {
 		return (
-			<div className={`space-y-3 ${mobile ? 'w-full' : ''}`}>
-				<div className="p-4 rounded-xl bg-green-500/10 border border-green-500/30">
-					<p className="text-sm text-green-400 text-center font-semibold">
-						✓ Check your email for the 7 Sins PDF
-					</p>
-				</div>
+			<div className="p-4 rounded-xl bg-green-500/10 border border-green-500/30">
+				<p className="text-sm text-green-400 text-center font-semibold">
+					✓ Check your email for the 7 Sins PDF
+				</p>
+				<p className="text-xs text-muted-foreground text-center mt-2">
+					Want us to audit your account? Reply to the email with screenshots.
+				</p>
 			</div>
 		);
 	}
