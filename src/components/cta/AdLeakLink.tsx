@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { AvailabilityBar } from '~/app/adleak/pricing/AvailabilityBar';
+import { AvailabilityBar } from '~/app/adhealth/_components/scarcity/AvailabilityBar';
 
 export function AdLeakLink() {
 	return (

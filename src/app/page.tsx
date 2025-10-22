@@ -19,7 +19,7 @@ import { services } from "~/data/services";
 import { AboutWrapper } from "./_components/about/AboutWrapper";
 import { ServicesFunnel } from "./_components/services/ServicesFunnel";
 import { SocialFloaters } from "./_components/services/SocialFloaters";
-import AdLeakPage from "./adleak/page";
+import AdHealthPage from "./adhealth/page";
 import { AdLeakLink } from "~/components/cta/AdLeakLink";
 import { MatthewShoutout } from "~/components/proof/MatthewShoutout";
 
