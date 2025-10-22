@@ -17,6 +17,7 @@ import { HandDrawnPointer } from "./_components/ui/HandDrawnPointer"
 import { LeadMagnetSection } from "./sections/LeadMagnetSection"
 import { PortfolioSamples } from "./samples/PortfolioSamples"
 import { PricingCard } from "./pricing/PricingCard"
+import { DeliveryTime } from "./pricing/DeliveryTime"
 
 export const metadata: Metadata = {
 	title: "Adhealth Audit - Find Your Meta Ad Spend Leak | Louka Digital",
@@ -58,7 +59,7 @@ export default function AdLeakPage() {
 						</p>
 						<p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
 							After reviewing 200+ Meta ad accounts
-							over 5 years, we have a pretty keen eye for the usual suspects. And now you can, too.
+							over 5 years, we have a pretty keen eye for the (not-so-)usual suspects. And now you can, too.
 						</p>
 					</div>
 
@@ -72,35 +73,46 @@ export default function AdLeakPage() {
 			</section>
 			{/* <AdFormatsCarousel /> */}
 
-			{/* How It Works */}
-			<section
-				id="how-it-works"
-				className="py-24 px-4 sm:px-12 md:px-16 lg:px-24 bg-gradient-to-b from-background to-purple-500/5"
-			>
-				<div className="text-center mb-20">
-					<h2 className="text-4xl md:text-5xl font-bold mb-4">How This Works</h2>
-					<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-						Three steps to stop the bleeding
-					</p>
-				</div>
+			{/* qualification */}
 
-				<HowItWorks />
-			</section>
 			<section id="how-it-works" className="py-24 px-4 sm:px-12 md:px-16 lg:px-24">
 				<div className="text-center mb-16">
-					<h2 className="text-4xl md:text-5xl font-bold mb-4">What's next with this knowledge?</h2>
+					<h2 className="text-4xl md:text-5xl font-bold mb-4">What's next with this knowledge?
+						</h2>
 					<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-						Three paths forward
+						Your account score tells you how much you can improve. You choose how, when... and with whom.
 					</p>
 				</div>
 				<HowItWorks />
 			</section>
 
-			{/* Qualification Section */}
-			<section id="qualification" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
 
-				<QualificationSection />
+
+			<section id="pricing" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
+				<div className="text-center mb-16">
+					<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+						Stop the bleeding.{" "}
+						<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+							Get your audit.
+						</span>
+					</h2>
+					<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+						Limited free audits available. Regular £697 price returns after 20 spots claimed.
+					</p>
+				</div>
+
+				{/* Pricing card with delivery time indicator */}
+				<div className="relative">
+					{/* DeliveryTime - positioned top-left, pointing down-right to card */}
+					<div className="hidden md:block absolute z-10 top-2 -left-12">
+						<DeliveryTime deliveryTime="24-48h" direction="down-right" />
+					</div>
+
+					<PricingCard />
+				</div>
 			</section>
+
+			{/* portfolio */}
 
 			<section id="outcomes" className="py-24 px-4 sm:px-12 md:px-16 lg:px-24">
 				<div className="text-center mb-12">
@@ -117,21 +129,6 @@ export default function AdLeakPage() {
 				<PortfolioSamples />
 			</section>
 
-
-			<section id="pricing" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
-				<div className="text-center mb-16">
-					<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-						Stop the ad bleed.{" "}
-						<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-							Get your audit.
-						</span>
-					</h2>
-					<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-						Limited free audits available. Regular £697 price returns after 20 spots claimed.
-					</p>
-				</div>
-				<PricingCard />
-			</section>
 
 			
 		</>
