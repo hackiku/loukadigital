@@ -15,6 +15,8 @@ import { AdProblemsCarousel } from "./samples/AdProblemsCarousel"
 import { AuditForm } from "./_components/cta/AuditForm"
 import { HandDrawnPointer } from "./_components/ui/HandDrawnPointer"
 import { LeadMagnetSection } from "./sections/LeadMagnetSection"
+import { PortfolioSamples } from "./samples/PortfolioSamples"
+import { PricingCard } from "./pricing/PricingCard"
 
 export const metadata: Metadata = {
 	title: "Adhealth Audit - Find Your Meta Ad Spend Leak | Louka Digital",
@@ -84,6 +86,15 @@ export default function AdLeakPage() {
 
 				<HowItWorks />
 			</section>
+			<section id="how-it-works" className="py-24 px-4 sm:px-12 md:px-16 lg:px-24">
+				<div className="text-center mb-16">
+					<h2 className="text-4xl md:text-5xl font-bold mb-4">What's next with this knowledge?</h2>
+					<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+						Three paths forward
+					</p>
+				</div>
+				<HowItWorks />
+			</section>
 
 			{/* Qualification Section */}
 			<section id="qualification" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
@@ -91,29 +102,35 @@ export default function AdLeakPage() {
 				<QualificationSection />
 			</section>
 
-			{/* Social Proof - Recent Results */}
-			<section id="outcomes" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
-				<div className="max-w-7xl mx-auto">
-					<div className="text-center mb-16">
-						<span className="inline-block rounded-full bg-card border px-4 py-2 font-semibold text-sm text-muted-foreground mb-4">
-							OUTCOMES
+			<section id="outcomes" className="py-24 px-4 sm:px-12 md:px-16 lg:px-24">
+				<div className="text-center mb-12">
+					<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+						Recent{" "}
+						<span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+							Wins
 						</span>
-						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-							Here's What We've{" "}
-							<span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-								Found Lately
-							</span>
-						</h2>
-						<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-							Real accounts, real waste, real savings. These are actual findings from the past 30 days.
-						</p>
-					</div>
+					</h2>
+					<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+						Real accounts, real results, last 90 days
+					</p>
 				</div>
+				<PortfolioSamples />
 			</section>
 
-			{/* Risk Reversal - Guarantee */}
-			<section id="guarantee" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
-				<Guarantee />
+
+			<section id="pricing" className="py-32 px-4 sm:px-12 md:px-16 lg:px-24">
+				<div className="text-center mb-16">
+					<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+						Stop the ad bleed.{" "}
+						<span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+							Get your audit.
+						</span>
+					</h2>
+					<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+						Limited free audits available. Regular £697 price returns after 20 spots claimed.
+					</p>
+				</div>
+				<PricingCard />
 			</section>
 
 			
